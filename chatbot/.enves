@@ -1,0 +1,4 @@
+OPENROUTER_API_KEY=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
+OPENROUTER_MODEL=qwen/qwq-32b:free
+SITE_URL=https://iafluence.fr
+SITE_NAME=IAfluence 

@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - SUAN TAY</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        
+        
+        
+        .print-container {
+            display: flex;
+            height: 100%;
+        }
+        
+        .sidebar {
+            width: 75mm;
+            background-color: #1a3c6d;
+            color: white;
+            box-sizing: border-box;
+            padding: 20px;
+        }
+        
+        .main-content {
+            width: 135mm;
+            box-sizing: border-box;
+            padding: 25px;
+        }
+        
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            border: 3px solid #fff;
+            margin: 0 auto 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            overflow: hidden;
+        }
+        
+        .skill-tag {
+            display: inline-block;
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 15px;
+            margin: 3px 3px 3px 0;
+            font-size: 0.85rem;
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 25px;
+        }
+        
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #1a3c6d;
+            z-index: 1;
+        }
+        
+        .timeline-item::after {
+            content: "";
+            position: absolute;
+            left: 5px;
+            top: 16px;
+            bottom: -20px;
+            width: 2px;
+            background-color: #ddd;
+        }
+        
+        .timeline-item:last-child::after {
+            display: none;
+        }
+        
+        .language-level {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .language-dots {
+            display: flex;
+            margin-left: 10px;
+        }
+        
+        .dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            margin-right: 4px;
+            background-color: #fff;
+            opacity: 0.3;
+        }
+        
+        .dot.filled {
+            opacity: 1;
+        }
+        
+        .section-title {
+            color: #1a3c6d;
+            border-bottom: 2px solid #1a3c6d;
+            padding-bottom: 6px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        
+        @media print {
+		  .print-container {
+			display: flex !important;
+			flex-direction: row !important;
+		  }
+
+		  .sidebar {
+			width: 75mm !important;
+			flex: none !important;
+		  }
+
+		  .main-content {
+			width: 135mm !important;
+			flex: none !important;
+		  }
+
+		  .a4 {
+			box-shadow: none !important;
+			margin: 0 auto !important;
+			page-break-after: always;
+		  }
+
+		  img {
+			max-width: 100% !important;
+			height: auto !important;
+		  }
+
+		  html, body {
+			margin: 0;
+			padding: 0;
+			width: 210mm;
+			height: auto;
+		  }
+		}
+		
+		@media print {
+		  body {
+			font-family: Arial, Helvetica, sans-serif;
+		  }
+		@font-face {
+		  font-family: Arial;
+		  
+		}
+
+    </style>
+</head>
+<body>
+    <div class="a4">
+        <div class="print-container">
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Photo placeholder -->
+                <div class="photo-placeholder">
+                    <img src="suan.jpg" style="width: 150%; height: auto;">
+                </div>
+                
+                <!-- Name and title -->
+                <div class="text-center mb-6">
+                    <h1 class="text-xl font-bold">SUAN TAY</h1>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="mb-6">
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Contact</h2>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-envelope w-5"></i>
+                        <span class="ml-2 text-sm">suan.tay@iafluence.fr</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-phone w-5"></i>
+                        <span class="ml-2 text-sm">06 65 19 76 33</span>
+                    </div>
+                    <div class="flex items-center mb-2">
+                        <i class="fas fa-user w-5"></i>
+                        <span class="ml-2 text-sm">Marié avec enfants</span>
+                    </div>
+                </div>
+                
+                <!-- Languages -->
+                <div class="mb-6">
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Langues</h2>
+                    <div class="language-level">
+                        <span>Français</span>
+                        <div class="language-dots ml-auto">
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                        </div>
+                    </div>
+					<div class="language-level">
+                        <span>Anglais</span>
+                        <div class="language-dots ml-auto">
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot"></span>
+                        </div>
+                    </div>
+                    <div class="language-level">
+                        <span>Espagnol</span>
+                        <div class="language-dots ml-auto">
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                            <span class="dot filled"></span>
+                        </div>
+                    </div>  
+                </div>
+                
+                <!-- Skills -->
+                <div class="mb-6">
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Compétences clés</h2>
+                    <div>
+                        <h3 class="text-xs font-medium mb-2">Stratégie Data & IA</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">Gouvernance</span>
+                            <span class="skill-tag">Feuille de route</span>
+                            <span class="skill-tag">Conduite du changement</span>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-xs font-medium mb-2">Technologies IA et Data</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">LLM</span>
+                            <span class="skill-tag">Databricks</span>
+                            <span class="skill-tag">BERT</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">SQL</span>
+                            <span class="skill-tag">Spark</span>
+                            <span class="skill-tag">RAG</span>
+                            <span class="skill-tag">Fine-tuning</span>
+							<span class="skill-tag">vLLM</span>
+							<span class="skill-tag">Ollama</span>
+							<span class="skill-tag">OpenWebUI</span>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-xs font-medium mb-2">Cloud & Sécurité</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">Azure</span>
+                            <span class="skill-tag">AWS</span>
+                            <span class="skill-tag">GCP</span>
+                            <span class="skill-tag">Gestion des risques</span>
+                        </div>
+                    </div>
+                    <div class="mt-3">
+                        <h3 class="text-xs font-medium mb-2">Leadership</h3>
+                        <div class="flex flex-wrap">
+                            <span class="skill-tag">Recrutement</span>
+                            <span class="skill-tag">Coaching</span>
+                            <span class="skill-tag">Pilotage de projets</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Interests -->
+                <div>
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Centres d'intérêt</h2>
+                    <div class="flex flex-wrap">
+                        <span class="skill-tag"><i class="fas fa-bicycle mr-1"></i> Vélo</span>
+                        <span class="skill-tag"><i class="fas fa-brain mr-1"></i> Méditation</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Profile -->
+                <div class="mb-8">
+                    <h1 class="text-2xl font-bold mb-2 text-gray-800">GenAI & Data Science | Conseil en IA Stratégique</h1>
+                    <p class="text-gray-600 text-sm">
+                        Passionné par l'IA Générative et les modèles LLM, j'accompagne les entreprises dans leur transformation digitale grâce à l'IA et la data science. Spécialiste en IA Générative, Data Science et Machine Learning, j'ai développé des solutions basées sur LLM, NLP et RAG. Expérience sur des plateformes comme Azure AI, AWS SageMaker et Google Cloud AI.
+                    </p>
+                </div>
+                
+                <!-- Experience -->
+                <div class="mb-8">
+                    <h2 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h2>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Consultant IA et Formateur</h3>
+                            <span class="text-sm text-gray-600">Depuis mars 2024</span>
+                        </div>
+                        <div class="text-sm text-gray-700 mb-1">IAfluence, Volvic</div>
+                        <ul class="text-sm text-gray-600 list-disc pl-4">
+                            <li>Réalisation de prestations de conseil stratégique sur l'intégration des technologies d'IA</li>
+                            <li>Animation de formations sur les techniques avancées de prompting et personnalisation de modèles GPT</li>
+                            <li>Participation en tant que juré aux examens du Titre Professionnel CDA</li>
+                            <li>Accompagnement au déploiement de l'application mobile Phosphoriales</li>
+                            <li>Jury pour les soutenances M1 et M2</li>
+                            <li>Audit SEO initial pour le site Meiline.fr</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Professeur Vacataire et Coach IA</h3>
+                            <span class="text-sm text-gray-600">Depuis novembre 2024</span>
+                        </div>
+                        <div class="text-sm text-gray-700 mb-1">Appuy Compétences, Clermont-Ferrand</div>
+                        <ul class="text-sm text-gray-600 list-disc pl-4">
+                            <li>ESC Clermont Business School : Formation et accompagnement des étudiants sur l'intégration de l'IA</li>
+                            <li>Université Clermont Auvergne : Introduction aux applications pratiques de l'IA</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Ingénieur IA - COO Directeur des opérations</h3>
+                            <span class="text-sm text-gray-600">Mars 2022 - Avril 2024</span>
+                        </div>
+                        <div class="text-sm text-gray-700 mb-1">ScreenACT, Riom</div>
+                        <ul class="text-sm text-gray-600 list-disc pl-4">
+                            <li>Élaboré et mis en œuvre une stratégie Data & IA</li>
+                            <li>Déployé des modèles IA avancés pour automatiser des processus critiques</li>
+                            <li>Dirigé une équipe multidisciplinaire (IT, Data Science, RH)</li>
+                            <li>Représenté l'entreprise à des conférences internationales</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Ingénieur Logiciel</h3>
+                            <span class="text-sm text-gray-600">Janvier 2019 - Décembre 2019</span>
+                        </div>
+                        <div class="text-sm text-gray-700 mb-1">Accenture, Clermont-Ferrand</div>
+                        <ul class="text-sm text-gray-600 list-disc pl-4">
+                            <li>Développé un logiciel de gestion de projet utilisé par 50 utilisateurs</li>
+                            <li>Implémenté des pratiques d'optimisation de code, augmentant l'efficacité de 15%</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Développeur IT</h3>
+                            <span class="text-sm text-gray-600">Octobre 2008 - Décembre 2017</span>
+                        </div>
+                        <div class="text-sm text-gray-700 mb-1">Goodyear Dunlop Tires, Riom</div>
+                        <ul class="text-sm text-gray-600 list-disc pl-4">
+                            <li>Développé une plateforme de gestion des ressources utilisée dans plusieurs filiales européennes</li>
+                            <li>Formé plus de 50 utilisateurs aux nouvelles fonctionnalités</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Education -->
+                <div>
+                    <h2 class="section-title">DIPLÔMES ET FORMATIONS</h2>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Master of Business Administration - MBA</h3>
+                            <span class="text-sm text-gray-600">Sept. 2023 - Sept. 2024</span>
+                        </div>
+                        <div class="text-sm text-gray-700 mb-1">ESC Clermont Business School (Formation continue)</div>
+                        <p class="text-sm text-gray-600">
+                            Formation en gestion et stratégie d'entreprise adaptée à des professionnels en activité.<br>
+                            Certificats obtenus (3 sur 5) : Leadership et stratégie d'entreprise, Analyse financière et prise de décision, Innovation et transformation numérique.
+                        </p>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Ingénieur Intelligence Artificielle (IA), Data Scientist</h3>
+                            <span class="text-sm text-gray-600">Juin 2020 - Août 2021</span>
+                        </div>
+                        <div class="text-sm text-gray-700">CentraleSupélec, Paris</div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="flex justify-between items-start mb-1">
+                            <h3 class="font-bold">Ingénieur en informatique</h3>
+                            <span class="text-sm text-gray-600">2007 - 2017</span>
+                        </div>
+                        <div class="text-sm text-gray-700">CNAM, Paris</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

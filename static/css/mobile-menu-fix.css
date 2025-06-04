@@ -1,0 +1,22 @@
+/* Styles pour le menu mobile actif */
+.nav-menu.active {
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 15px;
+}
+
+.nav-menu.active li {
+    display: block;
+    margin: 10px 0;
+}
+
+.nav-menu.active a {
+    display: block;
+    padding: 8px 0;
+}

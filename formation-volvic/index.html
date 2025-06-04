@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formation Volvic - Inscription</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Formation Volvic</h1>
+            <p>Inscrivez-vous à notre formation exclusive</p>
+        </header>
+        
+        <main>
+            <section class="compteur-section">
+                <div id="compteur-container">
+                    <!-- Le compteur sera inséré ici dynamiquement -->
+                </div>
+            </section>
+            
+            <section class="formulaire-section">
+                <h2>Inscription</h2>
+                <form id="formulaire-inscription">
+                    <div class="form-group">
+                        <label for="email">Adresse email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="rgpd" name="rgpd" required>
+                        <label for="rgpd">J'accepte que mon adresse email soit collectée dans le cadre de cette inscription. Je peux demander sa suppression à tout moment.</label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <button type="submit" id="btn-inscription">Je m'inscris</button>
+                    </div>
+                    
+                    <div class="mentions-legales">
+                        <a href="/mentions-legales.html">Mentions légales</a>
+                    </div>
+                </form>
+                
+                <div id="message-resultat" class="hidden"></div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>&copy; 2025 IAfluence - Tous droits réservés</p>
+        </footer>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="notification.js"></script>
+    <script src="debug.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

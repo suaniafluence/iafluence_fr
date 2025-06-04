@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head class="fixed w-full bg-white shadow-md z-50">
+	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-K6QH3MSLX0"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-K6QH3MSLX0');
+	</script>
+ 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack Opérationnel Cloud | IAfluence - L'IA sur mesure pour les TPE/PME</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Animation classes */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+        
+        /* Chatbot styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chatbot-window {
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-window.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .bot-message {
+            background: #e9f5ff;
+            color: #333;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #007BFF;
+            color: white;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background: white;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .chatbot-input button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            padding: 10px 15px;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: typing 1s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        /* Mobile menu styles */
+        .mobile-menu {
+            position: fixed;
+            top: 78px; /* Hauteur du header */
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-150%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 40;
+        }
+
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+
+        .mobile-menu nav a {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .mobile-menu nav a:hover {
+            color: #007BFF;
+            background-color: #f8f9fa;
+        }
+
+        .mobile-menu-button.active i:before {
+            content: "\f00d"; /* Change l'icône en "X" quand le menu est ouvert */
+        }
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="/static/images/logo_main.jpg" alt="logo IAfluence" style="width: 16.67%;">
+                <h1 class="text-2xl font-bold text-blue-600">IAfluence</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html#accueil" class="font-medium hover:text-blue-600 transition">Accueil</a>
+                <a href="index.html#services" class="font-medium hover:text-blue-600 transition">Services</a>
+                <a href="index.html#formations" class="font-medium hover:text-blue-600 transition">Formations</a>
+                <a href="index.html#apropos" class="font-medium hover:text-blue-600 transition">À propos</a>
+                <a href="index.html#blog" class="font-medium hover:text-blue-600 transition">Blog</a>
+                <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
+            </nav>
+            <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <nav>
+                <a href="index.html#accueil" class="font-medium">Accueil</a>
+                <a href="index.html#services" class="font-medium">Services</a>
+                <a href="index.html#formations" class="font-medium">Formations</a>
+                <a href="index.html#apropos" class="font-medium">À propos</a>
+                <a href="index.html#blog" class="font-medium">Blog</a>
+                <a href="index.html#contact" class="font-medium">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+        <!-- Hero Section for Pack Opérationnel Cloud -->
+        <section class="py-16 gradient-bg text-white">
+            <div class="container mx-auto px-4">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-left">
+                        <h1 class="text-4xl md:text-5xl font-bold mb-6">Pack Opérationnel Cloud</h1>
+                        <p class="text-xl mb-8">Déployez rapidement une solution d'IA générative dans votre infrastructure cloud avec un accompagnement complet.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a href="index.html#contact" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Demander un devis</a>
+                            <a href="#how-it-works" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Comment ça marche ?</a>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 flex justify-center animate-slide-right delay-200">
+                        <img src="/static/images/cloud-pack.png" alt="Pack Opérationnel Cloud IAfluence" class="rounded-xl shadow-2xl max-w-full h-auto">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4 animate-fade-in">Une solution cloud clé en main</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in delay-100">Notre Pack Opérationnel Cloud vous permet de bénéficier des avantages de l'IA générative sans la complexité technique.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                    <!-- Feature 1 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover transition duration-300 animate-fade-in delay-200">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-bolt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4">Déploiement rapide</h3>
+                        <p class="text-gray-700 text-center">Mise en place en 2 à 3 semaines seulement, avec une solution opérationnelle dès la première semaine.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover transition duration-300 animate-fade-in delay-300">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-shield-alt text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4">Sécurité renforcée</h3>
+                        <p class="text-gray-700 text-center">Hébergement sur Azure, OVH ou Scaleway avec des protocoles de sécurité avancés pour vos données.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md card-hover transition duration-300 animate-fade-in delay-400">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-6 mx-auto">
+                            <i class="fas fa-chart-line text-2xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-center mb-4">Productivité immédiate</h3>
+                        <p class="text-gray-700 text-center">Jusqu'à 40% de gain de temps sur les tâches répétitives grâce à votre assistant IA personnalisé.</p>
+                    </div>
+                </div>
+
+                <div class="text-center animate-fade-in delay-500">
+                    <a href="index.html#contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Parler à un expert</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="py-16 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl font-bold mb-4 animate-fade-in">Comment ça se passe ?</h2>
+                    <p class="text-xl text-gray-600 max-w-3xl mx-auto animate-fade-in delay-100">Un processus simple en 4 étapes pour déployer votre IA en cloud</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-16">
+                    <!-- Step 1 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300 animate-slide-left">
+                        <div class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto font-bold text-xl">1</div>
+                        <h3 class="text-lg font-bold text-center mb-3">Audit & Stratégie</h3>
+                        <p class="text-gray-700 text-center">Analyse de vos besoins et définition d'une feuille de route personnalisée.</p>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300 animate-slide-left delay-100">
+                        <div class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto font-bold text-xl">2</div>
+                        <h3 class="text-lg font-bold text-center mb-3">Configuration Cloud</h3>
+                        <p class="text-gray-700 text-center">Déploiement de votre solution sur l'infrastructure cloud de votre choix.</p>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300 animate-slide-left delay-200">
+                        <div class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto font-bold text-xl">3</div>
+                        <h3 class="text-lg font-bold text-center mb-3">Personnalisation</h3>
+                        <p class="text-gray-700 text-center">Adaptation de l'IA à vos processus métiers et intégration avec vos outils.</p>
+                    </div>
+
+                    <!-- Step 4 -->
+                    <div class="bg-white p-6 rounded-xl shadow-md card-hover transition duration-300 animate-slide-left delay-300">
+                        <div class="bg-blue-600 text-white w-12 h-12 rounded-full flex items-center justify-center mb-4 mx-auto font-bold text-xl">4</div>
+                        <h3 class="text-lg font-bold text-center mb-3">Formation & Support</h3>
+                        <p class="text-gray-700 text-center">Formation de vos équipes et support technique pendant 1 mois.</p>
+                    </div>
+                </div>
+
+                <div class="max-w-4xl mx-auto bg-white p-8 rounded-xl shadow-lg animate-fade-in delay-400">
+                    <h3 class="text-2xl font-bold mb-6 text-center">Ce que vous obtenez avec le Pack Opérationnel Cloud</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>1 GPT métier personnalisé avec vos données</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Hébergement sécurisé sur Azure, OVH ou Scaleway</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>2 heures de formation pour votre équipe</span>
+                            </li>
+                        </ul>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Support technique pendant 1 mois</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Documentation complète</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Assistance à la mise en production</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="mt-8 text-center">
+                        <a href="index.html#contact" class="inline-block bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Demander un devis personnalisé</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section class="py-16 bg-white">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Ils ont choisi le Pack Opérationnel Cloud</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-100">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                                <i class="fas fa-quote-left text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Marie L.</h4>
+                                <p class="text-gray-600">Directrice Marketing</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"En 3 semaines, nous avions un assistant IA pour notre service client. Les retours sont excellents et nous avons réduit notre temps de réponse de 30%."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 2 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-200">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                                <i class="fas fa-quote-left text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Thomas R.</h4>
+                                <p class="text-gray-600">Responsable IT</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"La solution cloud était parfaitement adaptée à notre infrastructure existante. L'équipe d'IAfluence a su répondre à toutes nos exigences techniques."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    
+                    <!-- Testimonial 3 -->
+                    <div class="bg-gray-50 p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-300">
+                        <div class="flex items-center mb-4">
+                            <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                                <i class="fas fa-quote-left text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Sophie D.</h4>
+                                <p class="text-gray-600">CEO Startup</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 italic">"Le rapport qualité-prix est excellent. Nous avons pu tester l'IA rapidement sans investissement matériel lourd grâce à la solution cloud."</p>
+                        <div class="mt-4 text-yellow-400">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="py-16 gradient-bg text-white">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold mb-6 animate-fade-in">Prêt à déployer votre IA en cloud ?</h2>
+                <p class="text-xl mb-8 max-w-2xl mx-auto animate-fade-in delay-100">Notre Pack Opérationnel Cloud est la solution idéale pour bénéficier rapidement des avantages de l'IA générative.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in delay-200">
+                    <a href="index.html#contact" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg transition duration-300">Demander un devis</a>
+                    <a href="tel:+33665197633" class="border-2 border-white hover:bg-white hover:text-blue-600 font-bold py-3 px-6 rounded-lg transition duration-300">
+                        <i class="fas fa-phone mr-2"></i>06 65 19 76 33
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div >
+                    <div class="flex items-center mb-4">
+                        <img src="/static/images/logo_main_sans.png" alt="logo IAfluence" style="width: 16%;">
+                        <h3 class="text-xl font-bold">IAfluence</h3>
+                    </div>
+                    <p class="text-gray-400">L'IA sur mesure pour les TPE/PME, avec une approche éthique et souveraine.</p>
+                </div>
+                
+                <div >
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Packs IA</a></li>
+                        <li><a href="index.html#On-Premise" class="text-gray-400 hover:text-white transition">Solutions On-Premise</a></li>
+                        <li><a href="index.html#formations" class="text-gray-400 hover:text-white transition">Formations</a></li>
+                        <li><a href="index.html#contact" class="text-gray-400 hover:text-white transition">Audit gratuit</a></li>
+                    </ul>
+                </div>
+                
+                <div >
+                    <h4 class="text-lg font-bold mb-4">Ressources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">Documentation</a></li>
+                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">Études de cas</a></li>
+                    </ul>
+                </div>
+                
+                <div >
+                    <h4 class="text-lg font-bold mb-4">Légal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="mention-legales.html" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>                    
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center ">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 IAfluence. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/suan-tay" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@suantay8220" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/suan.tay.job" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Assistant IAfluence</h3>
+                </div>
+                <button id="closeChatbot" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    Bonjour ! Je suis l'assistant IA d'IAfluence. Comment puis-je vous aider aujourd'hui ?
+                </div>
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Tapez votre message..." class="focus:outline-none">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-button" id="chatbotButton">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </div>
+    </div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuButton.classList.toggle('active');
+        });
+
+        // Fermer le menu quand on clique sur un lien
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuButton.classList.remove('active');
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const animateElements = document.querySelectorAll('.animate-fade-in, .animate-scale-in, .animate-slide-left, .animate-slide-right');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Chatbot functionality
+        const chatbotButton = document.getElementById('chatbotButton');
+        const chatbotWindow = document.getElementById('chatbotWindow');
+        const closeChatbot = document.getElementById('closeChatbot');
+        const chatbotMessages = document.getElementById('chatbotMessages');
+        const chatbotInput = document.getElementById('chatbotInput');
+        const sendMessage = document.getElementById('sendMessage');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // État du chatbot
+        let isChatbotOpen = false;
+
+        // Fonction pour ajouter un message
+        function addMessage(text, isUser = false) {
+            const message = document.createElement('div');
+            message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+            message.textContent = text;
+            chatbotMessages.appendChild(message);
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+        }
+
+        // Fonction pour envoyer un message
+        async function sendUserMessage() {
+            const messageText = chatbotInput.value.trim();
+            if (!messageText) return;
+
+            // Ajouter le message utilisateur
+            addMessage(messageText, true);
+            chatbotInput.value = '';
+
+            // Afficher l'indicateur de saisie
+            typingIndicator.style.display = 'flex';
+            chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+            try {
+                // Envoyer au backend Flask
+                const response = await fetch('/api/chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message: messageText })
+                });
+
+                const data = await response.json();
+
+                if (data.error) {
+                    addMessage("Désolé, une erreur est survenue : " + data.error);
+                } else {
+                    addMessage(data.response);
+                }
+            } catch (error) {
+                addMessage("Erreur de connexion au serveur");
+            } finally {
+                typingIndicator.style.display = 'none';
+            }
+        }
+
+        // Événements
+        chatbotButton.addEventListener('click', () => {
+            isChatbotOpen = !isChatbotOpen;
+            chatbotWindow.classList.toggle('active', isChatbotOpen);
+        });
+
+        closeChatbot.addEventListener('click', () => {
+            isChatbotOpen = false;
+            chatbotWindow.classList.remove('active');
+        });
+
+        sendMessage.addEventListener('click', sendUserMessage);
+
+        chatbotInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendUserMessage();
+        });
+
+        // Message d'accueil
+    </script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+from flask import Flask, render_template, request, jsonify
+import os
+from dotenv import load_dotenv
+import sys
+sys.path.append("/home/ubuntu/chatbot")
+from backend.rag import RAGProcessor
+from backend.openrouter_api import OpenRouterAPI
+
+# Charger les variables d'environnement
+load_dotenv()
+
+app = Flask(__name__)
+app.static_folder = 'static'
+
+# Initialiser l'API OpenRouter
+openrouter_api = OpenRouterAPI()
+
+# Initialiser le processeur RAG
+rag_processor = RAGProcessor()
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/api/chat', methods=['POST'])
+def chat():
+    data = request.json
+    user_message = data.get('message', '')
+    
+    # Utiliser le RAG pour enrichir la requête
+    context = rag_processor.get_relevant_context(user_message)
+    
+    # Préparer le message avec le contexte
+    prompt = f"""Contexte: {context}
+    
+Question: {user_message}
+    
+Réponds de manière efficace, précise mais joviale à propos d'IAfluence. Utilise un ton amical et professionnel."""
+    
+    try:
+        # Appel à l'API OpenRouter via notre module
+        response = openrouter_api.get_response(prompt)
+        
+        return jsonify({"response": response})
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000, debug=True)

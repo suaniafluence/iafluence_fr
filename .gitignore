@@ -1,0 +1,4 @@
+# Ignorer tous les venv où qu'ils soient
+**/venv/
+**/.env
+**/__pycache__/

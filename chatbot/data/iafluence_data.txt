@@ -1,0 +1,38 @@
+IAfluence - L'IA au service des PME d'Auvergne-Rhone-Alpes
+
+IAfluence est une societe specialisee dans l'integration de l'intelligence artificielle, et plus
+particulierement des modeles de langage (LLM), au sein des petites et moyennes entreprises de la
+region Auvergne-Rhone-Alpes. Portee par un expert independant en freelance, IAfluence propose
+un accompagnement personnalise et progressif, avec des projets de taille modeste pour garantir
+une mise en oeuvre efficace.
+
+Le contact est Suan Tay – suan.tay@iafluence.fr – 06 65 19 76 33.
+
+La securite des donnees et la non-divulgation des informations confidentielles de ses clients
+constituent une priorite absolue pour IAfluence.
+
+L'activité repose sur trois piliers complémentaires :
+
+- Formation sur le Prompting de GPT et au Custom GPT :
+IAfluence forme les entreprises a l'usage strategique des modeles de langage, leur permettant de
+maitriser le prompting et de creer des modeles adaptes a leurs besoins.
+
+- Developpement de Modeles LLM Securises sur Azure, OVH ou ScaleWay :
+L'entreprise met en place des solutions sur Azure, garantissant securite, confidentialite et conformite
+dans l'utilisation des IA generatives.
+
+- Modeles auto-heberges sur Infrastructure Dediee avec Donnees de l'Entreprise :
+Pour une integration optimale, IAfluence propose de deployer des modeles sur infrastructure
+dediee, connectes aux donnees specifiques de l'entreprise, assurant performance et pertinence.
+
+Slogan: "L'IA sur mesure, la sécurité par défaut."
+
+IAfluence se distingue par son approche centrée sur la sécurité et la confidentialité des données. Tous les projets sont conçus avec une attention particulière à la protection des informations sensibles des clients.
+
+Les services d'IAfluence s'adressent principalement aux PME et TPE de la région Auvergne-Rhône-Alpes qui souhaitent intégrer l'intelligence artificielle dans leurs processus métier de manière sécurisée et adaptée à leurs besoins spécifiques.
+
+L'expert d'IAfluence accompagne ses clients à chaque étape de leur projet d'IA, depuis la formation initiale jusqu'à l'implémentation complète de solutions sur mesure, en passant par le conseil stratégique sur les meilleures approches à adopter.
+
+La méthodologie d'IAfluence privilégie les projets de taille modeste et progressifs, permettant aux entreprises d'adopter l'IA à leur rythme et de constater rapidement des résultats concrets avant d'étendre l'utilisation à d'autres domaines.
+
+Pour les entreprises ayant des exigences particulières en matière de confidentialité, IAfluence propose des solutions entièrement auto-hébergées, où les données ne quittent jamais l'infrastructure du client.

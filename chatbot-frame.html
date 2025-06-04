@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chatbot IAfluence</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+  <style>
+    .chatbot-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+    }
+    .chatbot-window {
+      width: 350px;
+      height: 500px;
+      background: white;
+      border-radius: 0
+      box-shadow: none 
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .chatbot-header {
+      background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+	    border-top-left-radius: 12px !important;
+		border-top-right-radius: 12px !important;
+		overflow: hidden;
+      color: white;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+    }
+    .chatbot-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      background: #f9f9f9;
+    }
+    .message {
+      margin-bottom: 15px;
+      max-width: 80%;
+      padding: 10px 15px;
+      border-radius: 18px;
+      font-size: 14px;
+    }
+    .bot-message {
+      background: #e9f5ff;
+      color: #333;
+      align-self: flex-start;
+    }
+    .user-message {
+      background: #007BFF;
+      color: white;
+      align-self: flex-end;
+      margin-left: auto;
+    }
+    .chatbot-input {
+      display: flex;
+      padding: 10px;
+      border-top: 1px solid #eee;
+    }
+    .chatbot-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border: 1px solid #ddd;
+      border-radius: 20px;
+      outline: none;
+    }
+    .chatbot-input button {
+      background: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+    .typing-indicator {
+      display: flex;
+      padding: 10px 15px;
+    }
+    .typing-indicator span {
+      height: 8px;
+      width: 8px;
+      background: #ccc;
+      border-radius: 50%;
+      display: inline-block;
+      margin: 0 2px;
+      animation: typing 1s infinite ease-in-out;
+    }
+    @keyframes typing {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body class="bg-transparent">
+  <div id="chatbotWindow" class="w-full h-full flex flex-col rounded-lg bg-white shadow-none">
+  <div class="chatbot-container">
+    <div class="chatbot-window">
+      <div class="chatbot-header">
+        <div class="flex items-center">
+          <div class="w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center mr-2">
+            <i class="fas fa-robot"></i>
+          </div>
+          <h3>Assistant IAfluence</h3>
+        </div>
+      </div>
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+          Bonjour ! Je suis l'assistant IA d'IAfluence. Comment puis-je vous aider aujourd'hui ?
+        </div>
+        <div class="typing-indicator" id="typingIndicator" style="display: none;">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+      <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Tapez votre message...">
+        <button id="sendMessage">
+          <i class="fas fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const typingIndicator = document.getElementById('typingIndicator');
+    const md = window.markdownit({ linkify: true, typographer: true });
+
+    function addMessage(text, isUser = false) {
+      const message = document.createElement('div');
+      message.className = 'message ' + (isUser ? 'user-message' : 'bot-message');
+      const raw = md.render(text);
+      message.innerHTML = DOMPurify.sanitize(raw);
+      chatbotMessages.appendChild(message);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    async function sendUserMessage() {
+      const messageText = chatbotInput.value.trim();
+      if (!messageText) return;
+      addMessage(messageText, true);
+      chatbotInput.value = '';
+      typingIndicator.style.display = 'flex';
+
+      try {
+        const response = await fetch('/api/chat', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: messageText })
+        });
+        const data = await response.json();
+        if (data.error) {
+          addMessage("Désolé, une erreur est survenue : " + data.error);
+        } else {
+          addMessage(data.response);
+        }
+      } catch (error) {
+        addMessage("Erreur de connexion au serveur");
+      } finally {
+        typingIndicator.style.display = 'none';
+      }
+    }
+
+    sendMessage.addEventListener('click', sendUserMessage);
+    chatbotInput.addEventListener('keypress', e => {
+      if (e.key === 'Enter') sendUserMessage();
+    });
+  </script>
+</body>
+</html>

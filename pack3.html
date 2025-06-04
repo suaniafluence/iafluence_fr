@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-K6QH3MSLX0"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-K6QH3MSLX0');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pack IA Souveraine - IAfluence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        /* Mobile menu styles */
+        .mobile-menu {
+            position: fixed;
+            top: 78px;
+            left: 0;
+            width: 100%;
+            background: white;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transform: translateY(-150%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 40;
+        }
+        .mobile-menu.active {
+            transform: translateY(0);
+        }
+        .mobile-menu nav {
+            display: flex;
+            flex-direction: column;
+            padding: 1rem;
+        }
+        .mobile-menu nav a {
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid #eee;
+            color: #333;
+            font-weight: 500;
+        }
+        .mobile-menu nav a:hover {
+            color: #007BFF;
+            background-color: #f8f9fa;
+        }
+        .mobile-menu-button.active i:before {
+            content: "\f00d";
+        }
+        .hero-section {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="/static/images/logo_main.jpg" alt="logo IAfluence" style="width: 16.67%;">
+                <h1 class="text-2xl font-bold text-blue-600">IAfluence</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html" class="font-medium hover:text-blue-600 transition">Accueil</a>
+                <a href="index.html#services" class="font-medium hover:text-blue-600 transition">Services</a>
+                <a href="index.html#formations" class="font-medium hover:text-blue-600 transition">Formations</a>
+                <a href="index.html#apropos" class="font-medium hover:text-blue-600 transition">À propos</a>
+                <a href="index.html#blog" class="font-medium hover:text-blue-600 transition">Blog</a>
+                <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
+            </nav>
+            <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <nav>
+                <a href="index.html" class="font-medium">Accueil</a>
+                <a href="index.html#services" class="font-medium">Services</a>
+                <a href="index.html#formations" class="font-medium">Formations</a>
+                <a href="index.html#apropos" class="font-medium">À propos</a>
+                <a href="index.html#blog" class="font-medium">Blog</a>
+                <a href="index.html#contact" class="font-medium">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-section pt-32 pb-20 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center animate-fade-in">
+                <div class="inline-block bg-blue-600 text-white text-sm font-bold px-4 py-1 rounded-full mb-4">
+                    Solution Premium
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Pack IA Souveraine</h1>
+                <p class="text-xl mb-8">Une solution d'IA générative entièrement maîtrisée dans votre infrastructure pour une souveraineté totale de vos données.</p>
+                <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="#contact" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Demander un devis</a>
+                    <a href="#fonctionnement" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Comment ça marche ?</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Value Proposition -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-fade-in">
+                    <h2 class="text-3xl font-bold mb-6">Une IA 100% souveraine pour votre entreprise</h2>
+                    <p class="text-gray-700 mb-6">Le Pack IA Souveraine vous offre une solution d'intelligence artificielle générative entièrement hébergée dans votre infrastructure, garantissant une maîtrise totale de vos données et processus.</p>
+                    <p class="text-gray-700 mb-8">Idéal pour les entreprises soucieuses de leur confidentialité, soumises à des réglementations strictes ou disposant déjà d'une infrastructure informatique robuste.</p>
+                    <div class="bg-blue-50 border-l-4 border-blue-600 p-4 mb-8">
+                        <p class="text-blue-800 font-medium">"Avec ce pack, vos données ne quittent jamais votre infrastructure et vous bénéficiez d'une solution entièrement personnalisée à vos besoins métiers."</p>
+                    </div>
+                    <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Parler à un expert</a>
+                </div>
+                <div class="md:w-1/2 animate-fade-in delay-200">
+                    <img src="/static/images/liasouv.png" alt="IA Souveraine" class="rounded-xl shadow-lg w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Ce que comprend le Pack IA Souveraine</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-xl shadow-md animate-fade-in delay-100">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-shield-alt text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Souveraineté des données</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Hébergement dans votre infrastructure</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Zéro dépendance aux GAFAM</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Conformité RGPD et réglementations sectorielles</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md animate-fade-in delay-200">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-cogs text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Personnalisation avancée</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>2 à 3 GPTs métiers connectés</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Intégration à vos systèmes existants</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Modèles entraînés sur vos données</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="bg-white p-8 rounded-xl shadow-md animate-fade-in delay-300">
+                    <div class="feature-icon mx-auto">
+                        <i class="fas fa-headset text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-center mb-4">Accompagnement complet</h3>
+                    <ul class="space-y-3">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Audit et stratégie IA approfondie</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Support technique 1 mois inclus</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                            <span>Transfert de compétences à vos équipes</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How it works -->
+    <section id="fonctionnement" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Comment ça se passe ?</h2>
+            
+            <div class="max-w-4xl mx-auto">
+                <!-- Step 1 -->
+                <div class="flex flex-col md:flex-row mb-16 items-center animate-fade-in">
+                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">1</div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-4">Audit et stratégie</h3>
+                        <p class="text-gray-700 mb-4">Nous commençons par un audit complet de votre infrastructure et de vos besoins métiers pour définir une stratégie IA sur mesure.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>2 à 3 sessions de travail avec vos équipes</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Analyse de votre écosystème technique</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Définition des cas d'usage prioritaires</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 2 -->
+                <div class="flex flex-col md:flex-row mb-16 items-center animate-fade-in delay-100">
+                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">2</div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-4">Déploiement technique</h3>
+                        <p class="text-gray-700 mb-4">Nos ingénieurs installent et configurent la solution dans votre infrastructure selon les meilleures pratiques de sécurité.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Installation des modèles IA et connecteurs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Configuration des politiques de sécurité</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Tests de performance et de robustesse</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 3 -->
+                <div class="flex flex-col md:flex-row mb-16 items-center animate-fade-in delay-200">
+                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">3</div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-4">Formation et mise en production</h3>
+                        <p class="text-gray-700 mb-4">Nous formons vos équipes et accompagnons la mise en production pour garantir une adoption réussie.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Formation technique pour vos administrateurs</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Ateliers pratiques pour les utilisateurs finaux</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Support pendant 1 mois après déploiement</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Step 4 -->
+                <div class="flex flex-col md:flex-row items-center animate-fade-in delay-300">
+                    <div class="md:w-1/3 mb-6 md:mb-0 flex justify-center">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center text-2xl font-bold">4</div>
+                    </div>
+                    <div class="md:w-2/3">
+                        <h3 class="text-2xl font-bold mb-4">Suivi et évolution</h3>
+                        <p class="text-gray-700 mb-4">Nous restons disponibles pour des mises à jour et l'évolution de votre solution au fil de vos besoins.</p>
+                        <ul class="space-y-2 text-gray-600">
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Options de maintenance et support étendu</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Mises à jour des modèles et fonctionnalités</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                <span>Analyse des performances et optimisation</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-16 animate-fade-in delay-400">
+                <h3 class="text-2xl font-bold mb-6">Prêt à déployer votre IA souveraine ?</h3>
+                <p class="text-xl text-gray-600 mb-8">Tarif à partir de 8 900 € TTC (hors infrastructure)</p>
+                <a href="#contact" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg text-center transition duration-300">Demander un devis personnalisé</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto text-center mb-12 animate-fade-in">
+                <h2 class="text-3xl font-bold mb-4">Contactez-nous</h2>
+                <p class="text-xl">Parlez à un expert du Pack IA Souveraine</p>
+            </div>
+            
+            <div class="max-w-8xl mx-auto bg-white rounded-xl p-8 shadow-lg text-gray-800 animate-fade-in delay-100">
+               <!-- Google Calendar Appointment Scheduling begin -->
+<iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ03RLDgsZLumeQFGTQwDS8m4kFQ-knDVBwMuwgzBpn9U1gmlksyYIbYp37TZyHgSrtB1tMhXCwT?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+<!-- end Google Calendar Appointment Scheduling -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <img src="/static/images/logo_main_sans.png" alt="logo IAfluence" style="width: 16%;">
+                        <h3 class="text-xl font-bold">IAfluence</h3>
+                    </div>
+                    <p class="text-gray-400">L'IA sur mesure pour les TPE/PME, avec une approche éthique et souveraine.</p>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="pack-decouverte.html" class="text-gray-400 hover:text-white transition">Pack Découverte</a></li>
+                        <li><a href="pack-cloud.html" class="text-gray-400 hover:text-white transition">Pack Opérationnel Cloud</a></li>
+                        <li><a href="pack-souverain.html" class="text-gray-400 hover:text-white transition">Pack IA Souveraine</a></li>
+                        <li><a href="custom-gpt.html" class="text-gray-400 hover:text-white transition">Custom GPT</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Ressources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="blog.html" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="faq.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="cas-clients.html" class="text-gray-400 hover:text-white transition">Cas clients</a></li>
+                        <li><a href="livres-blancs.html" class="text-gray-400 hover:text-white transition">Livres blancs</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="text-lg font-bold mb-4">Légal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="mentions-legales.html" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>
+                        <li><a href="cgv.html" class="text-gray-400 hover:text-white transition">CGV</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 IAfluence. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/suan-tay" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@suantay8220" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/suan.tay.job" target="_blank" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            mobileMenuButton.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on links
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                mobileMenuButton.classList.remove('active');
+            });
+        });
+
+        
+
+        // Intersection Observer for scroll animations
+        const animateElements = document.querySelectorAll('.animate-fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+    </script>
+</body>
+</html>

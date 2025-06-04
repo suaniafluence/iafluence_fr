@@ -1,0 +1,1079 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head class="fixed w-full bg-white shadow-md z-50">
+	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+	<!-- Google tag (gtag.js) -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-K6QH3MSLX0"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', 'G-K6QH3MSLX0');
+	</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IAfluence - L'IA sur mesure pour les TPE/PME</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+	<!-- 1) Markdown-it -->
+	<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+	<!-- 2) DOMPurify -->
+	<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+        }
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        /* Animation classes */
+        .animate-fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-scale-in {
+            opacity: 0;
+            transform: scale(0.95);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .animate-slide-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-slide-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .animate-slide-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .animate-slide-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .delay-100 {
+            transition-delay: 100ms;
+        }
+        .delay-200 {
+            transition-delay: 200ms;
+        }
+        .delay-300 {
+            transition-delay: 300ms;
+        }
+        .delay-400 {
+            transition-delay: 400ms;
+        }
+        
+        /* Chatbot styles */
+        .chatbot-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        .chatbot-window {
+            width: 350px;
+            height: 500px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            display: none;
+            flex-direction: column;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .chatbot-window.active {
+            display: flex;
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        .chatbot-header {
+            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .chatbot-messages {
+            flex: 1;
+            padding: 15px;
+            overflow-y: auto;
+            background: #f9f9f9;
+        }
+        
+        .message {
+            margin-bottom: 15px;
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 18px;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .bot-message {
+            background: #e9f5ff;
+            color: #333;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+        }
+        
+        .user-message {
+            background: #007BFF;
+            color: white;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+        
+        .chatbot-input {
+            display: flex;
+            padding: 10px;
+            border-top: 1px solid #eee;
+            background: white;
+        }
+        
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            font-size: 14px;
+        }
+        
+        .chatbot-input button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            margin-left: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            padding: 10px 15px;
+        }
+        
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: typing 1s infinite ease-in-out;
+        }
+        
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+        
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+        /* Mobile menu styles */
+		.mobile-menu {
+			position: fixed;
+			top: 78px; /* Hauteur du header */
+			left: 0;
+			width: 100%;
+			background: white;
+			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+			transform: translateY(-150%);
+			transition: transform 0.3s ease-in-out;
+			z-index: 40;
+		}
+
+		.mobile-menu.active {
+			transform: translateY(0);
+		}
+
+		.mobile-menu nav {
+			display: flex;
+			flex-direction: column;
+			padding: 1rem;
+		}
+
+		.mobile-menu nav a {
+			padding: 0.75rem 1rem;
+			border-bottom: 1px solid #eee;
+			color: #333;
+			font-weight: 500;
+		}
+
+		.mobile-menu nav a:hover {
+			color: #007BFF;
+			background-color: #f8f9fa;
+		}
+
+		.mobile-menu-button.active i:before {
+			content: "\f00d"; /* Change l'icône en "X" quand le menu est ouvert */
+		}
+        @keyframes typing {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <!-- Header -->
+    <header class="fixed w-full bg-white shadow-md z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <img src="/static/images/logo_main.jpg" alt="logo IAfluence" style="width: 16.67%;">
+                <h1 class="text-2xl font-bold text-blue-600">IAfluence</h1>
+            </div>
+            <nav class="hidden md:flex space-x-8">
+                <a href="index.html#accueil" class="font-medium hover:text-blue-600 transition">Accueil</a>
+                <a href="index.html#services" class="font-medium hover:text-blue-600 transition">Services</a>
+                <a href="index.html#formations" class="font-medium hover:text-blue-600 transition">Formations</a>
+                <a href="index.html#apropos" class="font-medium hover:text-blue-600 transition">À propos</a>
+                <a href="index.html#blog" class="font-medium hover:text-blue-600 transition">Blog</a>
+                <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
+            </nav>
+            <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu md:hidden">
+            <nav>
+                <a href="index.html#accueil" class="font-medium">Accueil</a>
+                <a href="index.html#services" class="font-medium">Services</a>
+                <a href="index.html#formations" class="font-medium">Formations</a>
+                <a href="index.html#apropos" class="font-medium">À propos</a>
+                <a href="index.html#blog" class="font-medium">Blog</a>
+                <a href="index.html#contact" class="font-medium">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="pt-24 pb-16 gradient-bg text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-left">
+                    <h2 class="text-4xl md:text-5xl font-bold mb-6">L'IA sur mesure,</h2>
+					<h2 class="text-4xl md:text-5xl font-bold mb-6">la sécurité par défaut</h2>
+                    <p class="text-xl mb-8">Démocratisons ensemble l'IA générative pour les TPE/PME avec des solutions souveraines et éthiques.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#contact" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Prendre rendez-vous</a>
+                        <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Découvrir nos services</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center animate-slide-right delay-200">
+                    <img src="/static/images/1.png" alt="IA et entreprise" class="rounded-xl shadow-2xl max-w-full h-auto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Ils nous font confiance</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-100">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-quote-left text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jean-Claude</h4>
+                            <p class="text-gray-600">Phosphoriales</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"Grâce au Pack Découverte IA, nous avons pu automatiser notre service client en seulement une semaine. Les résultats ont dépassé nos attentes !"</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-200">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-quote-left text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Meilin B.</h4>
+                            <p class="text-gray-600">Meiline.fr</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"L'équipe d'IAfluence a su comprendre nos besoins spécifiques et nous proposer une solution sur mesure. Leur expertise en IA générative est impressionnante."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-300">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                            <i class="fas fa-quote-left text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold">Jacques W.</h4>
+                            <p class="text-gray-600">RLV</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 italic">"La formation IA pour notre équipe a été un véritable déclic. Nous utilisons maintenant quotidiennement ces outils pour gagner en productivité."</p>
+                    <div class="mt-4 text-yellow-400">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">Nos Services IA</h2>
+            <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Des solutions adaptées à chaque besoin et budget</p>
+            
+            <!-- Packs -->
+            <div class="mb-16">
+                <h3 class="text-2xl font-bold mb-8 text-center animate-fade-in delay-200">Nos Packs IA</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Pack Découverte -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-fade-in delay-200">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-lightbulb text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-center mb-2">Pack Découverte IA</h4>
+                        <p class="text-2xl font-bold text-center text-green-600 mb-4">1 490 € TTC</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Stratégie IA (2h) + Atelier "Prompt Engineering"</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Création d'un GPT personnalisé (FAQ ou assistant)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Support mail 7 jours</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Durée : 1 semaine</span>
+                            </li>
+                        </ul>
+                        <a href="pack1.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Choisir ce pack</a>
+                    </div>
+                    
+                    <!-- Pack Opérationnel -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 border-2 border-blue-500 transform scale-105 animate-fade-in delay-300">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-cloud text-2xl"></i>
+                        </div>
+                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAIRE</div>
+                        <h4 class="text-xl font-bold text-center mb-2">Pack Opérationnel Cloud</h4>
+                        <p class="text-2xl font-bold text-center text-green-600 mb-4">3 900 € TTC</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Stratégie IA approfondie + GPT métier</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Déploiement cloud sécurisé (Azure/OVH/Scaleway)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Formation + support mail/visio (2h)</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Durée : 2 à 3 semaines</span>
+                            </li>
+                        </ul>
+                        <a href="pack2.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Choisir ce pack</a>
+                    </div>
+                    
+                    <!-- Pack Souverain -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-fade-in delay-400">
+                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
+                            <i class="fas fa-shield-alt text-2xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-center mb-2">Pack IA Souveraine</h4>
+                        <p class="text-2xl font-bold text-center text-green-600 mb-4">8 900 € TTC</p>
+                        <ul class="space-y-3 mb-6">
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Stratégie complète, 2 à 3 GPTs connectés</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Déploiement sur infra dédiée / auto-hébergée</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Intégration API, RGPD, cybersécurité</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
+                                <span>Support 1 mois + transfert compétences</span>
+                            </li>
+                        </ul>
+                        <a href="pack3.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Choisir ce pack</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- On-Premise -->
+			<section id="On-Premise" >
+            <div>
+                <h3 class="text-2xl font-bold mb-8 text-center animate-fade-in">Solutions On-Premise</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Custom GPT -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-slide-left">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">Custom GPT</h4>
+                        </div>
+                        <div class="mb-6">
+                            <p class="text-gray-700 mb-4">Solution d'IA générative entièrement personnalisée pour répondre à vos besoins spécifiques.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Prise de RDV exploratoire (1h mini)</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Processus : Interview → Élaboration & test → Livraison</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Formule abonnement possible pour mises à jour</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Support post-livraison : 30 jours minimum</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
+                            <a href="#contact" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-center transition duration-300">Demander un devis</a>
+                            <a href="/customgpt.html" class="flex-1 border border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-2 px-4 rounded-lg text-center transition duration-300">En savoir plus</a>
+                        </div>
+                    </div>
+                    
+                    <!-- IA générative -->
+                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-slide-right delay-200">
+                        <div class="flex items-center mb-4">
+                            <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                                <i class="fas fa-server text-xl"></i>
+                            </div>
+                            <h4 class="text-xl font-bold">IA générative On-Premise</h4>
+                        </div>
+                        <div class="mb-6">
+                            <p class="text-gray-700 mb-4">Solution complète d'IA générative installée directement dans votre infrastructure.</p>
+                            <ul class="space-y-2">
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Audit informatique complet de votre infrastructure</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Installation, test et mise en production</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Formation IT + utilisateurs finaux</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
+                                    <span>Tarif : à partir de 15 000 € HT (hors matériel)</span>
+                                </li>
+                            </ul>
+                        </div>
+                        <a href="#contact" class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Demander un audit gratuit</a>
+                    </div>
+                </div>
+            </div>
+			</Section
+        </div>
+    </section>
+
+    <!-- Formations Section -->
+    <section id="formations" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">Nos Formations IA</h2>
+            <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Formez-vous ou votre équipe aux enjeux et usages de l'IA générative</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+                <!-- Formation Particuliers -->
+                <div class="bg-white rounded-xl p-8 shadow-md card-hover transition duration-300 animate-scale-in">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-graduate text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">Particuliers & Associations</h3>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-700 mb-4">Découvrez les bases de l'IA générative et apprenez à utiliser ces outils au quotidien.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Durée : ½ journée</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Les fondamentaux de l'IA générative</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Ateliers pratiques avec ChatGPT et autres outils</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>50€ par participant</span>
+							<li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Liste d'attente</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="/formation-volvic/index.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">S'inscrire</a>
+                </div>
+                
+                <!-- Formation Entreprises -->
+                <div class="bg-white rounded-xl p-8 shadow-md card-hover transition duration-300 border-2 border-blue-500 animate-scale-in delay-200">
+                    <div class="flex items-center mb-6">
+                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-building text-2xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold">TPE & PME</h3>
+                    </div>
+                    <div class="mb-6">
+                        <p class="text-gray-700 mb-4">Formez votre équipe aux usages professionnels de l'IA générative pour booster votre productivité.</p>
+                        <ul class="space-y-3">
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Durée : 1 journée</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Les bases + IA dans l'entreprise</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Cas d'usage métiers et bonnes pratiques</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>Qualiopi pour prise en charge OPCO</span>
+                            </li>
+                            <li class="flex items-start">
+                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
+                                <span>2 400€ par groupe/journée</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <a href="#contact" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- À propos Section -->
+    <section id="apropos" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-slide-left">
+                    <h2 class="text-3xl font-bold mb-6">À propos d'IAfluence</h2>
+                    <p class="text-gray-700 mb-6">Fondée en 2023 par Suan Tay à Volvic, IAfluence a pour mission de démocratiser l'IA générative pour les TPE/PME en proposant des solutions sur mesure, éthiques et souveraines.</p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4">Notre fondateur</h3>
+                        <div class="flex items-center mb-4">
+                            <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
+                                <i class="fas fa-user-tie text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Suan Tay</h4>
+                                <p class="text-gray-600">Ingénieur en informatique, Data Scientist - Ingénieur IA avec 20 ans d'expérience, formateur à l'ESC Clermont Business School et  UCA - ISIMA</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700">"Notre objectif est de rendre l'IA accessible tout en garantissant la souveraineté des données et une approche éthique."</p>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Nos valeurs</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="flex items-start animate-fade-in delay-100">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-lock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Souveraineté des données</h4>
+                                    <p class="text-gray-600">Vos données restent les vôtres</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start animate-fade-in delay-200">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-graduation-cap"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Pédagogie</h4>
+                                    <p class="text-gray-600">Apprendre pour mieux utiliser</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start animate-fade-in delay-300">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-bullseye"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Utilité métier</h4>
+                                    <p class="text-gray-600">Des solutions concrètes</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start animate-fade-in delay-400">
+                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
+                                    <i class="fas fa-hand-holding-heart"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold">Éthique & transparence</h4>
+                                    <p class="text-gray-600">Une IA responsable</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 animate-slide-right delay-200">
+                    <img src="/static/images/profile.jpg" alt="Suan Tay IAfluence" class="rounded-xl shadow-lg w-full h-auto" style="width: 60%;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-16 bg-gray-100">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">L'Univers de l'IA</h2>
+            <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Découvrez nos articles sur l'IA générative</p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Article 1 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in">
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7293002983653470208?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Post intégré"></iframe>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in delay-100">
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7311060736816934914?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Post intégré"></iframe>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in delay-200">
+                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7302337348908822528?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Post intégré"></iframe>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 animate-fade-in delay-300">
+                <a href="https://linkedin.com/in/suan-tay" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Voir tous les articles</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-blue-600 text-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 ">
+                    <h2 class="text-3xl font-bold mb-6">Contactez-nous</h2>
+                    <p class="text-xl mb-8">Prêt à démarrer votre projet IA ? Parlons-en !</p>
+                    
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold mb-4">Coordonnées</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1 mr-4"></i>
+                                <div>
+                                    <p class="font-medium">IAfluence – Suan Tay</p>
+                                    <p>3 route de Riom, Bureau 05</p>
+                                    <p>63530 Volvic</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-envelope mr-4"></i>
+                                <a href="mailto:suan.tay@iafluence.fr" class="hover:underline">suan.tay@iafluence.fr</a>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-phone mr-4"></i>
+                                <a href="tel:+33665197633" class="hover:underline">06 65 19 76 33</a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h3 class="text-xl font-bold mb-4">Réseaux sociaux</h3>
+                        <div class="flex space-x-4">
+                            <a href="https://linkedin.com/in/suan-tay" target="_blank" class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="https://youtube.com/@suantay8220" target="_blank" class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
+                                <i class="fab fa-youtube"></i>
+                            </a>
+							<a href="https://www.instagram.com/suan.tay.job" target="_blank" class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+				
+				<div class="w-full bg-white rounded-xl p-8 shadow-lg text-gray-800 animate-fade-in delay-100">
+              <!-- Bouton de lancement avec delayed-navigation helper -->
+				<button
+				  onclick="return gtagSendEvent('https://calendar.google.com/calendar/appointments/schedules/AcZssZ03RLDgsZLumeQFGTQwDS8m4kFQ-knDVBwMuwgzBpn9U1gmlksyYIbYp37TZyHgSrtB1tMhXCwT?gv=true');"
+				  class="bg-white text-blue-600 font-bold py-2 px-4 rounded-lg"
+				>
+				  Planifiez un RDV
+				</button>
+
+				<!-- Votre iframe (reste en dessous, usage secondaire) -->
+				<iframe
+				  src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ03RLDgsZLumeQFGTQwDS8m4kFQ-knDVBwMuwgzBpn9U1gmlksyYIbYp37TZyHgSrtB1tMhXCwT?gv=true"
+				  style="border:0" width="100%" height="600" frameborder="0">
+				</iframe>
+            </div>
+                
+              
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div >
+                    <div class="flex items-center mb-4">
+                        <img src="/static/images/logo_main_sans.png" alt="logo IAfluence" style="width: 16%;">
+                        <h3 class="text-xl font-bold">IAfluence</h3>
+                    </div>
+                    <p class="text-gray-400">L'IA sur mesure pour les TPE/PME, avec une approche éthique et souveraine.</p>
+                </div>
+                
+                <div >
+                    <h4 class="text-lg font-bold mb-4">Services</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Packs IA</a></li>
+                        <li><a href="#On-Premise" class="text-gray-400 hover:text-white transition">Solutions On-Premise</a></li>
+                        <li><a href="#formations" class="text-gray-400 hover:text-white transition">Formations</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Audit gratuit</a></li>
+                    </ul>
+                </div>
+                
+                <div >
+                    <h4 class="text-lg font-bold mb-4">Ressources</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
+                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">Documentation</a></li>
+                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
+                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">Études de cas</a></li>
+                    </ul>
+                </div>
+                
+                <div >
+                    <h4 class="text-lg font-bold mb-4">Légal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="mention-legales.html" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
+                        <li><a href="politique-confidentialite.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>                    
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center ">
+                <p class="text-gray-400 mb-4 md:mb-0">© 2025 IAfluence. Tous droits réservés.</p>
+                <div class="flex space-x-6">
+                    <a href="https://linkedin.com/in/suan-tay" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://youtube.com/@suantay8220" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="https://www.instagram.com/suan.tay.job" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top button -->
+    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Chatbot -->
+    <div class="chatbot-container">
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <div class="flex items-center">
+                    <div class="w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center mr-2">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>Assistant IAfluence</h3>
+                </div>
+                <button id="closeChatbot" class="text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot-message">
+                    Bonjour ! Je suis l'assistant IA d'IAfluence. Comment puis-je vous aider aujourd'hui ?
+                </div>
+                <div class="typing-indicator" id="typingIndicator" style="display: none;">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Tapez votre message..." class="focus:outline-none">
+                <button id="sendMessage">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+        <div class="chatbot-button" id="chatbotButton">
+            <i class="fas fa-comment-dots text-2xl"></i>
+        </div>
+    </div>
+
+    <script>
+        // Back to top button
+        const backToTopButton = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.remove('opacity-0', 'invisible');
+                backToTopButton.classList.add('opacity-100', 'visible');
+            } else {
+                backToTopButton.classList.remove('opacity-100', 'visible');
+                backToTopButton.classList.add('opacity-0', 'invisible');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobileMenuButton');
+		const mobileMenu = document.getElementById('mobileMenu');
+
+		mobileMenuButton.addEventListener('click', () => {
+			mobileMenu.classList.toggle('active');
+			mobileMenuButton.classList.toggle('active');
+		});
+
+		// Fermer le menu quand on clique sur un lien
+		document.querySelectorAll('#mobileMenu a').forEach(link => {
+			link.addEventListener('click', () => {
+				mobileMenu.classList.remove('active');
+				mobileMenuButton.classList.remove('active');
+			});
+		});
+
+// Supprimez l'ancien gestionnaire d'événement pour le menu mobile
+// document.querySelector('.md\\:hidden').addEventListener('click', () => {
+//     alert('Menu mobile à implémenter');
+// });
+        
+        // Intersection Observer for scroll animations
+        const animateElements = document.querySelectorAll('.animate-fade-in, .animate-scale-in, .animate-slide-left, .animate-slide-right');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        animateElements.forEach(element => {
+            observer.observe(element);
+        });
+        
+        // Chatbot functionality
+		
+	<!-- Dans la partie JavaScript existante de votre index_01.html, remplacez la section chatbot par ceci : -->
+
+
+    // Chatbot functionality - Version optimisée
+    const chatbotButton = document.getElementById('chatbotButton');
+    const chatbotWindow = document.getElementById('chatbotWindow');
+    const closeChatbot = document.getElementById('closeChatbot');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const sendMessage = document.getElementById('sendMessage');
+    const typingIndicator = document.getElementById('typingIndicator');
+
+    // État du chatbot
+    let isChatbotOpen = false;
+
+    // Fonction pour ajouter un message
+	// tout en haut du script de chatbot (après avoir chargé les libs) :
+	const md = window.markdownit({ linkify: true, typographer: true });
+
+	function addMessage(text, isUser = false) {
+	  const message = document.createElement('div');
+	  message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+	  // 1) transforme le Markdown en HTML
+	  const raw = md.render(text);
+	  // 2) nettoie le HTML (sécurité)
+	  message.innerHTML = DOMPurify.sanitize(raw);
+	  chatbotMessages.appendChild(message);
+	  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+	}
+    // Fonction pour envoyer un message
+    async function sendUserMessage() {
+        const messageText = chatbotInput.value.trim();
+        if (!messageText) return;
+
+        // Ajouter le message utilisateur
+        addMessage(messageText, true);
+        chatbotInput.value = '';
+
+        // Afficher l'indicateur de saisie
+        typingIndicator.style.display = 'flex';
+        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+        try {
+            // Envoyer au backend Flask
+            const response = await fetch('/api/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ message: messageText })
+            });
+
+            const data = await response.json();
+
+            if (data.error) {
+                addMessage("Désolé, une erreur est survenue : " + data.error);
+            } else {
+                addMessage(data.response);
+            }
+        } catch (error) {
+            addMessage("Erreur de connexion au serveur");
+        } finally {
+            typingIndicator.style.display = 'none';
+        }
+    }
+
+    // Événements
+    chatbotButton.addEventListener('click', () => {
+        isChatbotOpen = !isChatbotOpen;
+        chatbotWindow.classList.toggle('active', isChatbotOpen);
+    });
+
+    closeChatbot.addEventListener('click', () => {
+        isChatbotOpen = false;
+        chatbotWindow.classList.remove('active');
+    });
+
+    sendMessage.addEventListener('click', sendUserMessage);
+
+    chatbotInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') sendUserMessage();
+    });
+
+    // Message d'accueil
+    
+</script>
+	
+	
+	<script src="/static/js/chatbot.js"></script>
+</body>
+</html>

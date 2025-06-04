@@ -1,0 +1,50 @@
+<form id="formulaire-inscription" class="bg-white rounded-xl p-8 shadow-lg text-gray-800" action="https://iafluence.fr/envoimail" method="POST">
+  <h3 class="text-2xl font-bold mb-6 text-blue-600">Envoyez-nous un message</h3>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+    <div>
+      <label for="firstname" class="block text-sm font-medium mb-1">Prénom *</label>
+      <input type="text" id="firstname" name="firstname" value="Jean" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    </div>
+    <div>
+      <label for="lastname" class="block text-sm font-medium mb-1">Nom *</label>
+      <input type="text" id="lastname" name="lastname" value="Dupont" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+    </div>
+  </div>
+  
+  <div class="mb-4">
+    <label for="email" class="block text-sm font-medium mb-1">Email *</label>
+    <input type="email" id="email" name="email" value="jean.dupont@example.com" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+  </div>
+  
+  <div class="mb-4">
+    <label for="phone" class="block text-sm font-medium mb-1">Téléphone</label>
+    <input type="tel" id="phone" name="phone" value="0123456789" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+  </div>
+  
+  <div class="mb-4">
+    <label for="service" class="block text-sm font-medium mb-1">Service concerné *</label>
+    <select id="service" name="service" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+      <option value="">Sélectionnez un service</option>
+      <option value="pack-decouverte" selected>Pack Découverte IA</option>
+      <option value="pack-cloud">Pack Opérationnel Cloud</option>
+      <option value="pack-souverain">Pack IA Souveraine</option>
+      <option value="custom-gpt">Custom GPT</option>
+      <option value="ia-onpremise">IA générative On-Premise</option>
+      <option value="formation">Formation IA</option>
+      <option value="autre">Autre demande</option>
+    </select>
+  </div>
+  
+  <div class="mb-4">
+    <label for="message" class="block text-sm font-medium mb-1">Message *</label>
+    <textarea id="message" name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">Bonjour, je souhaiterais obtenir plus de détails sur le Pack Découverte IA.</textarea>
+  </div>
+  
+  <div class="flex items-center mb-4">
+    <input type="checkbox" id="consent" name="consent" checked class="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500">
+    <label for="consent" class="ml-2 text-sm">J'accepte la politique de confidentialité</label>
+  </div>
+  
+  <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg transition duration-300">Envoyer le message</button>
+</form>
