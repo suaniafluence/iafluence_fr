@@ -996,87 +996,90 @@
 	<!-- Dans la partie JavaScript existante de votre index_01.html, remplacez la section chatbot par ceci : -->
 
 
-    // Chatbot functionality - Version optimisée
-    const chatbotButton = document.getElementById('chatbotButton');
-    const chatbotWindow = document.getElementById('chatbotWindow');
-    const closeChatbot = document.getElementById('closeChatbot');
-    const chatbotMessages = document.getElementById('chatbotMessages');
-    const chatbotInput = document.getElementById('chatbotInput');
-    const sendMessage = document.getElementById('sendMessage');
-    const typingIndicator = document.getElementById('typingIndicator');
-
-    // État du chatbot
-    let isChatbotOpen = false;
-
-    // Fonction pour ajouter un message
-	// tout en haut du script de chatbot (après avoir chargé les libs) :
-	const md = window.markdownit({ linkify: true, typographer: true });
-
-	function addMessage(text, isUser = false) {
-	  const message = document.createElement('div');
-	  message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-	  // 1) transforme le Markdown en HTML
-	  const raw = md.render(text);
-	  // 2) nettoie le HTML (sécurité)
-	  message.innerHTML = DOMPurify.sanitize(raw);
-	  chatbotMessages.appendChild(message);
-	  chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-	}
-    // Fonction pour envoyer un message
-    async function sendUserMessage() {
-        const messageText = chatbotInput.value.trim();
-        if (!messageText) return;
-
-        // Ajouter le message utilisateur
-        addMessage(messageText, true);
-        chatbotInput.value = '';
-
-        // Afficher l'indicateur de saisie
-        typingIndicator.style.display = 'flex';
-        chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-
-        try {
-            // Envoyer au backend Flask
-            const response = await fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ message: messageText })
-            });
-
-            const data = await response.json();
-
-            if (data.error) {
-                addMessage("Désolé, une erreur est survenue : " + data.error);
-            } else {
-                addMessage(data.response);
-            }
-        } catch (error) {
-            addMessage("Erreur de connexion au serveur");
-        } finally {
-            typingIndicator.style.display = 'none';
-        }
+  // Chatbot functionality optimisée + animation + ouverture/fermeture
+  
+  const chatbotButton = document.getElementById('chatbotButton');
+  const chatbotWindow = document.getElementById('chatbotWindow');
+  const closeChatbot = document.getElementById('closeChatbot');
+  const chatbotMessages = document.getElementById('chatbotMessages');
+  const chatbotInput = document.getElementById('chatbotInput');
+  const sendMessage = document.getElementById('sendMessage');
+  const typingIndicator = document.getElementById('typingIndicator');
+  
+  const md = window.markdownit({ linkify: true, typographer: true });
+  
+  // Animation mot par mot (ou lettre par lettre)
+  async function addMessageAnimated(text, isUser = false, delay = 60) {
+    const message = document.createElement('div');
+    message.className = 'message ' + (isUser ? 'user-message' : 'bot-message');
+    chatbotMessages.appendChild(message);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  
+    // ANIMATION MOT PAR MOT (change .split(' ') en .split('') pour lettre à lettre)
+    const words = text.split(' ');
+    for (let i = 0; i < words.length; i++) {
+      message.innerHTML += (i > 0 ? ' ' : '') + DOMPurify.sanitize(words[i]);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      await new Promise(res => setTimeout(res, delay));
     }
-
-    // Événements
-    chatbotButton.addEventListener('click', () => {
-        isChatbotOpen = !isChatbotOpen;
-        chatbotWindow.classList.toggle('active', isChatbotOpen);
-    });
-
-    closeChatbot.addEventListener('click', () => {
-        isChatbotOpen = false;
-        chatbotWindow.classList.remove('active');
-    });
-
-    sendMessage.addEventListener('click', sendUserMessage);
-
-    chatbotInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') sendUserMessage();
-    });
-
-    // Message d'accueil
+  }
+  
+  // Message utilisateur instantané
+  function addMessage(text, isUser = false) {
+    const message = document.createElement('div');
+    message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
+    const raw = md.render(text);
+    message.innerHTML = DOMPurify.sanitize(raw);
+    chatbotMessages.appendChild(message);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  }
+  
+  async function sendUserMessage() {
+    const messageText = chatbotInput.value.trim();
+    if (!messageText) return;
+  
+    addMessage(messageText, true); // Message utilisateur instantané
+    chatbotInput.value = '';
+    typingIndicator.style.display = 'flex';
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+  
+    try {
+      const response = await fetch('/api/chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: messageText })
+      });
+      const data = await response.json();
+  
+      if (data.error) {
+        await addMessageAnimated("Désolé, une erreur est survenue : " + data.error);
+      } else {
+        await addMessageAnimated(data.response);
+      }
+    } catch (error) {
+      await addMessageAnimated("Oups, je n’arrive pas à joindre le serveur... Il est peut-être parti boire un café ☕️");
+    } finally {
+      typingIndicator.style.display = 'none';
+    }
+  }
+  
+  // Ouverture/fermeture du widget
+  chatbotButton.addEventListener('click', () => {
+    chatbotWindow.classList.toggle('active');
+    if (chatbotWindow.classList.contains('active')) {
+      setTimeout(() => chatbotInput.focus(), 150);
+    }
+  });
+  closeChatbot.addEventListener('click', () => {
+    chatbotWindow.classList.remove('active');
+  });
+  
+  // Envoi message
+  sendMessage.addEventListener('click', sendUserMessage);
+  chatbotInput.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') sendUserMessage();
+  });
+  
     
 </script>
 	

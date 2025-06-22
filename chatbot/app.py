@@ -5,7 +5,7 @@ import sys
 import time
 import json
 
-sys.path.append("/home/ubuntu/chatbot")
+#sys.path.append("/home/ubuntu/chatbot")
 from backend.rag import RAGProcessor
 from backend.openrouter_api import OpenRouterAPI
 

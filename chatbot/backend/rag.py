@@ -1,5 +1,6 @@
 import os
 from dotenv import load_dotenv
+from pathlib import Path
 from langchain_community.embeddings import OpenAIEmbeddings
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import FAISS
@@ -20,7 +21,8 @@ class RAGProcessor:
         """Initialise les documents pour la recherche par mots-clés"""
         try:
             # Charger le document IAfluence
-            loader = TextLoader("/home/ubuntu/chatbot_project/data/iafluence_data.txt")
+            data_path = Path(__file__).resolve().parent.parent / "data" / "iafluence_data.txt"
+            loader = TextLoader(str(data_path))
             documents = loader.load()
             
             # Diviser le texte en chunks

@@ -1,0 +1,200 @@
+/* Reset et base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f8f9fa;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+    color: white;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.2rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    letter-spacing: 1px;
+}
+
+header h2 {
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: #ecf0f1;
+    margin-top: 1rem;
+}
+
+/* Main content */
+main {
+    padding: 3rem 0;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.intro h3 {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Sections */
+.section {
+    background: white;
+    margin-bottom: 2rem;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+    border-left: 4px solid #3498db;
+}
+
+.section h3 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+}
+
+.subsection {
+    margin-bottom: 1.5rem;
+}
+
+.subsection h4 {
+    color: #34495e;
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+/* Blockquotes */
+blockquote {
+    background: #f8f9fa;
+    border-left: 4px solid #e74c3c;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    font-style: italic;
+    border-radius: 0 8px 8px 0;
+    color: #2c3e50;
+    line-height: 1.7;
+}
+
+/* Lists */
+ul {
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+}
+
+li {
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+li strong {
+    color: #2c3e50;
+}
+
+/* Icebreaker section */
+.icebreaker {
+    border-left-color: #e67e22;
+    background: linear-gradient(135deg, #fff 0%, #fef9e7 100%);
+}
+
+.question-box {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 2px solid #f39c12;
+    margin-top: 1rem;
+}
+
+.question {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #e67e22;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.activity {
+    background: #fef5e7;
+    padding: 1rem;
+    border-radius: 6px;
+    border-left: 3px solid #f39c12;
+}
+
+.activity p {
+    margin-bottom: 0.5rem;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+footer p {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    header h1 {
+        font-size: 1.8rem;
+    }
+    
+    header h2 {
+        font-size: 1.2rem;
+    }
+    
+    .section {
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    main {
+        padding: 2rem 0;
+    }
+}
+
+/* Hover effects */
+.section {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+

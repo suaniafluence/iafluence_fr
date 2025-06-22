@@ -1,0 +1,6 @@
+Flask
+python-dotenv
+langchain
+langchain-community
+openai==1.90.0
+gunicorn

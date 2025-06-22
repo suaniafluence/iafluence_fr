@@ -20,16 +20,16 @@
       height: 500px;
       background: white;
       border-radius: 0
-      box-shadow: none 
+      box-shadow: none
       overflow: hidden;
       display: flex;
       flex-direction: column;
     }
     .chatbot-header {
       background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
-	    border-top-left-radius: 12px !important;
-		border-top-right-radius: 12px !important;
-		overflow: hidden;
+            border-top-left-radius: 12px !important;
+                border-top-right-radius: 12px !important;
+                overflow: hidden;
       color: white;
       padding: 15px;
       display: flex;
@@ -147,31 +147,60 @@
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
     }
 
+    let typingMoved = false;
+
+  async function addMessageAnimated(text, isUser = false, delay = 60) {
+    const message = document.createElement('div');
+    message.className = 'message ' + (isUser ? 'user-message' : 'bot-message');
+    chatbotMessages.appendChild(message);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+
+    // Sépare par mots (pour lettre à lettre, change en split(''))
+    const words = text.split(' ');
+    for (let i = 0; i < words.length; i++) {
+      // Rendu markdown/dompurify si tu veux, mais ici simple :
+      message.innerHTML += (i > 0 ? ' ' : '') + DOMPurify.sanitize(words[i]);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+      await new Promise(res => setTimeout(res, delay));
+    
+    
+    }
+  }
+
+
     async function sendUserMessage() {
       const messageText = chatbotInput.value.trim();
       if (!messageText) return;
+
       addMessage(messageText, true);
       chatbotInput.value = '';
+
+      // Première fois : déplace l’indicateur sous le fil de messages
+      if (!typingMoved) {
+        const indicator = document.getElementById('typingIndicator');
+        chatbotMessages.parentNode.insertBefore(indicator, chatbotMessages.nextSibling);
+        typingMoved = true;
+      }
       typingIndicator.style.display = 'flex';
+
+      await new Promise(res => setTimeout(res, 1));
 
       try {
         const response = await fetch('/api/chat', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ message: messageText })
-        });
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ message: messageText })
+          });
         const data = await response.json();
-        if (data.error) {
-          addMessage("Désolé, une erreur est survenue : " + data.error);
-        } else {
-          addMessage(data.response);
+        await new Promise(res => setTimeout(res, 350));
+        await addMessageAnimated(data.response || "Erreur inattendue.");
+
+        } catch (error) {
+         addMessage("Oups, pas de connexion serveur !");
+        } finally {
+         typingIndicator.style.display = 'none';
         }
-      } catch (error) {
-        addMessage("Erreur de connexion au serveur");
-      } finally {
-        typingIndicator.style.display = 'none';
-      }
-    }
+     }
 
     sendMessage.addEventListener('click', sendUserMessage);
     chatbotInput.addEventListener('keypress', e => {

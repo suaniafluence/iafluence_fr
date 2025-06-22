@@ -1,4 +1,99 @@
-IAfluence - L'IA au service des PME d'Auvergne-Rhone-Alpes
+Présentation générale
+
+Nom : IAfluence
+
+Création : 2023 par Suan Tay
+
+Lieu : Volvic, Auvergne
+
+Mission : Démocratiser l'usage de l'IA générative pour les petites entreprises
+
+Valeurs : Souveraineté des données, pédagogie, utilité métier, éthique, transparence
+
+Fondateur : Suan Tay, ingénieur IA, formateur à l'ESC Clermont et ISIMA
+
+💼 Localisation et contact
+
+Adresse : 3 route de Riom, Bureau 05, 63530 Volvic
+
+Téléphone : 06 65 19 76 33
+
+Email : suan.tay@iafluence.fr
+
+Réseaux : LinkedIn, Instagram (@iafluence), YouTube
+
+📦 Offres & services
+
+Packs IA
+
+Pack Découverte IA – 1 490 € TTC
+
+Atelier de stratégie IA (2h)
+
+Atelier de prompt engineering
+
+Création d’un GPT personnalisé (FAQ ou assistant)
+
+Support mail 1 semaine
+
+Pack Opérationnel Cloud – 3 900 € TTC
+
+Approfondissement stratégique
+
+GPT métier personnalisé
+
+Déploiement cloud (Azure, OVH, Scaleway)
+
+Formation et support 2h (visio/mail)
+
+Délai de 2 à 3 semaines
+
+Pack IA Souveraine – 8 900 € TTC
+
+2 à 3 GPTs connectés
+
+Infra dédiée ou auto-hébergée
+
+Intégration API, RGPD, cybersécurité
+
+Support 1 mois, transfert de compétences
+
+Solutions sur mesure
+
+Custom GPT : analyse, interviews, conception, tests, livraison, formation, support 30 jours
+
+IA générative On-Premise : audit, installation, tests, formation, mise en production – à partir de 15 000 € HT (hors matériel)
+
+Formations IA
+
+Particuliers : demi-journée à 50 €/participant
+
+TPE/PME : journée complète à 2 400 €/groupe, prise en charge OPCO (Qualiopi)
+
+⭐ Formations IA (Mises en avant)
+
+Introduction à l'IA générative :
+
+Pour débutants et curieux, cette formation pose les bases de l’IA générative, ses usages concrets, ses limites, et ses opportunités. Pédagogie accessible, cas pratiques et démo de modèles en direct.
+
+𝐄𝐱𝐩𝐥𝐨𝐢𝐭𝐞𝐫 𝐭𝐨𝐮𝐭 𝐥𝐞 𝐩𝐨𝐭𝐞𝐧𝐭𝐢𝐞𝐥 𝐝𝐞 𝐂𝐡𝐚𝐭𝐆𝐏𝐓 :
+
+Formation avancée pour explorer toutes les fonctions utiles de ChatGPT en contexte professionnel : génération de contenus, automatisation de tâches, recherche documentaire, stratégies de prompting. Idéal pour ceux qui veulent devenir des "super-utilisateurs".
+🧩 Référencement & visibilité
+
+France Num : Expert référencé pour les PME d’Auvergne
+
+Instagram : 900+ abonnés, contenus IA visuelle (Midjourney, Photoshop)
+
+📰 Blog et ressources
+
+Présence d'une section blog et d'articles pratiques
+
+Fiches produits, cas clients, informations sur chaque offre
+
+🎯 Conclusion
+
+IAfluence est une société spécialisée dans l'intégration de l’IA générative pour les TPE/PME, via des solutions sur mesure, des packs thématiques et des formations. Forte d’une vision éthique et souveraine, elle s’adresse aux entreprises souhaitant entrer dans l’ère de l’intelligence artificielle en confiance, avec accompagnement pédagogique et expertise technique.IAfluence - L'IA au service des PME d'Auvergne-Rhone-Alpes
 
 IAfluence est une societe specialisee dans l'integration de l'intelligence artificielle, et plus
 particulierement des modeles de langage (LLM), au sein des petites et moyennes entreprises de la
