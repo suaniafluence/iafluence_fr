@@ -46,6 +46,13 @@ Le dossier `chatbot/` permet de démarrer un service Flask qui fournit un chatbo
 
 Une fois démarré, le service écoute par défaut sur le port `5000`.
 
+### Affichage enrichi
+
+Le widget de discussion affiche désormais les réponses caractère par caractère
+avant de les convertir en **Markdown** sécurisé. Cela permet d'inclure des
+listes, du texte en gras ou des liens cliquables dans la conversation tout en
+conservant l'effet de frappe.
+
 ## Autres dossiers
 
 - `envoimail/` : petit exemple d'envoi d'e-mail avec Flask. Les variables d'environnement `EMAIL_EXPEDITEUR`, `EMAIL_DESTINATAIRE`, `GMAIL_APP_PASSWORD` et `SECRET_KEY` doivent être définies.
