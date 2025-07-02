@@ -59,6 +59,19 @@ conservant l'effet de frappe.
 - `formation-volvic/` : projet d'inscription à une formation. Reportez-vous au fichier [`formation-volvic/README.md`](formation-volvic/README.md) pour toutes les instructions détaillées.
 - `rlv/` : site vitrine pour présenter différents POC, documenté dans [`rlv/documentation.md`](rlv/documentation.md).
 
+## Tests
+
+Une petite suite de tests `pytest` vérifie le fonctionnement du processeur RAG.
+Pour les lancer localement :
+
+```bash
+pip install -r chatbot/requirement.txt pytest
+pytest
+```
+
+Un workflow GitHub Actions exécute automatiquement ces tests à chaque poussée
+ou pull request sur la branche `main`.
+
 ## Licence
 
 Aucune licence spécifique n'est fournie avec ce dépôt.
