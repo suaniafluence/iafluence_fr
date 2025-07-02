@@ -19,8 +19,8 @@
       width: 350px;
       height: 500px;
       background: white;
-      border-radius: 0
-      box-shadow: none
+      border-radius: 0;
+      box-shadow: none;
       overflow: hidden;
       display: flex;
       flex-direction: column;
@@ -155,16 +155,21 @@
     chatbotMessages.appendChild(message);
     chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 
-    // Sépare par mots (pour lettre à lettre, change en split(''))
-    const words = text.split(' ');
-    for (let i = 0; i < words.length; i++) {
-      // Rendu markdown/dompurify si tu veux, mais ici simple :
-      message.innerHTML += (i > 0 ? ' ' : '') + DOMPurify.sanitize(words[i]);
+    // Animation caractère par caractère pour un effet de frappe
+    let partial = '';
+    const chars = text.split('');
+    for (let i = 0; i < chars.length; i++) {
+      partial += chars[i];
+      // Affiche le texte brut pendant la frappe
+      message.textContent = partial;
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
       await new Promise(res => setTimeout(res, delay));
-    
-    
     }
+
+    // Une fois l'animation terminée, applique le rendu Markdown
+    const raw = md.render(partial);
+    message.innerHTML = DOMPurify.sanitize(raw);
+    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
 
 
