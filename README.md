@@ -103,6 +103,24 @@ GET /api/mcp/tools
 | `request_quote` | Demande un devis |
 | `book_call` | Réserve un appel découverte |
 
+### URLs publiques (production)
+
+```
+GET  https://iafluence.fr/api/mcp/tools   # découverte des tools
+POST https://iafluence.fr/api/mcp/call    # appel générique
+```
+
+Endpoints dédiés :
+```
+GET  https://iafluence.fr/api/offers
+GET  https://iafluence.fr/api/case-studies
+POST https://iafluence.fr/api/contact
+POST https://iafluence.fr/api/quote
+POST https://iafluence.fr/api/book-call
+```
+
+> Nginx proxyfie `/api/` vers Flask sur `localhost:5000` avec HTTPS (Certbot).
+
 ### Appel générique
 
 ```
