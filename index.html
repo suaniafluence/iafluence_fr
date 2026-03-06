@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head class="fixed w-full bg-white shadow-md z-50">
+	<script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "vcjdk47uxg");
+	</script>
 	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
 	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-K6QH3MSLX0"></script>
@@ -284,6 +291,36 @@
     }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <style>
+        /* Google Translate : fonctionnel mais invisible */
+        #google_translate_element {
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+        /* Cacher la barre de traduction Google en haut de page */
+        .goog-te-banner-frame { display: none !important; }
+        body { top: 0 !important; }
+
+        /* Boutons drapeaux */
+        .lang-switcher { display: flex; align-items: center; gap: 4px; }
+        .lang-btn {
+            font-size: 22px;
+            background: none;
+            border: 2px solid transparent;
+            border-radius: 6px;
+            cursor: pointer;
+            padding: 2px 4px;
+            line-height: 1;
+            transition: border-color 0.2s, transform 0.2s;
+            opacity: 0.6;
+        }
+        .lang-btn:hover { opacity: 1; transform: scale(1.15); }
+        .lang-btn.active { border-color: #007BFF; opacity: 1; }
+    </style>
 </head>
 
 <body class="bg-gray-50 text-gray-900">
@@ -304,6 +341,11 @@
                 <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
             </nav>
             <div id="google_translate_element"></div>
+            <div class="lang-switcher">
+                <button class="lang-btn" data-lang="fr" onclick="switchLanguage('fr')" title="Français">🇫🇷</button>
+                <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" title="English">🇬🇧</button>
+                <button class="lang-btn" data-lang="es" onclick="switchLanguage('es')" title="Español">🇪🇸</button>
+            </div>
             <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
                 <i class="fas fa-bars text-2xl"></i>
             </button>
@@ -746,21 +788,8 @@
             <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">L'Univers de l'IA</h2>
             <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Découvrez nos articles sur l'IA générative</p>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Article 1 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in">
-                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7293002983653470208?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Post intégré"></iframe>
-                </div>
-                
-                <!-- Article 2 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in delay-100">
-                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7311060736816934914?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Post intégré"></iframe>
-                </div>
-                
-                <!-- Article 3 -->
-                <div class="bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in delay-200">
-                    <iframe src="https://www.linkedin.com/embed/feed/update/urn:li:share:7302337348908822528?collapsed=1" height="399" width="504" frameborder="0" allowfullscreen="" title="Post intégré"></iframe>
-                </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="linkedin-posts">
+                <!-- Chargé dynamiquement depuis /static/linkedin_posts.json -->
             </div>
             
             <div class="text-center mt-12 animate-fade-in delay-300">
@@ -1019,14 +1048,10 @@
     const chars = text.split('');
     for (let i = 0; i < chars.length; i++) {
       partial += chars[i];
-      message.textContent = partial;
+      message.innerHTML = DOMPurify.sanitize(md.render(partial));
       chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
       await new Promise(res => setTimeout(res, delay));
     }
-
-    const raw = md.render(partial);
-    message.innerHTML = DOMPurify.sanitize(raw);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
   }
   
   // Message utilisateur instantané
@@ -1085,10 +1110,82 @@
     if (e.key === 'Enter') sendUserMessage();
   });
   
-    
+
+        // --- Sélecteur de langue par drapeaux ---
+        function switchLanguage(lang) {
+            // Déclencher la traduction via le select interne de Google Translate
+            function doTranslate() {
+                var select = document.querySelector('.goog-te-combo');
+                if (select) {
+                    select.value = lang === 'fr' ? '' : lang;
+                    var evt = document.createEvent('HTMLEvents');
+                    evt.initEvent('change', false, true);
+                    select.dispatchEvent(evt);
+                    // Mettre à jour le bouton actif
+                    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
+                    document.querySelector('.lang-btn[data-lang="' + lang + '"]').classList.add('active');
+                } else {
+                    // Google Translate pas encore prêt, réessayer
+                    setTimeout(doTranslate, 300);
+                }
+            }
+            doTranslate();
+        }
+
+        // Mettre en surbrillance la langue active au chargement
+        (function() {
+            var match = document.cookie.match(/googtrans=\/fr\/([a-z]+)/);
+            var activeLang = match ? match[1] : 'fr';
+            document.querySelectorAll('.lang-btn').forEach(function(btn) {
+                if (btn.getAttribute('data-lang') === activeLang) btn.classList.add('active');
+            });
+        })();
+
+        // Chargement dynamique des posts LinkedIn
+        fetch('/static/linkedin_posts.json')
+            .then(function(r) { return r.json(); })
+            .then(function(posts) {
+                var delays = ['', 'delay-100', 'delay-200'];
+                var container = document.getElementById('linkedin-posts');
+                posts.forEach(function(url, i) {
+                    var div = document.createElement('div');
+                    div.className = 'bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in visible ' + (delays[i] || '');
+                    var iframe = document.createElement('iframe');
+                    iframe.src = url;
+                    iframe.height = '399';
+                    iframe.width = '504';
+                    iframe.frameBorder = '0';
+                    iframe.allowFullscreen = true;
+                    iframe.title = 'Post LinkedIn';
+                    div.appendChild(iframe);
+                    container.appendChild(div);
+                });
+            });
+
+        // Cacher la barre Google Translate injectée dynamiquement
+        function hideGoogleBar() {
+            var banner = document.querySelector('iframe.goog-te-banner-frame, #goog-te-banner-frame');
+            if (banner) banner.style.setProperty('display', 'none', 'important');
+            if (document.body.style.top && document.body.style.top !== '0px') {
+                document.body.style.setProperty('top', '0', 'important');
+            }
+        }
+
+        // Observer le DOM : Google Translate injecte ses éléments après le load
+        var gtObserver = new MutationObserver(hideGoogleBar);
+        gtObserver.observe(document.documentElement, {
+            childList: true,
+            subtree: true,
+            attributes: true,
+            attributeFilter: ['style']
+        });
+        // Appel immédiat au cas où déjà présent
+        hideGoogleBar();
+
 </script>
-	
-	
+
+
+	<script src="/static/js/webmcp-init.js"></script>
 	<script src="/static/js/chatbot.js"></script>
 </body>
 </html>

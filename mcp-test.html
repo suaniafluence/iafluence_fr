@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebMCP Test — IAfluence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        pre { white-space: pre-wrap; word-break: break-word; }
+        .result-ok  { background: #f0fdf4; border-left: 4px solid #22c55e; }
+        .result-err { background: #fef2f2; border-left: 4px solid #ef4444; }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-mono text-sm">
+
+<div class="max-w-4xl mx-auto py-10 px-4">
+
+    <div class="mb-8">
+        <h1 class="text-2xl font-bold text-blue-700">🔧 WebMCP Test — iafluence.fr</h1>
+        <p class="text-gray-500 mt-1">Page de diagnostic des tools MCP enregistrés.</p>
+    </div>
+
+    <!-- Tools découverts -->
+    <div class="bg-white rounded-xl shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-3 text-gray-800">Tools enregistrés (window.WebMCP)</h2>
+        <div id="tool-list" class="space-y-2"></div>
+    </div>
+
+    <!-- Simulateur de tool -->
+    <div class="bg-white rounded-xl shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-4 text-gray-800">Simuler un appel</h2>
+        <div class="flex flex-col gap-3">
+            <div>
+                <label class="block text-gray-600 mb-1">Tool</label>
+                <select id="tool-select" class="border rounded px-3 py-2 w-full bg-gray-50">
+                    <option value="">-- choisir --</option>
+                    <option value="get_offers">get_offers</option>
+                    <option value="get_case_studies">get_case_studies</option>
+                    <option value="contact">contact</option>
+                    <option value="request_quote">request_quote</option>
+                    <option value="book_call">book_call</option>
+                </select>
+            </div>
+            <div>
+                <label class="block text-gray-600 mb-1">Arguments (JSON)</label>
+                <textarea id="tool-args" rows="5"
+                    class="border rounded px-3 py-2 w-full bg-gray-50 font-mono"
+                    placeholder='{}'>{}</textarea>
+            </div>
+            <button id="run-btn"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg w-fit transition">
+                ▶ Exécuter
+            </button>
+        </div>
+    </div>
+
+    <!-- Résultat -->
+    <div id="result-box" class="hidden bg-white rounded-xl shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-3 text-gray-800">Résultat</h2>
+        <div id="result-status" class="text-xs font-bold mb-2"></div>
+        <pre id="result-pre" class="p-4 rounded text-xs"></pre>
+    </div>
+
+    <!-- Tests rapides -->
+    <div class="bg-white rounded-xl shadow p-6 mb-6">
+        <h2 class="text-lg font-bold mb-4 text-gray-800">Tests rapides</h2>
+        <div class="flex flex-wrap gap-2" id="quick-tests"></div>
+    </div>
+
+    <!-- Découverte serveur -->
+    <div class="bg-white rounded-xl shadow p-6">
+        <h2 class="text-lg font-bold mb-3 text-gray-800">Découverte serveur — GET /api/mcp/tools</h2>
+        <button id="discover-btn"
+            class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition mb-3">
+            Appeler /api/mcp/tools
+        </button>
+        <pre id="discover-result" class="p-4 bg-gray-100 rounded text-xs hidden"></pre>
+    </div>
+
+</div>
+
+<script src="/static/js/webmcp-init.js"></script>
+<script>
+(function () {
+
+    // ── Afficher les tools enregistrés ───────────────────────────────────────
+    const tools = window.WebMCP.getTools();
+    const listEl = document.getElementById('tool-list');
+    tools.forEach(t => {
+        const div = document.createElement('div');
+        div.className = 'flex items-start gap-3 p-3 bg-gray-50 rounded-lg';
+        div.innerHTML = `
+            <span class="text-blue-600 font-bold min-w-fit">${t.name}</span>
+            <span class="text-gray-500">${t.description}</span>
+        `;
+        listEl.appendChild(div);
+    });
+
+    // ── Présets d'arguments selon le tool sélectionné ────────────────────────
+    const presets = {
+        get_offers:      '{}',
+        get_case_studies:'{}',
+        contact:         '{\n  "name": "Test Dupont",\n  "email": "test@example.com",\n  "message": "Bonjour, je souhaite en savoir plus."\n}',
+        request_quote:   '{\n  "name": "Marie Martin",\n  "email": "marie@exemple.fr",\n  "company": "Ma PME",\n  "need": "Chatbot IA pour notre service client",\n  "budget": "5000€",\n  "deadline": "3 mois"\n}',
+        book_call:       '{\n  "name": "Jean Dupont",\n  "email": "jean@exemple.fr",\n  "preferred_dates": "Lundi ou mercredi matin",\n  "topic": "Découverte Pack Opérationnel"\n}'
+    };
+
+    document.getElementById('tool-select').addEventListener('change', function () {
+        document.getElementById('tool-args').value = presets[this.value] || '{}';
+    });
+
+    // ── Exécuter un tool ──────────────────────────────────────────────────────
+    async function runTool(name, args) {
+        const box   = document.getElementById('result-box');
+        const pre   = document.getElementById('result-pre');
+        const status = document.getElementById('result-status');
+        box.classList.remove('hidden');
+        pre.className = 'p-4 rounded text-xs';
+        status.textContent = '⏳ En cours…';
+        pre.textContent = '';
+        try {
+            const result = await window.WebMCP.callTool(name, args);
+            pre.textContent = JSON.stringify(result, null, 2);
+            pre.className += ' result-ok';
+            status.textContent = '✅ Succès';
+        } catch (e) {
+            pre.textContent = e.message;
+            pre.className += ' result-err';
+            status.textContent = '❌ Erreur';
+        }
+        box.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    document.getElementById('run-btn').addEventListener('click', function () {
+        const name = document.getElementById('tool-select').value;
+        if (!name) return alert('Sélectionne un tool.');
+        let args = {};
+        try { args = JSON.parse(document.getElementById('tool-args').value || '{}'); }
+        catch { return alert('JSON invalide dans les arguments.'); }
+        runTool(name, args);
+    });
+
+    // ── Tests rapides ─────────────────────────────────────────────────────────
+    const quickEl = document.getElementById('quick-tests');
+    [
+        { label: '📦 get_offers', name: 'get_offers', args: {} },
+        { label: '📊 get_case_studies', name: 'get_case_studies', args: {} },
+    ].forEach(t => {
+        const btn = document.createElement('button');
+        btn.className = 'bg-green-100 hover:bg-green-200 text-green-800 font-bold py-2 px-4 rounded-lg transition';
+        btn.textContent = t.label;
+        btn.addEventListener('click', () => runTool(t.name, t.args));
+        quickEl.appendChild(btn);
+    });
+
+    // ── Découverte serveur ────────────────────────────────────────────────────
+    document.getElementById('discover-btn').addEventListener('click', async function () {
+        const pre = document.getElementById('discover-result');
+        pre.classList.remove('hidden');
+        pre.textContent = '⏳ Chargement…';
+        try {
+            const data = await window.WebMCP.discoverTools();
+            pre.textContent = JSON.stringify(data, null, 2);
+        } catch (e) {
+            pre.textContent = '❌ ' + e.message;
+        }
+    });
+
+})();
+</script>
+</body>
+</html>

@@ -1,84 +1,104 @@
 from flask import Flask, render_template, request, jsonify, Response, stream_with_context
 import os
+import re
 from dotenv import load_dotenv
-import sys
-import time
-import json
-
-#sys.path.append("/home/ubuntu/chatbot")
 from backend.rag import RAGProcessor
 from backend.openrouter_api import OpenRouterAPI
+from backend.mcp import mcp_bp
 
 # Charger les variables d'environnement
 load_dotenv()
 
 app = Flask(__name__)
 app.static_folder = 'static'
+app.register_blueprint(mcp_bp)
 
-# Initialiser l'API OpenRouter
 openrouter_api = OpenRouterAPI()
-
-# Initialiser le processeur RAG
 rag_processor = RAGProcessor()
+
+# --- Guardrails ---
+
+MAX_INPUT_LENGTH = 500
+
+# Patterns d'injection de prompt à bloquer
+INJECTION_PATTERNS = [
+    r"ignore\s+(tes|les|toutes?)\s+(instructions?|règles?|consignes?)",
+    r"oublie\s+(tes|les)\s+(instructions?|règles?)",
+    r"tu\s+es\s+maintenant",
+    r"nouveau\s+(rôle|prompt|personnage)",
+    r"act\s+as",
+    r"jailbreak",
+    r"DAN\b",
+    r"prompt\s+injection",
+    r"ignore\s+previous",
+    r"system\s*:\s*",
+    r"<\s*system\s*>",
+]
+
+def sanitize_input(text):
+    """Valide et nettoie le message utilisateur. Retourne (texte_nettoyé, erreur)."""
+    if not text or not text.strip():
+        return None, "Message vide."
+
+    text = text.strip()
+
+    if len(text) > MAX_INPUT_LENGTH:
+        return None, f"Message trop long (maximum {MAX_INPUT_LENGTH} caractères)."
+
+    # Détection d'injection de prompt
+    for pattern in INJECTION_PATTERNS:
+        if re.search(pattern, text, re.IGNORECASE):
+            return None, "guardrail"
+
+    return text, None
+
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
+
 @app.route('/api/chat', methods=['POST'])
 def chat():
     data = request.json
-    user_message = data.get('message', '')
-    
-    # Utiliser le RAG pour enrichir la requête
+    raw_message = data.get('message', '')
+
+    user_message, error = sanitize_input(raw_message)
+    if error:
+        if error == "guardrail":
+            return jsonify({"response": "Je suis uniquement là pour répondre à vos questions sur IAfluence. Comment puis-je vous aider ?"})
+        return jsonify({"error": error}), 400
+
     context = rag_processor.get_relevant_context(user_message)
-    
-    # Préparer le message avec le contexte
-    prompt = f"""Contexte: {context}
-    
-Question: {user_message}
-    
-Réponds de manière efficace, précise mais joviale à propos d'IAfluence. Utilise un ton amical et professionnel."""
-    
+
     try:
-        # Appel à l'API OpenRouter via notre module
-        response = openrouter_api.get_response(prompt)
-        
+        response = openrouter_api.get_response(user_message, context)
         return jsonify({"response": response})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+
 @app.route('/api/chat/stream', methods=['POST'])
 def chat_stream():
     data = request.json
-    user_message = data.get('message', '')
-    
-    # Utiliser le RAG pour enrichir la requête
+    raw_message = data.get('message', '')
+
+    user_message, error = sanitize_input(raw_message)
+    if error:
+        msg = "Je suis uniquement là pour répondre à vos questions sur IAfluence. Comment puis-je vous aider ?" if error == "guardrail" else error
+        return Response(msg, mimetype='text/plain')
+
     context = rag_processor.get_relevant_context(user_message)
-    
-    # Préparer le message avec le contexte
-    prompt = f"""Contexte: {context}
-    
-Question: {user_message}
-    
-Réponds de manière efficace, précise mais joviale à propos d'IAfluence. Utilise un ton amical et professionnel."""
-    
+
     def generate():
         try:
-            # Obtenir la réponse complète
-            full_response = openrouter_api.get_response(prompt)
-            
-            # Simuler un streaming caractère par caractère
-            for i in range(len(full_response) + 1):
-                chunk = full_response[:i]
-                # Pause très courte entre chaque caractère (plus rapide que ChatGPT)
-                time.sleep(0.01)  
+            for chunk in openrouter_api.stream_response(user_message, context):
                 yield chunk
-                
         except Exception as e:
-            yield f"Désolé, une erreur est survenue lors de la communication avec l'API: {str(e)}"
-    
+            yield f"Désolé, une erreur est survenue : {str(e)}"
+
     return Response(stream_with_context(generate()), mimetype='text/plain')
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000, debug=True)

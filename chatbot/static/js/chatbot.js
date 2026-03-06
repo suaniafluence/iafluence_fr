@@ -22,10 +22,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
+    // Configurer marked.js
+    marked.setOptions({ breaks: true });
+
     // Fonction pour convertir le markdown en HTML
     function markdownToHtml(text) {
-        // Convertir les ** en balises <strong> pour le texte en gras
-        return text.replace(/\*\*(.*?)\*\*/g, "<strong>$1</strong>");
+        return marked.parse(text);
     }
     
     // Fonction pour ajouter un message au chatbot
@@ -68,106 +70,53 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
     
-    // Fonction pour envoyer un message à l'API avec streaming
+    // Fonction pour envoyer un message à l'API avec streaming réel
     async function sendMessage(message) {
         try {
             // Créer un élément de message pour la réponse du bot
             const messageDiv = document.createElement("div");
             messageDiv.classList.add("message", "bot-message");
-            const messagePara = document.createElement("p");
+            const messagePara = document.createElement("div");
             messageDiv.appendChild(messagePara);
             chatbotMessages.appendChild(messageDiv);
-            
+
             // Afficher un indicateur de chargement initial
-            messagePara.textContent = "...";
-            
+            messagePara.innerHTML = "<span class='typing-dots'>...</span>";
+
             // Appel à l'API en mode streaming
             const response = await fetch("/api/chat/stream", {
                 method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ message: message })
             });
-            
+
             if (!response.ok) {
                 throw new Error("Erreur de communication avec le serveur");
             }
-            
-            // Lire la réponse en streaming
+
+            // Lire la réponse en streaming token par token
             const reader = response.body.getReader();
             const decoder = new TextDecoder();
-            let responseText = "";
-            
-            // Fonction pour traiter les chunks de données
-            async function readStream() {
+            let fullText = "";
+            let firstChunk = true;
+
+            while (true) {
                 const { done, value } = await reader.read();
-                
-                if (done) {
-                    // Fin du stream
-                    return;
-                }
-                
-                // Décoder et ajouter le nouveau texte
+                if (done) break;
+
                 const chunk = decoder.decode(value, { stream: true });
-                responseText += chunk;
-                
-                // Mettre à jour le message avec le texte complet
-                messagePara.innerHTML = markdownToHtml(responseText);
-                
-                // Scroll to bottom
+                fullText += chunk;
+
+                // Supprimer les "..." dès le premier token reçu
+                if (firstChunk) {
+                    firstChunk = false;
+                }
+
+                // Render le markdown sur le texte accumulé
+                messagePara.innerHTML = markdownToHtml(fullText);
                 chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-                
-                // Continuer à lire
-                return readStream();
             }
-            
-            // Commencer à lire le stream
-            await readStream();
-            
-        } catch (error) {
-            console.error("Erreur:", error);
-            addMessage("Désolé, une erreur est survenue. Veuillez réessayer plus tard.");
-        }
-    }
-    
-    // Fonction alternative pour simuler l'effet de streaming côté client
-    async function sendMessageWithClientSideStreaming(message) {
-        try {
-            // Afficher un indicateur de chargement
-            const loadingDiv = document.createElement("div");
-            loadingDiv.classList.add("message", "bot-message");
-            loadingDiv.innerHTML = "<p>...</p>";
-            chatbotMessages.appendChild(loadingDiv);
-            
-            // Appel à l'API
-            const response = await fetch("/api/chat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({ message: message })
-            });
-            
-            // Supprimer l'indicateur de chargement
-            chatbotMessages.removeChild(loadingDiv);
-            
-            if (!response.ok) {
-                throw new Error("Erreur de communication avec le serveur");
-            }
-            
-            const data = await response.json();
-            
-            // Créer un élément pour la réponse
-            const messageDiv = document.createElement("div");
-            messageDiv.classList.add("message", "bot-message");
-            const messagePara = document.createElement("p");
-            messageDiv.appendChild(messagePara);
-            chatbotMessages.appendChild(messageDiv);
-            
-            // Afficher la réponse caractère par caractère
-            typeText(messagePara, data.response, 0, 15); // Vitesse légèrement plus rapide que ChatGPT
-            
+
         } catch (error) {
             console.error("Erreur:", error);
             addMessage("Désolé, une erreur est survenue. Veuillez réessayer plus tard.");
@@ -181,9 +130,8 @@ document.addEventListener("DOMContentLoaded", function() {
             // Afficher le message de l'utilisateur
             addMessage(message, true);
             
-            // Envoyer le message à l'API avec l'effet de streaming côté client
-            // (nous utiliserons cette méthode en attendant que le backend soit mis à jour)
-            sendMessageWithClientSideStreaming(message);
+            // Envoyer le message à l'API avec streaming réel
+            sendMessage(message);
             
             // Vider le champ de saisie
             userInput.value = "";
