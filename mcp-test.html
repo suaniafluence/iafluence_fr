@@ -1,28 +1,29 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WebMCP Test — IAfluence</title>
+    <title>WebMCP Test â€” IAfluence</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         pre { white-space: pre-wrap; word-break: break-word; }
         .result-ok  { background: #f0fdf4; border-left: 4px solid #22c55e; }
         .result-err { background: #fef2f2; border-left: 4px solid #ef4444; }
     </style>
+    <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 <body class="bg-gray-50 min-h-screen font-mono text-sm">
 
 <div class="max-w-4xl mx-auto py-10 px-4">
 
     <div class="mb-8">
-        <h1 class="text-2xl font-bold text-blue-700">🔧 WebMCP Test — iafluence.fr</h1>
-        <p class="text-gray-500 mt-1">Page de diagnostic des tools MCP enregistrés.</p>
+        <h1 class="text-2xl font-bold text-blue-700">ðŸ”§ WebMCP Test â€” iafluence.fr</h1>
+        <p class="text-gray-500 mt-1">Page de diagnostic des tools MCP enregistrÃ©s.</p>
     </div>
 
-    <!-- Tools découverts -->
+    <!-- Tools dÃ©couverts -->
     <div class="bg-white rounded-xl shadow p-6 mb-6">
-        <h2 class="text-lg font-bold mb-3 text-gray-800">Tools enregistrés (window.WebMCP)</h2>
+        <h2 class="text-lg font-bold mb-3 text-gray-800">Tools enregistrÃ©s (window.WebMCP)</h2>
         <div id="tool-list" class="space-y-2"></div>
     </div>
 
@@ -49,14 +50,14 @@
             </div>
             <button id="run-btn"
                 class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg w-fit transition">
-                ▶ Exécuter
+                â–¶ ExÃ©cuter
             </button>
         </div>
     </div>
 
-    <!-- Résultat -->
+    <!-- RÃ©sultat -->
     <div id="result-box" class="hidden bg-white rounded-xl shadow p-6 mb-6">
-        <h2 class="text-lg font-bold mb-3 text-gray-800">Résultat</h2>
+        <h2 class="text-lg font-bold mb-3 text-gray-800">RÃ©sultat</h2>
         <div id="result-status" class="text-xs font-bold mb-2"></div>
         <pre id="result-pre" class="p-4 rounded text-xs"></pre>
     </div>
@@ -67,9 +68,9 @@
         <div class="flex flex-wrap gap-2" id="quick-tests"></div>
     </div>
 
-    <!-- Découverte serveur -->
+    <!-- DÃ©couverte serveur -->
     <div class="bg-white rounded-xl shadow p-6">
-        <h2 class="text-lg font-bold mb-3 text-gray-800">Découverte serveur — GET /api/mcp/tools</h2>
+        <h2 class="text-lg font-bold mb-3 text-gray-800">DÃ©couverte serveur â€” GET /api/mcp/tools</h2>
         <button id="discover-btn"
             class="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-lg transition mb-3">
             Appeler /api/mcp/tools
@@ -83,7 +84,7 @@
 <script>
 (function () {
 
-    // ── Afficher les tools enregistrés ───────────────────────────────────────
+    // â”€â”€ Afficher les tools enregistrÃ©s â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const tools = window.WebMCP.getTools();
     const listEl = document.getElementById('tool-list');
     tools.forEach(t => {
@@ -96,55 +97,55 @@
         listEl.appendChild(div);
     });
 
-    // ── Présets d'arguments selon le tool sélectionné ────────────────────────
+    // â”€â”€ PrÃ©sets d'arguments selon le tool sÃ©lectionnÃ© â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const presets = {
         get_offers:      '{}',
         get_case_studies:'{}',
         contact:         '{\n  "name": "Test Dupont",\n  "email": "test@example.com",\n  "message": "Bonjour, je souhaite en savoir plus."\n}',
-        request_quote:   '{\n  "name": "Marie Martin",\n  "email": "marie@exemple.fr",\n  "company": "Ma PME",\n  "need": "Chatbot IA pour notre service client",\n  "budget": "5000€",\n  "deadline": "3 mois"\n}',
-        book_call:       '{\n  "name": "Jean Dupont",\n  "email": "jean@exemple.fr",\n  "preferred_dates": "Lundi ou mercredi matin",\n  "topic": "Découverte Pack Opérationnel"\n}'
+        request_quote:   '{\n  "name": "Marie Martin",\n  "email": "marie@exemple.fr",\n  "company": "Ma PME",\n  "need": "Chatbot IA pour notre service client",\n  "budget": "5000â‚¬",\n  "deadline": "3 mois"\n}',
+        book_call:       '{\n  "name": "Jean Dupont",\n  "email": "jean@exemple.fr",\n  "preferred_dates": "Lundi ou mercredi matin",\n  "topic": "DÃ©couverte Pack OpÃ©rationnel"\n}'
     };
 
     document.getElementById('tool-select').addEventListener('change', function () {
         document.getElementById('tool-args').value = presets[this.value] || '{}';
     });
 
-    // ── Exécuter un tool ──────────────────────────────────────────────────────
+    // â”€â”€ ExÃ©cuter un tool â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     async function runTool(name, args) {
         const box   = document.getElementById('result-box');
         const pre   = document.getElementById('result-pre');
         const status = document.getElementById('result-status');
         box.classList.remove('hidden');
         pre.className = 'p-4 rounded text-xs';
-        status.textContent = '⏳ En cours…';
+        status.textContent = 'â³ En coursâ€¦';
         pre.textContent = '';
         try {
             const result = await window.WebMCP.callTool(name, args);
             pre.textContent = JSON.stringify(result, null, 2);
             pre.className += ' result-ok';
-            status.textContent = '✅ Succès';
+            status.textContent = 'âœ… SuccÃ¨s';
         } catch (e) {
             pre.textContent = e.message;
             pre.className += ' result-err';
-            status.textContent = '❌ Erreur';
+            status.textContent = 'âŒ Erreur';
         }
         box.scrollIntoView({ behavior: 'smooth' });
     }
 
     document.getElementById('run-btn').addEventListener('click', function () {
         const name = document.getElementById('tool-select').value;
-        if (!name) return alert('Sélectionne un tool.');
+        if (!name) return alert('SÃ©lectionne un tool.');
         let args = {};
         try { args = JSON.parse(document.getElementById('tool-args').value || '{}'); }
         catch { return alert('JSON invalide dans les arguments.'); }
         runTool(name, args);
     });
 
-    // ── Tests rapides ─────────────────────────────────────────────────────────
+    // â”€â”€ Tests rapides â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     const quickEl = document.getElementById('quick-tests');
     [
-        { label: '📦 get_offers', name: 'get_offers', args: {} },
-        { label: '📊 get_case_studies', name: 'get_case_studies', args: {} },
+        { label: 'ðŸ“¦ get_offers', name: 'get_offers', args: {} },
+        { label: 'ðŸ“Š get_case_studies', name: 'get_case_studies', args: {} },
     ].forEach(t => {
         const btn = document.createElement('button');
         btn.className = 'bg-green-100 hover:bg-green-200 text-green-800 font-bold py-2 px-4 rounded-lg transition';
@@ -153,20 +154,21 @@
         quickEl.appendChild(btn);
     });
 
-    // ── Découverte serveur ────────────────────────────────────────────────────
+    // â”€â”€ DÃ©couverte serveur â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
     document.getElementById('discover-btn').addEventListener('click', async function () {
         const pre = document.getElementById('discover-result');
         pre.classList.remove('hidden');
-        pre.textContent = '⏳ Chargement…';
+        pre.textContent = 'â³ Chargementâ€¦';
         try {
             const data = await window.WebMCP.discoverTools();
             pre.textContent = JSON.stringify(data, null, 2);
         } catch (e) {
-            pre.textContent = '❌ ' + e.message;
+            pre.textContent = 'âŒ ' + e.message;
         }
     });
 
 })();
 </script>
+    <script src="/static/js/cookie-consent.js"></script>
 </body>
 </html>

@@ -1,0 +1,173 @@
+/* Barre de navigation commune IAfluence */
+:root {
+    --ia-nav-ink: #172033;
+    --ia-nav-muted: #607089;
+    --ia-nav-blue: #006fe6;
+    --ia-nav-line: #dbe5f2;
+}
+
+body > header,
+body > .site-header {
+    position: sticky !important;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.94) !important;
+    border-bottom: 1px solid var(--ia-nav-line);
+    box-shadow: none !important;
+    backdrop-filter: blur(14px);
+}
+
+body > header > .container,
+.site-header > .container,
+.site-header .header-inner {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+}
+
+body > header .header-content,
+.site-header .header-inner {
+    width: 100%;
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 28px;
+    padding: 0;
+}
+
+body > header .logo,
+body > header .brand,
+body > header .flex.items-center {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+body > header .logo img,
+body > header .brand img,
+body > header .flex.items-center img {
+    width: 40px !important;
+    height: 40px !important;
+    max-width: none !important;
+    margin: 0 !important;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #fff;
+}
+
+body > header .logo-text h1,
+body > header .brand strong,
+body > header .flex.items-center h1 {
+    margin: 0;
+    color: var(--ia-nav-ink) !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.08rem !important;
+    line-height: 1.2;
+}
+
+body > header .logo-text p,
+body > header .brand small {
+    margin: 0;
+    color: var(--ia-nav-muted);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8rem;
+}
+
+body > header nav,
+body > header .nav-menu,
+body > header .main-nav {
+    display: flex !important;
+    align-items: center;
+    gap: 22px !important;
+}
+
+body > header .nav-menu {
+    list-style: none;
+}
+
+body > header .nav-menu li {
+    margin: 0;
+}
+
+body > header nav a,
+body > header .nav-menu a,
+body > header .main-nav a {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 76px;
+    padding: 0 0 2px;
+    border-bottom: 3px solid transparent;
+    color: var(--ia-nav-muted) !important;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+body > header nav a:hover,
+body > header .nav-menu a:hover,
+body > header .main-nav a:hover,
+body > header nav a[aria-current="page"],
+body > header .nav-menu a[aria-current="page"],
+body > header .main-nav a[aria-current="page"] {
+    color: var(--ia-nav-blue) !important;
+}
+
+body > header nav a[aria-current="page"],
+body > header .nav-menu a[aria-current="page"],
+body > header .main-nav a[aria-current="page"] {
+    border-bottom-color: var(--ia-nav-blue);
+}
+
+body > header .header-cta,
+body > header #google_translate_element,
+body > header .lang-switcher,
+body > header .mobile-menu-toggle,
+body > header #mobileMenuButton,
+body > header #mobileMenu {
+    display: none !important;
+}
+
+body > header + main {
+    margin-top: 0 !important;
+}
+
+body > header a::after,
+body > header .nav-menu a::after {
+    content: none !important;
+    display: none !important;
+    transition: none;
+}
+
+@media (max-width: 760px) {
+    body > header > .container,
+    .site-header > .container,
+    body > header .header-content,
+    .site-header .header-inner {
+        min-height: auto;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        padding-top: 12px;
+        padding-bottom: 0;
+    }
+
+    body > header nav,
+    body > header .nav-menu,
+    body > header .main-nav {
+        width: 100%;
+        gap: 16px !important;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+
+    body > header nav a,
+    body > header .nav-menu a,
+    body > header .main-nav a {
+        min-height: 48px;
+    }
+}

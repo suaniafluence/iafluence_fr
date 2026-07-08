@@ -1,41 +1,41 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Petit-déjeuner IA avec Suan Tay</title>
+    <title>Petit-dÃ©jeuner IA avec Suan Tay</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        
+
         body {
             font-family: 'Inter', sans-serif;
             background-color: #f8fafc;
         }
-        
+
         .gradient-bg {
             background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #d946ef 100%);
         }
-        
+
         .slide {
             display: none;
             animation: fadeIn 0.5s ease-in-out;
         }
-        
+
         .slide.active {
             display: block;
         }
-        
+
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
+
         .tooltip {
             position: relative;
         }
-        
+
         .tooltip-text {
             visibility: hidden;
             width: 200px;
@@ -52,30 +52,30 @@
             opacity: 0;
             transition: opacity 0.3s;
         }
-        
+
         .tooltip:hover .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
-        
+
         .ai-response {
             border-left: 4px solid #8b5cf6;
             background-color: #f5f3ff;
         }
-        
+
         .user-input {
             border-left: 4px solid #6366f1;
             background-color: #eef2ff;
         }
-        
+
         .chat-message {
             transition: all 0.3s ease;
         }
-        
+
         .chat-message:hover {
             transform: translateX(5px);
         }
-        
+
         .qr-code {
             width: 150px;
             height: 150px;
@@ -85,12 +85,13 @@
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
+
         .qr-code img {
             width: 100%;
             height: 100%;
         }
     </style>
+    <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 <body class="min-h-screen">
     <!-- Header -->
@@ -102,13 +103,13 @@
                         <i class="fas fa-robot text-3xl text-purple-600"></i>
                     </div>
                     <div>
-                        <h1 class="text-2xl md:text-3xl font-bold">Petit-déjeuner IA</h1>
+                        <h1 class="text-2xl md:text-3xl font-bold">Petit-dÃ©jeuner IA</h1>
                         <p class="text-purple-100">avec Suan Tay</p>
                     </div>
                 </div>
                 <div class="flex space-x-2">
                     <button onclick="prevSlide()" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-medium hover:bg-purple-50 transition">
-                        <i class="fas fa-arrow-left mr-2"></i>Précédent
+                        <i class="fas fa-arrow-left mr-2"></i>PrÃ©cÃ©dent
                     </button>
                     <button onclick="nextSlide()" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-800 transition">
                         Suivant<i class="fas fa-arrow-right ml-2"></i>
@@ -133,19 +134,19 @@
                     <div class="w-12 h-12 rounded-full gradient-bg flex items-center justify-center shadow-lg mr-4">
                         <i class="fas fa-film text-white text-xl"></i>
                     </div>
-                    <h2 class="text-2xl font-bold text-gray-800">🎬 Introduction – Cadre & Sommaire</h2>
+                    <h2 class="text-2xl font-bold text-gray-800">ðŸŽ¬ Introduction â€“ Cadre & Sommaire</h2>
                 </div>
-                
+
                 <div class="space-y-4 text-gray-700">
-                                        
+
                     <div class="flex items-start">
                         <div>
-                            <p class="font-semibold mb-2">🧭 Voici le déroulé de l'heure à venir :</p>
+                            <p class="font-semibold mb-2">ðŸ§­ Voici le dÃ©roulÃ© de l'heure Ã  venir :</p>
                             <ul class="list-disc pl-5 space-y-2">
-                                <li><span class="font-medium">Présentation rapide de mon parcours</span> – pour que vous sachiez qui vous parle (5 min)</li>
-                                <li><span class="font-medium">Démonstration en direct</span> – je vais vous montrer ce qu'un assistant IA peut créer à partir d'un simple échange humain (15 min)</li>
-                                <li><span class="font-medium">Explication pédagogique</span> – comment fonctionnent ces outils ? Quels usages, quelles limites ? (20 min)</li>
-                                <li><span class="font-medium">Échange ouvert</span> – vos questions, vos idées, vos craintes peut-être aussi (20 min)</li>
+                                <li><span class="font-medium">PrÃ©sentation rapide de mon parcours</span> â€“ pour que vous sachiez qui vous parle (5 min)</li>
+                                <li><span class="font-medium">DÃ©monstration en direct</span> â€“ je vais vous montrer ce qu'un assistant IA peut crÃ©er Ã  partir d'un simple Ã©change humain (15 min)</li>
+                                <li><span class="font-medium">Explication pÃ©dagogique</span> â€“ comment fonctionnent ces outils ? Quels usages, quelles limites ? (20 min)</li>
+                                <li><span class="font-medium">Ã‰change ouvert</span> â€“ vos questions, vos idÃ©es, vos craintes peut-Ãªtre aussi (20 min)</li>
                             </ul>
                         </div>
                     </div>
@@ -161,15 +162,15 @@
                         </div>
                     </div>
                     <div class="md:w-2/3">
-                        <h2 class="text-2xl font-bold text-gray-800 mb-4">👋 Qui suis-je ?</h2>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-4">ðŸ‘‹ Qui suis-je ?</h2>
                         <div class="space-y-4 text-gray-700">
                             <p><span class="font-semibold">Nom :</span> Suan Tay</p>
-                            <p><span class="font-semibold">Rôle :</span> Entrepreneur membre de la coopérative Appuy, spécialisé en intelligence artificielle</p>
+                            <p><span class="font-semibold">RÃ´le :</span> Entrepreneur membre de la coopÃ©rative Appuy, spÃ©cialisÃ© en intelligence artificielle</p>
                             <p><span class="font-semibold">Profil :</span></p>
                             <ul class="list-disc pl-5 space-y-1">
-                                <li>Ingénieur IA avec un parcours en modèles de langage (LLM) et génération augmentée par récupération (RAG)</li>
-                                <li>MBA en cours à l'ESC Clermont pour compléter ma vision stratégique</li>
-                                <li>Expérience concrète dans le développement de solutions IA sur des plateformes comme Azure, Databricks, etc.</li>
+                                <li>IngÃ©nieur IA avec un parcours en modÃ¨les de langage (LLM) et gÃ©nÃ©ration augmentÃ©e par rÃ©cupÃ©ration (RAG)</li>
+                                <li>MBA en cours Ã  l'ESC Clermont pour complÃ©ter ma vision stratÃ©gique</li>
+                                <li>ExpÃ©rience concrÃ¨te dans le dÃ©veloppement de solutions IA sur des plateformes comme Azure, Databricks, etc.</li>
                             </ul>
                         </div>
                     </div>
@@ -177,47 +178,47 @@
             </div>
 
             <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6 mb-8">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">🌟 Pourquoi ce petit-déjeuner ?</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">ðŸŒŸ Pourquoi ce petit-dÃ©jeuner ?</h2>
                 <div class="space-y-4 text-gray-700">
                     <div class="flex items-start">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
                             <i class="fas fa-cloud text-purple-600"></i>
                         </div>
-                        <p>L'IA est partout... mais souvent floue : ce moment vise à démystifier ce que c'est concrètement</p>
+                        <p>L'IA est partout... mais souvent floue : ce moment vise Ã  dÃ©mystifier ce que c'est concrÃ¨tement</p>
                     </div>
                     <div class="flex items-start">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
                             <i class="fas fa-magic text-purple-600"></i>
                         </div>
-                        <p>L'idée est de montrer comment on peut créer, automatiser, et gagner du temps avec les bons outils IA</p>
+                        <p>L'idÃ©e est de montrer comment on peut crÃ©er, automatiser, et gagner du temps avec les bons outils IA</p>
                     </div>
                     <div class="flex items-start">
                         <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
                             <i class="fas fa-lightbulb text-purple-600"></i>
                         </div>
-                        <p>Et surtout : comprendre avant de se lancer, pour prendre de meilleures décisions</p>
+                        <p>Et surtout : comprendre avant de se lancer, pour prendre de meilleures dÃ©cisions</p>
                     </div>
                 </div>
             </div>
 
             <div class="max-w-3xl mx-auto bg-white rounded-xl shadow-md overflow-hidden p-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-4">🎯 Objectif de la session :</h2>
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">ðŸŽ¯ Objectif de la session :</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-700">
                     <div class="bg-purple-50 p-4 rounded-lg flex items-start">
                         <i class="fas fa-graduation-cap text-purple-600 mr-3 mt-1"></i>
-                        <p>Décrire les principes de base de l'intelligence artificielle générative et expliquer son fonctionnement général.</p>
+                        <p>DÃ©crire les principes de base de l'intelligence artificielle gÃ©nÃ©rative et expliquer son fonctionnement gÃ©nÃ©ral.</p>
                     </div>
                     <div class="bg-purple-50 p-4 rounded-lg flex items-start">
                         <i class="fas fa-chart-line text-purple-600 mr-3 mt-1"></i>
-                        <p>Identifier et associer des cas d'usage concrets d'IA générative à ses propres besoins professionnels.</p>
+                        <p>Identifier et associer des cas d'usage concrets d'IA gÃ©nÃ©rative Ã  ses propres besoins professionnels.</p>
                     </div>
                     <div class="bg-purple-50 p-4 rounded-lg flex items-start">
                         <i class="fas fa-comments text-purple-600 mr-3 mt-1"></i>
-                        <p>Formuler des questions claires et pertinentes sur l'IA, sans recourir à un vocabulaire technique complexe.</p>
+                        <p>Formuler des questions claires et pertinentes sur l'IA, sans recourir Ã  un vocabulaire technique complexe.</p>
                     </div>
                     <div class="bg-purple-50 p-4 rounded-lg flex items-start">
                         <i class="fas fa-clock text-purple-600 mr-3 mt-1"></i>
-                        <p>Proposer un exemple personnel ou professionnel d'intégration de l'IA pour optimiser un processus métier (communication, automatisation, gestion...).</p>
+                        <p>Proposer un exemple personnel ou professionnel d'intÃ©gration de l'IA pour optimiser un processus mÃ©tier (communication, automatisation, gestion...).</p>
                     </div>
                 </div>
             </div>
@@ -226,22 +227,22 @@
         <!-- Slide 2: Demonstration -->
         <div id="slide2" class="slide">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🔍 Démonstration en direct</h2>
-                
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">ðŸ” DÃ©monstration en direct</h2>
+
                 <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                     <div class="p-6 border-b border-gray-200">
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Contexte :</h3>
-                        <p class="text-gray-700">Tu demandes à IAfluence Salon d'organiser une journée portes ouvertes pour le 20 mai. L'objectif est de montrer comment un GPT personnalisé peut :</p>
+                        <p class="text-gray-700">Tu demandes Ã  IAfluence Salon d'organiser une journÃ©e portes ouvertes pour le 20 mai. L'objectif est de montrer comment un GPT personnalisÃ© peut :</p>
                         <ul class="list-disc pl-5 mt-2 space-y-1 text-gray-700">
-                            <li>Gérer un projet événementiel</li>
+                            <li>GÃ©rer un projet Ã©vÃ©nementiel</li>
                             <li>Poser les bonnes questions</li>
-                            <li>Générer des supports de communication (email, post LinkedIn, affiche)</li>
+                            <li>GÃ©nÃ©rer des supports de communication (email, post LinkedIn, affiche)</li>
                         </ul>
                     </div>
-                    
+
                     <div class="p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">⚙️ Étapes en live :</h3>
-                        
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">âš™ï¸ Ã‰tapes en live :</h3>
+
                         <div class="space-y-4">
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
@@ -249,10 +250,10 @@
                                 </div>
                                 <div>
                                     <p class="font-medium text-gray-800">Lancement de la conversation :</p>
-                                    <p class="text-gray-700">"Peux-tu m'aider à organiser une journée portes ouvertes IA le 20 mai ?"</p>
+                                    <p class="text-gray-700">"Peux-tu m'aider Ã  organiser une journÃ©e portes ouvertes IA le 20 mai ?"</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
                                     <span class="text-purple-600 font-bold">2</span>
@@ -260,10 +261,10 @@
                                 <div>
                                     <p class="font-medium text-gray-800">Interaction naturelle avec le GPT :</p>
                                     <p class="text-gray-700">Il te pose des questions (public cible, lieu, objectifs, budget, etc.)</p>
-                                    <p class="text-gray-700">Tu y réponds brièvement en live</p>
+                                    <p class="text-gray-700">Tu y rÃ©ponds briÃ¨vement en live</p>
                                 </div>
                             </div>
-                            
+
                             <div class="flex items-start">
                                 <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
                                     <span class="text-purple-600 font-bold">3</span>
@@ -288,27 +289,27 @@
                             </div>
                         </div>
                     </div>
-                    
+
                     <div class="bg-gray-50 p-6">
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">🎯 Objectif pédagogique :</h3>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">ðŸŽ¯ Objectif pÃ©dagogique :</h3>
                         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                             <div class="bg-white p-4 rounded-lg shadow-sm">
                                 <div class="text-purple-600 mb-2">
                                     <i class="fas fa-brain text-2xl"></i>
                                 </div>
-                                <p class="text-gray-700 text-sm">Identifier et expliquer comment un GPT personnalisé peut anticiper les besoins spécifiques d'un métier à travers des échanges contextualisés.</p>
+                                <p class="text-gray-700 text-sm">Identifier et expliquer comment un GPT personnalisÃ© peut anticiper les besoins spÃ©cifiques d'un mÃ©tier Ã  travers des Ã©changes contextualisÃ©s.</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-sm">
                                 <div class="text-purple-600 mb-2">
                                     <i class="fas fa-tasks text-2xl"></i>
                                 </div>
-                                <p class="text-gray-700 text-sm">Décrire et illustrer sa capacité à enchaîner plusieurs types de tâches (rédaction, visuel, planification) dans un scénario métier simple.</p>
+                                <p class="text-gray-700 text-sm">DÃ©crire et illustrer sa capacitÃ© Ã  enchaÃ®ner plusieurs types de tÃ¢ches (rÃ©daction, visuel, planification) dans un scÃ©nario mÃ©tier simple.</p>
                             </div>
                             <div class="bg-white p-4 rounded-lg shadow-sm">
                                 <div class="text-purple-600 mb-2">
                                     <i class="fas fa-business-time text-2xl"></i>
                                 </div>
-                                <p class="text-gray-700 text-sm">Évaluer l'impact potentiel de cet outil pour un entrepreneur en termes de gain de temps, d'autonomie et d'optimisation des processus.</p>
+                                <p class="text-gray-700 text-sm">Ã‰valuer l'impact potentiel de cet outil pour un entrepreneur en termes de gain de temps, d'autonomie et d'optimisation des processus.</p>
                             </div>
                         </div>
                     </div>
@@ -319,8 +320,8 @@
         <!-- Slide 3: Understanding LLMs -->
         <div id="slide3" class="slide">
             <div class="max-w-4xl mx-auto">
-                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">🧠 Comprendre les LLM</h2>
-                
+                <h2 class="text-3xl font-bold text-gray-800 mb-6 text-center">ðŸ§  Comprendre les LLM</h2>
+
                 <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                     <div class="p-6">
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Qu'est-ce qu'un LLM ?</h3>
@@ -328,7 +329,7 @@
                             <div class="md:w-1/2">
                                 <div class="bg-purple-50 p-4 rounded-lg mb-4">
                                 <p><span class="font-bold">LLM = Large Language Model</span></p>
-                                <p class="mt-2">Ce sont des modèles d'intelligence artificielle entraînés sur des milliards de mots pour comprendre et produire du langage humain.</p>
+                                <p class="mt-2">Ce sont des modÃ¨les d'intelligence artificielle entraÃ®nÃ©s sur des milliards de mots pour comprendre et produire du langage humain.</p>
                             </div>
                             <div class="bg-gray-50 p-4 rounded-lg">
                                 <p class="font-semibold mb-2">Exemples concrets :</p>
@@ -347,12 +348,12 @@
                         <div class="md:w-1/2">
                             <div class="bg-blue-50 p-4 rounded-lg h-full">
                                 <p class="font-semibold mb-2">Leur force :</p>
-                                <p>Ils ne font pas que répondre, ils peuvent :</p>
+                                <p>Ils ne font pas que rÃ©pondre, ils peuvent :</p>
                                 <div class="grid grid-cols-2 gap-2 mt-3">
-                                    <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">Rédiger</span>
+                                    <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">RÃ©diger</span>
                                     <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">Traduire</span>
-                                    <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">Résumer</span>
-                                    <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">Créer</span>
+                                    <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">RÃ©sumer</span>
+                                    <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">CrÃ©er</span>
                                     <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">Inspirer</span>
                                     <span class="bg-white px-2 py-1 rounded text-sm shadow-sm text-center">Analyser</span>
                                 </div>
@@ -361,10 +362,10 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                 <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">🔄 Comment ça fonctionne ? (Simplifié)</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">ðŸ”„ Comment Ã§a fonctionne ? (SimplifiÃ©)</h3>
                     <div class="space-y-4">
                         <div class="flex items-start">
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 mt-1">
@@ -379,7 +380,7 @@
                                 <i class="fas fa-comment-dots text-purple-600"></i>
                             </div>
                             <div>
-                                <p class="text-gray-800">Quand tu leur parles, ils devinent la réponse mot après mot (comme une super version de l'autocomplétion)</p>
+                                <p class="text-gray-800">Quand tu leur parles, ils devinent la rÃ©ponse mot aprÃ¨s mot (comme une super version de l'autocomplÃ©tion)</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -387,16 +388,16 @@
                                 <i class="fas fa-exclamation-triangle text-purple-600"></i>
                             </div>
                             <div>
-                                <p class="text-gray-800">Ils ne comprennent pas comme un humain, mais ils sont très bons pour imiter le langage naturel</p>
+                                <p class="text-gray-800">Ils ne comprennent pas comme un humain, mais ils sont trÃ¨s bons pour imiter le langage naturel</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                 <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">🧩 Cas d'usage concrets pour les entrepreneurs</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">ðŸ§© Cas d'usage concrets pour les entrepreneurs</h3>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div class="bg-blue-50 p-4 rounded-lg">
                             <div class="flex items-center mb-2">
@@ -406,7 +407,7 @@
                                 <h4 class="font-semibold">Communication :</h4>
                             </div>
                             <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                                <li>Rédaction de newsletters, posts LinkedIn, emails clients</li>
+                                <li>RÃ©daction de newsletters, posts LinkedIn, emails clients</li>
                             </ul>
                         </div>
                         <div class="bg-purple-50 p-4 rounded-lg">
@@ -414,10 +415,10 @@
                                 <div class="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center mr-2">
                                     <i class="fas fa-tachometer-alt text-purple-600"></i>
                                 </div>
-                                <h4 class="font-semibold">Productivité :</h4>
+                                <h4 class="font-semibold">ProductivitÃ© :</h4>
                             </div>
                             <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                                <li>Compte-rendus automatiques, résumés de réunions, création de contenus</li>
+                                <li>Compte-rendus automatiques, rÃ©sumÃ©s de rÃ©unions, crÃ©ation de contenus</li>
                             </ul>
                         </div>
                         <div class="bg-green-50 p-4 rounded-lg">
@@ -425,7 +426,7 @@
                                 <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center mr-2">
                                     <i class="fas fa-lightbulb text-green-600"></i>
                                 </div>
-                                <h4 class="font-semibold">Créativité :</h4>
+                                <h4 class="font-semibold">CrÃ©ativitÃ© :</h4>
                             </div>
                             <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
                                 <li>Brainstorming, slogans, noms de produits</li>
@@ -439,16 +440,16 @@
                                 <h4 class="font-semibold">Support client :</h4>
                             </div>
                             <ul class="list-disc pl-5 text-sm text-gray-700 space-y-1">
-                                <li>Chatbots intelligents, réponses automatiques</li>
+                                <li>Chatbots intelligents, rÃ©ponses automatiques</li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden">
                 <div class="p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">⚠️ Points de vigilance à connaître</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">âš ï¸ Points de vigilance Ã  connaÃ®tre</h3>
                     <div class="space-y-4">
                         <div class="flex items-start">
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-red-100 flex items-center justify-center mr-3 mt-1">
@@ -456,7 +457,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800">Hallucinations :</h4>
-                                <p class="text-gray-700">parfois, le modèle invente des réponses qui semblent vraies</p>
+                                <p class="text-gray-700">parfois, le modÃ¨le invente des rÃ©ponses qui semblent vraies</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -465,7 +466,7 @@
                             </div>
                             <div>
                                 <h4 class="font-semibold text-gray-800">Biais :</h4>
-                                <p class="text-gray-700">les modèles reproduisent les biais des données avec lesquelles ils ont été entraînés</p>
+                                <p class="text-gray-700">les modÃ¨les reproduisent les biais des donnÃ©es avec lesquelles ils ont Ã©tÃ© entraÃ®nÃ©s</p>
                             </div>
                         </div>
                         <div class="flex items-start">
@@ -473,15 +474,15 @@
                                 <i class="fas fa-lock text-blue-600"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-800">Confidentialité :</h4>
-                                <p class="text-gray-700">attention à ne pas y coller d'infos sensibles si ce n'est pas un environnement sécurisé (ex. : Azure, serveurs privés)</p>
+                                <h4 class="font-semibold text-gray-800">ConfidentialitÃ© :</h4>
+                                <p class="text-gray-700">attention Ã  ne pas y coller d'infos sensibles si ce n'est pas un environnement sÃ©curisÃ© (ex. : Azure, serveurs privÃ©s)</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
+
                 <div class="bg-gray-50 p-6">
-                    <h3 class="text-xl font-semibold text-gray-800 mb-3">🛡️ Bonnes pratiques</h3>
+                    <h3 class="text-xl font-semibold text-gray-800 mb-3">ðŸ›¡ï¸ Bonnes pratiques</h3>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
                         <div class="bg-white p-4 rounded-lg shadow-sm flex items-start">
                             <div class="flex-shrink-0 h-8 w-8 rounded-full bg-green-100 flex items-center justify-center mr-3">
@@ -493,13 +494,13 @@
                             <div class="flex-shrink-0 h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center mr-3">
                                 <i class="fas fa-hands-helping text-blue-600"></i>
                             </div>
-                            <p class="text-gray-700 text-sm">S'en servir comme assistant, pas comme remplaçant</p>
+                            <p class="text-gray-700 text-sm">S'en servir comme assistant, pas comme remplaÃ§ant</p>
                         </div>
                         <div class="bg-white p-4 rounded-lg shadow-sm flex items-start">
                             <div class="flex-shrink-0 h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center mr-3">
                                 <i class="fas fa-user-edit text-purple-600"></i>
                             </div>
-                            <p class="text-gray-700 text-sm">L'adapter à son propre ton, son métier, sa cible</p>
+                            <p class="text-gray-700 text-sm">L'adapter Ã  son propre ton, son mÃ©tier, sa cible</p>
                         </div>
                     </div>
                 </div>
@@ -510,8 +511,8 @@
     <!-- Slide 4: Q&A -->
     <div id="slide4" class="slide">
         <div class="max-w-3xl mx-auto">
-            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">🤝 Questions / Réponses et échanges</h2>
-            
+            <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">ðŸ¤ Questions / RÃ©ponses et Ã©changes</h2>
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden mb-8">
                 <div class="p-6">
                     <div class="flex items-center justify-center mb-6">
@@ -520,18 +521,18 @@
                         </div>
                         <h3 class="text-2xl font-semibold text-gray-800">Discussion ouverte</h3>
                     </div>
-                    
+
                     <div class="space-y-6">
                         <div class="flex items-start">
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-purple-100 flex items-center justify-center mr-3 mt-1">
                                 <i class="fas fa-comment-dots text-purple-600"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-800 mb-2">Réactions aux démos</h4>
-                                <p class="text-gray-700">Partagez vos impressions sur les démonstrations présentées.</p>
+                                <h4 class="font-semibold text-gray-800 mb-2">RÃ©actions aux dÃ©mos</h4>
+                                <p class="text-gray-700">Partagez vos impressions sur les dÃ©monstrations prÃ©sentÃ©es.</p>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-blue-100 flex items-center justify-center mr-3 mt-1">
                                 <i class="fas fa-question-circle text-blue-600"></i>
@@ -539,26 +540,26 @@
                             <div>
                                 <h4 class="font-semibold text-gray-800 mb-2">Questions pratiques</h4>
                                 <ul class="list-disc pl-5 text-gray-700 space-y-1">
-                                    <li>Comment démarrer avec l'IA ?</li>
-                                    <li>Quels outils utiliser pour mon activité ?</li>
-                                    <li>Quel budget prévoir ?</li>
+                                    <li>Comment dÃ©marrer avec l'IA ?</li>
+                                    <li>Quels outils utiliser pour mon activitÃ© ?</li>
+                                    <li>Quel budget prÃ©voir ?</li>
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="flex items-start">
                             <div class="flex-shrink-0 h-10 w-10 rounded-full bg-green-100 flex items-center justify-center mr-3 mt-1">
                                 <i class="fas fa-lightbulb text-green-600"></i>
                             </div>
                             <div>
-                                <h4 class="font-semibold text-gray-800 mb-2">Partage d'expériences</h4>
-                                <p class="text-gray-700">Échangez sur vos propres expériences, inquiétudes ou idées d'applications de l'IA dans votre secteur.</p>
+                                <h4 class="font-semibold text-gray-800 mb-2">Partage d'expÃ©riences</h4>
+                                <p class="text-gray-700">Ã‰changez sur vos propres expÃ©riences, inquiÃ©tudes ou idÃ©es d'applications de l'IA dans votre secteur.</p>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div class="bg-white rounded-xl shadow-md overflow-hidden">
                 <div class="p-6">
                     <div class="flex flex-col items-center">
@@ -566,13 +567,13 @@
                             <i class="fas fa-qrcode text-white text-2xl"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">Restons en contact</h3>
-                        <p class="text-center text-gray-700 mb-4">Scannez ce QR code pour accéder à mes coordonnées :</p>
-                        
+                        <p class="text-center text-gray-700 mb-4">Scannez ce QR code pour accÃ©der Ã  mes coordonnÃ©es :</p>
+
                         <div class="qr-code">
-                            <!-- QR code SVG - vous pouvez remplacer par une image réelle si vous préférez -->
+                            <!-- QR code SVG - vous pouvez remplacer par une image rÃ©elle si vous prÃ©fÃ©rez -->
                             <img src="my_linkedin_qr_code.jpeg"/>
 							</div>
-                        
+
                         <p class="text-center text-gray-600 text-sm mt-4">Ou notez : suan.tay@iafluence.fr</p>
                     </div>
                 </div>
@@ -586,11 +587,11 @@
     <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center">
             <div class="mb-4 md:mb-0">
-                <p class="text-gray-600">© 2025 Suan Tay - Appuy Compétences</p>
+                <p class="text-gray-600">Â© 2025 Suan Tay - Appuy CompÃ©tences</p>
             </div>
             <div class="flex space-x-4">
                 <button onclick="prevSlide()" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-medium hover:bg-purple-50 transition shadow-sm">
-                    <i class="fas fa-arrow-left mr-2"></i>Précédent
+                    <i class="fas fa-arrow-left mr-2"></i>PrÃ©cÃ©dent
                 </button>
                 <button onclick="nextSlide()" class="bg-purple-600 text-white px-4 py-2 rounded-lg font-medium hover:bg-purple-700 transition shadow-sm">
                     Suivant<i class="fas fa-arrow-right ml-2"></i>
@@ -603,26 +604,26 @@
 <script>
     let currentSlide = 1;
     const totalSlides = 4;
-    
+
     function updateSlide() {
         // Hide all slides
         document.querySelectorAll('.slide').forEach(slide => {
             slide.classList.remove('active');
         });
-        
+
         // Show current slide
         document.getElementById(`slide${currentSlide}`).classList.add('active');
-        
+
         // Update progress bar
         const progressPercentage = (currentSlide / totalSlides) * 100;
         document.getElementById('progress').style.width = `${progressPercentage}%`;
     }
-    
+
     function nextSlide() {
         if (currentSlide < totalSlides) {
             currentSlide++;
             updateSlide();
-            
+
             // Scroll to top of the slide
             window.scrollTo({
                 top: 0,
@@ -630,12 +631,12 @@
             });
         }
     }
-    
+
     function prevSlide() {
         if (currentSlide > 1) {
             currentSlide--;
             updateSlide();
-            
+
             // Scroll to top of the slide
             window.scrollTo({
                 top: 0,
@@ -643,15 +644,15 @@
             });
         }
     }
-    
+
     // Chat simulation
     function sendMessage() {
         const input = document.getElementById('chat-input');
         const message = input.value.trim();
-        
+
         if (message) {
             const chatContainer = document.getElementById('chat-container');
-            
+
             // Add user message
             const userMessage = document.createElement('div');
             userMessage.className = 'chat-message user-input p-3 rounded-lg';
@@ -667,21 +668,21 @@
                 </div>
             `;
             chatContainer.appendChild(userMessage);
-            
+
             // Clear input
             input.value = '';
-            
+
             // Simulate AI response after a short delay
             setTimeout(() => {
                 const aiResponses = [
-                    "Très bien, voici quelques éléments à considérer pour votre événement : [détails]",
-                    "J'ai préparé un premier jet d'email d'invitation : [contenu]",
+                    "TrÃ¨s bien, voici quelques Ã©lÃ©ments Ã  considÃ©rer pour votre Ã©vÃ©nement : [dÃ©tails]",
+                    "J'ai prÃ©parÃ© un premier jet d'email d'invitation : [contenu]",
                     "Pour le post LinkedIn, voici une suggestion engageante : [texte]",
                     "Voici une description visuelle pour votre affiche : [description]"
                 ];
-                
+
                 const randomResponse = aiResponses[Math.floor(Math.random() * aiResponses.length)];
-                
+
                 const aiMessage = document.createElement('div');
                 aiMessage.className = 'chat-message ai-response p-3 rounded-lg';
                 aiMessage.innerHTML = `
@@ -696,22 +697,23 @@
                     </div>
                 `;
                 chatContainer.appendChild(aiMessage);
-                
+
                 // Scroll to bottom
                 chatContainer.scrollTop = chatContainer.scrollHeight;
             }, 1000);
         }
     }
-    
+
     // Allow pressing Enter to send message
     document.getElementById('chat-input').addEventListener('keypress', function(e) {
         if (e.key === 'Enter') {
             sendMessage();
         }
     });
-    
+
     // Initialize first slide
     updateSlide();
 </script>
+    <script src="/static/js/cookie-consent.js"></script>
 </body>
 </html>

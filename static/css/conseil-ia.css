@@ -250,6 +250,123 @@ h3 {
     padding: 34px;
 }
 
+.profile-panel {
+    display: grid;
+    gap: 20px;
+}
+
+.profile-photo {
+    width: 100%;
+    max-height: 360px;
+    border-radius: var(--radius);
+    object-fit: cover;
+    object-position: center top;
+}
+
+.contact-panel {
+    display: grid;
+    gap: 18px;
+}
+
+.contact-line {
+    display: grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+}
+
+.contact-line i {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius);
+    background: rgba(0, 111, 230, 0.1);
+    color: var(--blue);
+}
+
+.contact-line strong {
+    margin: 0 0 2px;
+    font-size: 1rem;
+}
+
+.contact-line p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.contact-line a {
+    color: var(--blue);
+    text-decoration: none;
+}
+
+.legal-layout {
+    display: grid;
+    gap: 18px;
+}
+
+.legal-card {
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    background: var(--white);
+    box-shadow: var(--shadow);
+    padding: 30px;
+}
+
+.legal-card h2 {
+    font-size: 1.55rem;
+}
+
+.legal-card p:last-child,
+.legal-card .check-list:last-child,
+.legal-card .legal-list:last-child {
+    margin-bottom: 0;
+}
+
+.legal-card a {
+    color: var(--blue);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.legal-card a:hover {
+    text-decoration: underline;
+}
+
+.legal-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+}
+
+.legal-list div {
+    display: grid;
+    grid-template-columns: minmax(160px, 0.35fr) minmax(0, 1fr);
+    gap: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+}
+
+.legal-list div:last-child {
+    padding-bottom: 0;
+    border-bottom: 0;
+}
+
+.legal-list dt {
+    color: var(--muted);
+    font-weight: 800;
+}
+
+.legal-list dd {
+    margin: 0;
+}
+
+.legal-pills {
+    margin: 18px 0;
+    justify-content: flex-start;
+}
+
 .hero-panel strong {
     display: block;
     margin-top: 8px;
@@ -665,7 +782,13 @@ details p {
     .solution-card,
     .offer-card,
     .info-card,
+    .legal-card,
     .thanks-card {
         padding: 24px;
+    }
+
+    .legal-list div {
+        grid-template-columns: 1fr;
+        gap: 4px;
     }
 }

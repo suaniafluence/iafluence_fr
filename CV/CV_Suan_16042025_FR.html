@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -13,14 +13,14 @@
             margin: 0;
             padding: 0;
         }
-        
-        
-        
+
+
+
         .print-container {
             display: flex;
             height: 100%;
         }
-        
+
         .sidebar {
             width: 75mm;
             background-color: #1a3c6d;
@@ -28,13 +28,13 @@
             box-sizing: border-box;
             padding: 20px;
         }
-        
+
         .main-content {
             width: 135mm;
             box-sizing: border-box;
             padding: 25px;
         }
-        
+
         .photo-placeholder {
             width: 120px;
             height: 120px;
@@ -48,7 +48,7 @@
             color: #999;
             overflow: hidden;
         }
-        
+
         .skill-tag {
             display: inline-block;
             background-color: rgba(255, 255, 255, 0.2);
@@ -57,13 +57,13 @@
             margin: 3px 3px 3px 0;
             font-size: 0.85rem;
         }
-        
+
         .timeline-item {
             position: relative;
             padding-left: 30px;
             margin-bottom: 25px;
         }
-        
+
         .timeline-item::before {
             content: "";
             position: absolute;
@@ -75,7 +75,7 @@
             background-color: #1a3c6d;
             z-index: 1;
         }
-        
+
         .timeline-item::after {
             content: "";
             position: absolute;
@@ -85,22 +85,22 @@
             width: 2px;
             background-color: #ddd;
         }
-        
+
         .timeline-item:last-child::after {
             display: none;
         }
-        
+
         .language-level {
             display: flex;
             align-items: center;
             margin-bottom: 5px;
         }
-        
+
         .language-dots {
             display: flex;
             margin-left: 10px;
         }
-        
+
         .dot {
             width: 8px;
             height: 8px;
@@ -109,11 +109,11 @@
             background-color: #fff;
             opacity: 0.3;
         }
-        
+
         .dot.filled {
             opacity: 1;
         }
-        
+
         .section-title {
             color: #1a3c6d;
             border-bottom: 2px solid #1a3c6d;
@@ -122,7 +122,7 @@
             font-weight: bold;
             font-size: 1.25rem;
         }
-        
+
         @media print {
 		  .print-container {
 			display: flex !important;
@@ -157,17 +157,18 @@
 			height: auto;
 		  }
 		}
-		
+
 		@media print {
 		  body {
 			font-family: Arial, Helvetica, sans-serif;
 		  }
 		@font-face {
 		  font-family: Arial;
-		  
+
 		}
 
     </style>
+    <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 <body>
     <div class="a4">
@@ -178,12 +179,12 @@
                 <div class="photo-placeholder">
                     <img src="suan.jpg" style="width: 150%; height: auto;">
                 </div>
-                
+
                 <!-- Name and title -->
                 <div class="text-center mb-6">
                     <h1 class="text-xl font-bold">SUAN TAY</h1>
                 </div>
-                
+
                 <!-- Contact Information -->
                 <div class="mb-6">
                     <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Contact</h2>
@@ -197,15 +198,15 @@
                     </div>
                     <div class="flex items-center mb-2">
                         <i class="fas fa-user w-5"></i>
-                        <span class="ml-2 text-sm">Marié avec enfants</span>
+                        <span class="ml-2 text-sm">MariÃ© avec enfants</span>
                     </div>
                 </div>
-                
+
                 <!-- Languages -->
                 <div class="mb-6">
                     <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Langues</h2>
                     <div class="language-level">
-                        <span>Français</span>
+                        <span>FranÃ§ais</span>
                         <div class="language-dots ml-auto">
                             <span class="dot filled"></span>
                             <span class="dot filled"></span>
@@ -233,14 +234,14 @@
                             <span class="dot filled"></span>
                             <span class="dot filled"></span>
                         </div>
-                    </div>  
+                    </div>
                 </div>
-                
+
                 <!-- Skills -->
                 <div class="mb-6">
-                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Compétences clés</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">CompÃ©tences clÃ©s</h2>
                     <div>
-                        <h3 class="text-xs font-medium mb-2">Stratégie Data & IA</h3>
+                        <h3 class="text-xs font-medium mb-2">StratÃ©gie Data & IA</h3>
                         <div class="flex flex-wrap">
                             <span class="skill-tag">Gouvernance</span>
                             <span class="skill-tag">Feuille de route</span>
@@ -264,7 +265,7 @@
                         </div>
                     </div>
                     <div class="mt-3">
-                        <h3 class="text-xs font-medium mb-2">Cloud & Sécurité</h3>
+                        <h3 class="text-xs font-medium mb-2">Cloud & SÃ©curitÃ©</h3>
                         <div class="flex flex-wrap">
                             <span class="skill-tag">Azure</span>
                             <span class="skill-tag">AWS</span>
@@ -281,31 +282,31 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Interests -->
                 <div>
-                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Centres d'intérêt</h2>
+                    <h2 class="text-sm font-bold uppercase tracking-wider mb-3">Centres d'intÃ©rÃªt</h2>
                     <div class="flex flex-wrap">
-                        <span class="skill-tag"><i class="fas fa-bicycle mr-1"></i> Vélo</span>
-                        <span class="skill-tag"><i class="fas fa-brain mr-1"></i> Méditation</span>
+                        <span class="skill-tag"><i class="fas fa-bicycle mr-1"></i> VÃ©lo</span>
+                        <span class="skill-tag"><i class="fas fa-brain mr-1"></i> MÃ©ditation</span>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Main Content -->
             <div class="main-content">
                 <!-- Profile -->
                 <div class="mb-8">
-                    <h1 class="text-2xl font-bold mb-2 text-gray-800">GenAI & Data Science | Conseil en IA Stratégique</h1>
+                    <h1 class="text-2xl font-bold mb-2 text-gray-800">GenAI & Data Science | Conseil en IA StratÃ©gique</h1>
                     <p class="text-gray-600 text-sm">
-                        Passionné par l'IA Générative et les modèles LLM, j'accompagne les entreprises dans leur transformation digitale grâce à l'IA et la data science. Spécialiste en IA Générative, Data Science et Machine Learning, j'ai développé des solutions basées sur LLM, NLP et RAG. Expérience sur des plateformes comme Azure AI, AWS SageMaker et Google Cloud AI.
+                        PassionnÃ© par l'IA GÃ©nÃ©rative et les modÃ¨les LLM, j'accompagne les entreprises dans leur transformation digitale grÃ¢ce Ã  l'IA et la data science. SpÃ©cialiste en IA GÃ©nÃ©rative, Data Science et Machine Learning, j'ai dÃ©veloppÃ© des solutions basÃ©es sur LLM, NLP et RAG. ExpÃ©rience sur des plateformes comme Azure AI, AWS SageMaker et Google Cloud AI.
                     </p>
                 </div>
-                
+
                 <!-- Experience -->
                 <div class="mb-8">
-                    <h2 class="section-title">EXPÉRIENCES PROFESSIONNELLES</h2>
-                    
+                    <h2 class="section-title">EXPÃ‰RIENCES PROFESSIONNELLES</h2>
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
                             <h3 class="font-bold">Consultant IA et Formateur</h3>
@@ -313,70 +314,70 @@
                         </div>
                         <div class="text-sm text-gray-700 mb-1">IAfluence, Volvic</div>
                         <ul class="text-sm text-gray-600 list-disc pl-4">
-                            <li>Réalisation de prestations de conseil stratégique sur l'intégration des technologies d'IA</li>
-                            <li>Animation de formations sur les techniques avancées de prompting et personnalisation de modèles GPT</li>
-                            <li>Participation en tant que juré aux examens du Titre Professionnel CDA</li>
-                            <li>Accompagnement au déploiement de l'application mobile Phosphoriales</li>
+                            <li>RÃ©alisation de prestations de conseil stratÃ©gique sur l'intÃ©gration des technologies d'IA</li>
+                            <li>Animation de formations sur les techniques avancÃ©es de prompting et personnalisation de modÃ¨les GPT</li>
+                            <li>Participation en tant que jurÃ© aux examens du Titre Professionnel CDA</li>
+                            <li>Accompagnement au dÃ©ploiement de l'application mobile Phosphoriales</li>
                             <li>Jury pour les soutenances M1 et M2</li>
                             <li>Audit SEO initial pour le site Meiline.fr</li>
                         </ul>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
                             <h3 class="font-bold">Professeur Vacataire et Coach IA</h3>
                             <span class="text-sm text-gray-600">Depuis novembre 2024</span>
                         </div>
-                        <div class="text-sm text-gray-700 mb-1">Appuy Compétences, Clermont-Ferrand</div>
+                        <div class="text-sm text-gray-700 mb-1">Appuy CompÃ©tences, Clermont-Ferrand</div>
                         <ul class="text-sm text-gray-600 list-disc pl-4">
-                            <li>ESC Clermont Business School : Formation et accompagnement des étudiants sur l'intégration de l'IA</li>
-                            <li>Université Clermont Auvergne : Introduction aux applications pratiques de l'IA</li>
+                            <li>ESC Clermont Business School : Formation et accompagnement des Ã©tudiants sur l'intÃ©gration de l'IA</li>
+                            <li>UniversitÃ© Clermont Auvergne : Introduction aux applications pratiques de l'IA</li>
                         </ul>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
-                            <h3 class="font-bold">Ingénieur IA - COO Directeur des opérations</h3>
+                            <h3 class="font-bold">IngÃ©nieur IA - COO Directeur des opÃ©rations</h3>
                             <span class="text-sm text-gray-600">Mars 2022 - Avril 2024</span>
                         </div>
                         <div class="text-sm text-gray-700 mb-1">ScreenACT, Riom</div>
                         <ul class="text-sm text-gray-600 list-disc pl-4">
-                            <li>Élaboré et mis en œuvre une stratégie Data & IA</li>
-                            <li>Déployé des modèles IA avancés pour automatiser des processus critiques</li>
-                            <li>Dirigé une équipe multidisciplinaire (IT, Data Science, RH)</li>
-                            <li>Représenté l'entreprise à des conférences internationales</li>
+                            <li>Ã‰laborÃ© et mis en Å“uvre une stratÃ©gie Data & IA</li>
+                            <li>DÃ©ployÃ© des modÃ¨les IA avancÃ©s pour automatiser des processus critiques</li>
+                            <li>DirigÃ© une Ã©quipe multidisciplinaire (IT, Data Science, RH)</li>
+                            <li>ReprÃ©sentÃ© l'entreprise Ã  des confÃ©rences internationales</li>
                         </ul>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
-                            <h3 class="font-bold">Ingénieur Logiciel</h3>
-                            <span class="text-sm text-gray-600">Janvier 2019 - Décembre 2019</span>
+                            <h3 class="font-bold">IngÃ©nieur Logiciel</h3>
+                            <span class="text-sm text-gray-600">Janvier 2019 - DÃ©cembre 2019</span>
                         </div>
                         <div class="text-sm text-gray-700 mb-1">Accenture, Clermont-Ferrand</div>
                         <ul class="text-sm text-gray-600 list-disc pl-4">
-                            <li>Développé un logiciel de gestion de projet utilisé par 50 utilisateurs</li>
-                            <li>Implémenté des pratiques d'optimisation de code, augmentant l'efficacité de 15%</li>
+                            <li>DÃ©veloppÃ© un logiciel de gestion de projet utilisÃ© par 50 utilisateurs</li>
+                            <li>ImplÃ©mentÃ© des pratiques d'optimisation de code, augmentant l'efficacitÃ© de 15%</li>
                         </ul>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
-                            <h3 class="font-bold">Développeur IT</h3>
-                            <span class="text-sm text-gray-600">Octobre 2008 - Décembre 2017</span>
+                            <h3 class="font-bold">DÃ©veloppeur IT</h3>
+                            <span class="text-sm text-gray-600">Octobre 2008 - DÃ©cembre 2017</span>
                         </div>
                         <div class="text-sm text-gray-700 mb-1">Goodyear Dunlop Tires, Riom</div>
                         <ul class="text-sm text-gray-600 list-disc pl-4">
-                            <li>Développé une plateforme de gestion des ressources utilisée dans plusieurs filiales européennes</li>
-                            <li>Formé plus de 50 utilisateurs aux nouvelles fonctionnalités</li>
+                            <li>DÃ©veloppÃ© une plateforme de gestion des ressources utilisÃ©e dans plusieurs filiales europÃ©ennes</li>
+                            <li>FormÃ© plus de 50 utilisateurs aux nouvelles fonctionnalitÃ©s</li>
                         </ul>
                     </div>
                 </div>
-                
+
                 <!-- Education -->
                 <div>
-                    <h2 class="section-title">DIPLÔMES ET FORMATIONS</h2>
-                    
+                    <h2 class="section-title">DIPLÃ”MES ET FORMATIONS</h2>
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
                             <h3 class="font-bold">Master of Business Administration - MBA</h3>
@@ -384,22 +385,22 @@
                         </div>
                         <div class="text-sm text-gray-700 mb-1">ESC Clermont Business School (Formation continue)</div>
                         <p class="text-sm text-gray-600">
-                            Formation en gestion et stratégie d'entreprise adaptée à des professionnels en activité.<br>
-                            Certificats obtenus (3 sur 5) : Leadership et stratégie d'entreprise, Analyse financière et prise de décision, Innovation et transformation numérique.
+                            Formation en gestion et stratÃ©gie d'entreprise adaptÃ©e Ã  des professionnels en activitÃ©.<br>
+                            Certificats obtenus (3 sur 5) : Leadership et stratÃ©gie d'entreprise, Analyse financiÃ¨re et prise de dÃ©cision, Innovation et transformation numÃ©rique.
                         </p>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
-                            <h3 class="font-bold">Ingénieur Intelligence Artificielle (IA), Data Scientist</h3>
-                            <span class="text-sm text-gray-600">Juin 2020 - Août 2021</span>
+                            <h3 class="font-bold">IngÃ©nieur Intelligence Artificielle (IA), Data Scientist</h3>
+                            <span class="text-sm text-gray-600">Juin 2020 - AoÃ»t 2021</span>
                         </div>
-                        <div class="text-sm text-gray-700">CentraleSupélec, Paris</div>
+                        <div class="text-sm text-gray-700">CentraleSupÃ©lec, Paris</div>
                     </div>
-                    
+
                     <div class="timeline-item">
                         <div class="flex justify-between items-start mb-1">
-                            <h3 class="font-bold">Ingénieur en informatique</h3>
+                            <h3 class="font-bold">IngÃ©nieur en informatique</h3>
                             <span class="text-sm text-gray-600">2007 - 2017</span>
                         </div>
                         <div class="text-sm text-gray-700">CNAM, Paris</div>
@@ -408,5 +409,6 @@
             </div>
         </div>
     </div>
+    <script src="/static/js/cookie-consent.js"></script>
 </body>
 </html>

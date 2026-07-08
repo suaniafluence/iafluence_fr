@@ -1,1194 +1,393 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
-<head class="fixed w-full bg-white shadow-md z-50">
-	<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "vcjdk47uxg");
-	</script>
-	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
-	<!-- Google tag (gtag.js) -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-K6QH3MSLX0"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'G-K6QH3MSLX0');
-	</script>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IAfluence - L'IA sur mesure pour les TPE/PME</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-	<!-- 1) Markdown-it -->
-	<script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
-	<!-- 2) DOMPurify -->
-	<script src="https://cdn.jsdelivr.net/npm/dompurify/dist/purify.min.js"></script>
+    <meta name="description" content="Conseil IA à l'heure pour professionnels, indépendants, TPE et PME : prompts, LLM, agents IA, automatisation et cas métier concrets. Appel découverte gratuit.">
+    <title>Conseil IA à l'heure pour professionnels | IAfluence</title>
+    <link rel="canonical" href="https://iafluence.fr/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="IAfluence">
+    <meta property="og:title" content="Conseil IA à l'heure pour professionnels">
+    <meta property="og:description" content="Achetez le nombre d'heures dont vous avez besoin, réservez à votre rythme et avancez concrètement avec l'IA.">
+    <meta property="og:url" content="https://iafluence.fr/">
+    <meta property="og:image" content="https://iafluence.fr/static/images/logo_main.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Conseil IA à l'heure pour professionnels">
+    <meta name="twitter:description" content="Conseil IA simple, flexible et concret pour prompts, LLM, agents IA et automatisation métier.">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/conseil-ia.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            scroll-behavior: smooth;
+    <link rel="stylesheet" href="/static/css/cookie-consent.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "IAfluence",
+      "url": "https://iafluence.fr/",
+      "image": "https://iafluence.fr/static/images/logo_main.jpg",
+      "description": "Conseil IA à l'heure pour professionnels, indépendants, TPE et PME.",
+      "founder": {
+        "@type": "Person",
+        "name": "Suan Tay"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "3 route de Riom",
+        "postalCode": "63530",
+        "addressLocality": "Volvic",
+        "addressCountry": "FR"
+      },
+      "email": "mailto:suan.tay@iafluence.fr",
+      "telephone": "+33665197633",
+      "areaServed": "FR",
+      "priceRange": "75 EUR / heure",
+      "sameAs": [
+        "https://www.linkedin.com/in/suan-tay/",
+        "https://www.youtube.com/@suantay8220"
+      ],
+      "offers": [
+        {
+          "@type": "Offer",
+          "name": "Conseil IA - 1h",
+          "price": "75",
+          "priceCurrency": "EUR",
+          "url": "https://iafluence.fr/#offres"
+        },
+        {
+          "@type": "Offer",
+          "name": "Conseil IA - 2h",
+          "price": "150",
+          "priceCurrency": "EUR",
+          "url": "https://iafluence.fr/#offres"
+        },
+        {
+          "@type": "Offer",
+          "name": "Conseil IA - 3h",
+          "price": "225",
+          "priceCurrency": "EUR",
+          "url": "https://iafluence.fr/#offres"
+        },
+        {
+          "@type": "Offer",
+          "name": "Conseil IA - 5h",
+          "price": "375",
+          "priceCurrency": "EUR",
+          "url": "https://iafluence.fr/#offres"
         }
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-        }
-        .gradient-bg {
-            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
-        }
-        .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-        .testimonial-card {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-        
-        /* Animation classes */
-        .animate-fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .animate-scale-in {
-            opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
-        }
-        .animate-slide-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-slide-left.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .animate-slide-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .animate-slide-right.visible {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .delay-100 {
-            transition-delay: 100ms;
-        }
-        .delay-200 {
-            transition-delay: 200ms;
-        }
-        .delay-300 {
-            transition-delay: 300ms;
-        }
-        .delay-400 {
-            transition-delay: 400ms;
-        }
-        
-        /* Chatbot styles */
-        .chatbot-container {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 1000;
-            transition: all 0.3s ease;
-        }
-        
-        .chatbot-button {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-        
-        .chatbot-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-        }
-        
-        .chatbot-window {
-            width: 350px;
-            height: 500px;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            display: none;
-            flex-direction: column;
-            transform: translateY(20px);
-            opacity: 0;
-            transition: all 0.3s ease;
-        }
-        
-        .chatbot-window.active {
-            display: flex;
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        .chatbot-header {
-            background: linear-gradient(135deg, #007BFF 0%, #28A745 100%);
-            color: white;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .chatbot-messages {
-            flex: 1;
-            padding: 15px;
-            overflow-y: auto;
-            background: #f9f9f9;
-        }
-        
-        .message {
-            margin-bottom: 15px;
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 18px;
-            font-size: 14px;
-            line-height: 1.4;
-        }
-        
-        .bot-message {
-            background: #e9f5ff;
-            color: #333;
-            border-bottom-left-radius: 5px;
-            align-self: flex-start;
-        }
-        
-        .user-message {
-            background: #007BFF;
-            color: white;
-            border-bottom-right-radius: 5px;
-            align-self: flex-end;
-            margin-left: auto;
-        }
-        
-        .chatbot-input {
-            display: flex;
-            padding: 10px;
-            border-top: 1px solid #eee;
-            background: white;
-        }
-        
-        .chatbot-input input {
-            flex: 1;
-            padding: 10px 15px;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            outline: none;
-            font-size: 14px;
-        }
-        
-        .chatbot-input button {
-            background: #007BFF;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            margin-left: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .typing-indicator {
-            display: flex;
-            padding: 10px 15px;
-        }
-        
-        .typing-indicator span {
-            height: 8px;
-            width: 8px;
-            background: #ccc;
-            border-radius: 50%;
-            display: inline-block;
-            margin: 0 2px;
-            animation: typing 1s infinite ease-in-out;
-        }
-        
-        .typing-indicator span:nth-child(2) {
-            animation-delay: 0.2s;
-        }
-        
-        .typing-indicator span:nth-child(3) {
-            animation-delay: 0.4s;
-        }
-        /* Mobile menu styles */
-		.mobile-menu {
-			position: fixed;
-			top: 78px; /* Hauteur du header */
-			left: 0;
-			width: 100%;
-			background: white;
-			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-			transform: translateY(-150%);
-			transition: transform 0.3s ease-in-out;
-			z-index: 40;
-		}
-
-		.mobile-menu.active {
-			transform: translateY(0);
-		}
-
-		.mobile-menu nav {
-			display: flex;
-			flex-direction: column;
-			padding: 1rem;
-		}
-
-		.mobile-menu nav a {
-			padding: 0.75rem 1rem;
-			border-bottom: 1px solid #eee;
-			color: #333;
-			font-weight: 500;
-		}
-
-		.mobile-menu nav a:hover {
-			color: #007BFF;
-			background-color: #f8f9fa;
-		}
-
-		.mobile-menu-button.active i:before {
-			content: "\f00d"; /* Change l'icône en "X" quand le menu est ouvert */
-		}
-        @keyframes typing {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-5px);
-            }
-        }
-    </style>
-    <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({pageLanguage: 'fr', includedLanguages: 'fr,en,es'}, 'google_translate_element');
+      ]
     }
     </script>
-    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
-    <style>
-        /* Google Translate : fonctionnel mais invisible */
-        #google_translate_element {
-            position: absolute;
-            left: -9999px;
-            top: -9999px;
-            width: 1px;
-            height: 1px;
-            overflow: hidden;
-        }
-        /* Cacher la barre de traduction Google en haut de page */
-        .goog-te-banner-frame { display: none !important; }
-        body { top: 0 !important; }
-
-        /* Boutons drapeaux */
-        .lang-switcher { display: flex; align-items: center; gap: 4px; }
-        .lang-btn {
-            font-size: 22px;
-            background: none;
-            border: 2px solid transparent;
-            border-radius: 6px;
-            cursor: pointer;
-            padding: 2px 4px;
-            line-height: 1;
-            transition: border-color 0.2s, transform 0.2s;
-            opacity: 0.6;
-        }
-        .lang-btn:hover { opacity: 1; transform: scale(1.15); }
-        .lang-btn.active { border-color: #007BFF; opacity: 1; }
-    </style>
 </head>
-
-<body class="bg-gray-50 text-gray-900">
-    <!-- Header -->
-    <!-- Header -->
-    <header class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="/static/images/logo_main.jpg" alt="logo IAfluence" style="width: 16.67%;">
-                <h1 class="text-2xl font-bold text-blue-600">IAfluence</h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="index.html#accueil" class="font-medium hover:text-blue-600 transition">Accueil</a>
-                <a href="index.html#services" class="font-medium hover:text-blue-600 transition">Services</a>
-                <a href="/conseil-ia/" class="font-medium hover:text-blue-600 transition">Conseil IA</a>
-                <a href="index.html#formations" class="font-medium hover:text-blue-600 transition">Formations</a>
-                <a href="index.html#apropos" class="font-medium hover:text-blue-600 transition">À propos</a>
-                <a href="index.html#blog" class="font-medium hover:text-blue-600 transition">Blog</a>
-                <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
-            </nav>
-            <div id="google_translate_element"></div>
-            <div class="lang-switcher">
-                <button class="lang-btn" data-lang="fr" onclick="switchLanguage('fr')" title="Français">🇫🇷</button>
-                <button class="lang-btn" data-lang="en" onclick="switchLanguage('en')" title="English">🇬🇧</button>
-                <button class="lang-btn" data-lang="es" onclick="switchLanguage('es')" title="Español">🇪🇸</button>
-            </div>
-            <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu md:hidden">
-            <nav>
-                <a href="index.html#accueil" class="font-medium">Accueil</a>
-                <a href="index.html#services" class="font-medium">Services</a>
-                <a href="/conseil-ia/" class="font-medium">Conseil IA</a>
-                <a href="index.html#formations" class="font-medium">Formations</a>
-                <a href="index.html#apropos" class="font-medium">À propos</a>
-                <a href="index.html#blog" class="font-medium">Blog</a>
-                <a href="index.html#contact" class="font-medium">Contact</a>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/">
+                <img src="/static/images/logo_main.jpg" alt="IAfluence">
+                <span>
+                    <strong>IAfluence</strong>
+                    <small>Conseil IA concret</small>
+                </span>
+            </a>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="/" aria-current="page">Conseil IA</a>
+                <a href="/about.html">A propos</a>
+                <a href="/contact.html">Contact</a>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section id="accueil" class="pt-24 pb-16 gradient-bg text-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 animate-slide-left">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-6">L'IA sur mesure,</h2>
-					<h2 class="text-4xl md:text-5xl font-bold mb-6">la sécurité par défaut</h2>
-                    <p class="text-xl mb-8">Démocratisons ensemble l'IA générative pour les TPE/PME avec des solutions souveraines et éthiques.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#contact" class="bg-white text-blue-600 hover:bg-gray-100 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Prendre rendez-vous</a>
-                        <a href="#services" class="border-2 border-white text-white hover:bg-white hover:text-blue-600 font-bold py-3 px-6 rounded-lg text-center transition duration-300">Découvrir nos services</a>
+    <main>
+        <section class="hero section">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">Conseil IA à l'heure</p>
+                    <h1>Avancez avec l'IA, à votre rythme.</h1>
+                    <p class="hero-lead">Conseil IA à l'heure pour débloquer un sujet, comprendre les LLM, créer vos premiers agents ou appliquer l'IA à vos problématiques métier.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="https://calendly.com/suan-tay-job/appel-decouverte-ia-30-min-offertes">Réserver un appel gratuit de 30 min</a>
+                        <a class="btn btn-secondary" href="#offres">Voir les offres à l'heure</a>
                     </div>
+                    <p class="hero-note">75 € / heure - sans engagement - paiement en ligne - réservation flexible</p>
                 </div>
-                <div class="md:w-1/2 flex justify-center animate-slide-right delay-200">
-                    <img src="/static/images/1.png" alt="IA et entreprise" class="rounded-xl shadow-2xl max-w-full h-auto">
-                </div>
+                <aside class="hero-panel" aria-label="Résumé de l'offre">
+                    <div>
+                        <span class="panel-label">Offre simple</span>
+                        <strong>Vous achetez le nombre d'heures dont vous avez besoin.</strong>
+                    </div>
+                    <p>Vous les planifiez à votre rythme. Chaque session donne lieu à un résumé clair de ce qui a été fait et des prochaines actions.</p>
+                    <ul class="check-list compact">
+                        <li>Paiement sécurisé via Stripe</li>
+                        <li>Créneaux réservés dans Calendly</li>
+                        <li>Sessions d'1 heure séparables selon vos disponibilités</li>
+                    </ul>
+                </aside>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Testimonials -->
-    <section class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-12 animate-fade-in">Ils nous font confiance</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-100">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
-                            <i class="fas fa-quote-left text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Jean-Claude</h4>
-                            <p class="text-gray-600">Phosphoriales</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"Grâce au Pack Découverte IA, nous avons pu automatiser notre service client en seulement une semaine. Les résultats ont dépassé nos attentes !"</p>
-                    <div class="mt-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
+        <section class="section problem-section">
+            <div class="container two-column">
+                <div>
+                    <p class="eyebrow">Le blocage fréquent</p>
+                    <h2>Vous testez ChatGPT, mais les résultats ne tiennent pas encore la route ?</h2>
+                    <p>Beaucoup de professionnels ont commencé à utiliser l'IA générative, sans savoir comment passer d'essais ponctuels à un usage fiable, utile et adapté à leur métier.</p>
                 </div>
-                
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-200">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
-                            <i class="fas fa-quote-left text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Meilin B.</h4>
-                            <p class="text-gray-600">Meiline.fr</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"L'équipe d'IAfluence a su comprendre nos besoins spécifiques et nous proposer une solution sur mesure. Leur expertise en IA générative est impressionnante."</p>
-                    <div class="mt-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                </div>
-                
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-8 rounded-xl shadow-md testimonial-card animate-fade-in delay-300">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
-                            <i class="fas fa-quote-left text-xl"></i>
-                        </div>
-                        <div>
-                            <h4 class="font-bold">Jacques W.</h4>
-                            <p class="text-gray-600">RLV</p>
-                        </div>
-                    </div>
-                    <p class="text-gray-700 italic">"La formation IA pour notre équipe a été un véritable déclic. Nous utilisons maintenant quotidiennement ces outils pour gagner en productivité."</p>
-                    <div class="mt-4 text-yellow-400">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                </div>
+                <ul class="issue-list">
+                    <li>Vous ne savez pas par où commencer.</li>
+                    <li>Vos prompts ne donnent pas de résultats fiables.</li>
+                    <li>Vous entendez parler d'agents IA sans savoir les utiliser.</li>
+                    <li>Vous voulez automatiser, mais ne savez pas quoi choisir.</li>
+                    <li>Vous avez besoin de cas concrets, pas de théorie abstraite.</li>
+                </ul>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">Nos Services IA</h2>
-            <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Des solutions adaptées à chaque besoin et budget</p>
-            
-            <!-- Packs -->
-            <div class="mb-16">
-                <h3 class="text-2xl font-bold mb-8 text-center animate-fade-in delay-200">Nos Packs IA</h3>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <!-- Pack Découverte -->
-                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-fade-in delay-200">
-                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-lightbulb text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-2">Pack Découverte IA</h4>
-                        <p class="text-2xl font-bold text-center text-green-600 mb-4">1 490 € TTC</p>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Stratégie IA (2h) + Atelier "Prompt Engineering"</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Création d'un GPT personnalisé (FAQ ou assistant)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Support mail 7 jours</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Durée : 1 semaine</span>
-                            </li>
-                        </ul>
-                        <a href="pack1.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Choisir ce pack</a>
-                    </div>
-                    
-                    <!-- Pack Opérationnel -->
-                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 border-2 border-blue-500 transform scale-105 animate-fade-in delay-300">
-                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-cloud text-2xl"></i>
-                        </div>
-                        <div class="absolute top-0 right-0 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">POPULAIRE</div>
-                        <h4 class="text-xl font-bold text-center mb-2">Pack Opérationnel Cloud</h4>
-                        <p class="text-2xl font-bold text-center text-green-600 mb-4">3 900 € TTC</p>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Stratégie IA approfondie + GPT métier</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Déploiement cloud sécurisé (Azure/OVH/Scaleway)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Formation + support mail/visio (2h)</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Durée : 2 à 3 semaines</span>
-                            </li>
-                        </ul>
-                        <a href="pack2.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Choisir ce pack</a>
-                    </div>
-                    
-                    <!-- Pack Souverain -->
-                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-fade-in delay-400">
-                        <div class="bg-blue-100 text-blue-600 w-16 h-16 rounded-full flex items-center justify-center mb-4 mx-auto">
-                            <i class="fas fa-shield-alt text-2xl"></i>
-                        </div>
-                        <h4 class="text-xl font-bold text-center mb-2">Pack IA Souveraine</h4>
-                        <p class="text-2xl font-bold text-center text-green-600 mb-4">8 900 € TTC</p>
-                        <ul class="space-y-3 mb-6">
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Stratégie complète, 2 à 3 GPTs connectés</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Déploiement sur infra dédiée / auto-hébergée</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Intégration API, RGPD, cybersécurité</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check text-green-500 mt-1 mr-2"></i>
-                                <span>Support 1 mois + transfert compétences</span>
-                            </li>
-                        </ul>
-                        <a href="pack3.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Choisir ce pack</a>
-                    </div>
+        <section class="section solution-section">
+            <div class="container solution-card">
+                <div>
+                    <p class="eyebrow">La solution</p>
+                    <h2>Du conseil IA à l'heure, simple et directement applicable.</h2>
+                    <p>IAfluence propose du conseil IA à l'heure. Vous choisissez 1h, 2h, 3h ou plus. Vous payez en ligne, puis vous planifiez vos créneaux à votre convenance.</p>
+                </div>
+                <div class="pill-grid">
+                    <span>Liberté</span>
+                    <span>Simplicité</span>
+                    <span>Application concrète</span>
+                    <span>Résumé après chaque session</span>
+                    <span>Cours pratico-théorique</span>
+                    <span>Cas métier réel</span>
                 </div>
             </div>
-            
-            <!-- On-Premise -->
-			<section id="On-Premise" >
+        </section>
+
+        <section class="section" id="offres">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Choisir le bon format</p>
+                    <h2>Que peut-on faire selon le temps réservé ?</h2>
+                    <p>Commencez petit pour débloquer un point précis, ou réservez plusieurs heures pour construire un cas d'usage plus complet.</p>
+                </div>
+                <div class="offers-grid">
+                    <article class="offer-card">
+                        <div class="offer-price">75 €</div>
+                        <h3>1h - Débloquer un point précis</h3>
+                        <ul>
+                            <li>Améliorer un prompt</li>
+                            <li>Clarifier un cas d'usage</li>
+                            <li>Choisir les bons outils IA</li>
+                            <li>Corriger une méthode</li>
+                            <li>Identifier ce qui peut être automatisé</li>
+                        </ul>
+                        <a class="btn btn-primary" href="https://book.stripe.com/4gMeVddn0b2V1Pi7Hk9bO03">Acheter 1h - 75 €</a>
+                    </article>
+                    <article class="offer-card featured">
+                        <div class="tag">Populaire</div>
+                        <div class="offer-price">150 €</div>
+                        <h3>2h - Comprendre et appliquer</h3>
+                        <ul>
+                            <li>Comprendre les bases des LLM</li>
+                            <li>Utiliser ChatGPT, Claude ou Mistral efficacement</li>
+                            <li>Créer une méthode de travail</li>
+                            <li>Construire un premier assistant IA</li>
+                            <li>Passer de la théorie à un usage métier</li>
+                        </ul>
+                        <a class="btn btn-primary" href="https://book.stripe.com/bJe14n2Im0oh9hK0eS9bO04">Acheter 2h - 150 €</a>
+                    </article>
+                    <article class="offer-card">
+                        <div class="offer-price">225 €</div>
+                        <h3>3h - Construire un vrai cas d'usage</h3>
+                        <ul>
+                            <li>Créer un agent métier</li>
+                            <li>Structurer une offre commerciale</li>
+                            <li>Préparer une stratégie de prospection</li>
+                            <li>Analyser des documents</li>
+                            <li>Créer un workflow IA</li>
+                        </ul>
+                        <a class="btn btn-primary" href="https://book.stripe.com/6oU7sLgzc0oh0Le9Ps9bO05">Acheter 3h - 225 €</a>
+                    </article>
+                    <article class="offer-card">
+                        <div class="offer-price">375 €</div>
+                        <h3>5h - Avancer en profondeur</h3>
+                        <ul>
+                            <li>Cartographier les usages IA dans votre activité</li>
+                            <li>Former une petite équipe</li>
+                            <li>Créer plusieurs agents</li>
+                            <li>Prototyper un outil</li>
+                            <li>Mettre en place une méthode IA complète</li>
+                        </ul>
+                        <a class="btn btn-primary" href="https://book.stripe.com/14A00jciWdb39hK4v89bO06">Acheter 5h - 375 €</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section format-section">
+            <div class="container">
+                <div class="section-heading left">
+                    <p class="eyebrow">Deux formats possibles</p>
+                    <h2>On peut apprendre, construire, ou les deux.</h2>
+                </div>
+                <div class="format-grid">
+                    <article class="info-card">
+                        <i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i>
+                        <h3>Cours pratico-théorique</h3>
+                        <p>Pour comprendre les LLM, les prompts, le contexte, les fichiers, les agents, les limites et les bonnes pratiques. L'objectif est de monter en compétence tout en appliquant immédiatement à votre métier.</p>
+                    </article>
+                    <article class="info-card">
+                        <i class="fa-solid fa-briefcase" aria-hidden="true"></i>
+                        <h3>Cas appliqué à votre problématique</h3>
+                        <p>On part directement de votre besoin : stratégie, offre commerciale, prospection, automatisation, formation, documents, contenu, agent IA ou outil métier.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section process-section">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Comment ça marche ?</p>
+                    <h2>Un parcours simple, sans compte à créer.</h2>
+                </div>
+                <ol class="steps">
+                    <li><span>1</span>Vous réservez un appel gratuit de 30 min.</li>
+                    <li><span>2</span>Nous clarifions votre besoin.</li>
+                    <li><span>3</span>Vous choisissez le nombre d'heures utile.</li>
+                    <li><span>4</span>Vous payez en ligne via Stripe.</li>
+                    <li><span>5</span>Vous réservez vos créneaux dans Calendly.</li>
+                </ol>
+                <p class="process-note">Les créneaux n'ont pas besoin d'être consécutifs. Vous pouvez réserver 1h puis une autre heure plus tard.</p>
+            </div>
+        </section>
+
+        <section class="section summary-section">
+            <div class="container two-column">
+                <div>
+                    <p class="eyebrow">Après chaque session</p>
+                    <h2>Vous ne repartez pas avec une simple discussion.</h2>
+                    <p>À la fin de chaque session, vous recevez un résumé clair de ce qui a été travaillé.</p>
+                </div>
+                <ul class="check-list">
+                    <li>Sujet traité</li>
+                    <li>Décisions prises</li>
+                    <li>Outils utilisés</li>
+                    <li>Prompts ou méthodes créés</li>
+                    <li>Points de vigilance</li>
+                    <li>Prochaines actions recommandées</li>
+                    <li>Heures utilisées et heures restantes si plusieurs heures ont été achetées</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section audience-section">
+            <div class="container">
+                <div class="section-heading">
+                    <p class="eyebrow">Pour qui ?</p>
+                    <h2>Pour les professionnels qui veulent intégrer l'IA sans perdre du temps.</h2>
+                </div>
+                <div class="audience-grid">
+                    <span>Dirigeants de TPE/PME</span>
+                    <span>Consultants</span>
+                    <span>Formateurs</span>
+                    <span>Indépendants</span>
+                    <span>Responsables communication</span>
+                    <span>Commerciaux</span>
+                    <span>Porteurs de projet</span>
+                    <span>Équipes qui veulent passer à l'action</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section topics-section">
+            <div class="container two-column">
+                <div>
+                    <p class="eyebrow">Exemples de sujets</p>
+                    <h2>Des sujets concrets, adaptés à votre activité.</h2>
+                    <p>La session sert à avancer sur votre contexte réel : vos outils, vos documents, vos clients, vos contraintes.</p>
+                </div>
+                <div class="topics-list">
+                    <span>Créer un agent IA</span>
+                    <span>Améliorer ses prompts</span>
+                    <span>Utiliser ChatGPT dans son métier</span>
+                    <span>Structurer une offre commerciale</span>
+                    <span>Préparer une prospection LinkedIn</span>
+                    <span>Automatiser une tâche répétitive</span>
+                    <span>Comprendre les LLM</span>
+                    <span>Analyser des documents</span>
+                    <span>Créer une méthode de veille</span>
+                    <span>Préparer une formation</span>
+                    <span>Construire un workflow IA</span>
+                    <span>Tester une idée de produit ou service</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section faq-section">
+            <div class="container faq-grid">
+                <div>
+                    <p class="eyebrow">FAQ</p>
+                    <h2>Les questions avant de réserver.</h2>
+                </div>
+                <div class="faq-list">
+                    <details>
+                        <summary>Dois-je déjà savoir utiliser l'IA ?</summary>
+                        <p>Non. L'accompagnement s'adapte à votre niveau.</p>
+                    </details>
+                    <details>
+                        <summary>Puis-je réserver plusieurs créneaux séparés ?</summary>
+                        <p>Oui. Si vous achetez plusieurs heures, vous pouvez les répartir selon vos disponibilités.</p>
+                    </details>
+                    <details>
+                        <summary>Est-ce une formation ou du conseil ?</summary>
+                        <p>Les deux sont possibles. On peut faire un cours pratico-théorique ou travailler directement sur votre problème.</p>
+                    </details>
+                    <details>
+                        <summary>Est-ce que je reçois une facture ?</summary>
+                        <p>Oui, le paiement et la facture sont gérés via Stripe.</p>
+                    </details>
+                    <details>
+                        <summary>Que se passe-t-il après la session ?</summary>
+                        <p>Vous recevez un résumé clair avec ce qui a été travaillé et les prochaines actions.</p>
+                    </details>
+                    <details>
+                        <summary>Puis-je commencer par un appel gratuit ?</summary>
+                        <p>Oui, un échange découverte de 30 minutes est offert.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta section">
+            <div class="container final-cta-inner">
+                <h2>Vous voulez avancer avec l'IA sans partir dans tous les sens ?</h2>
+                <p>Commençons par 30 minutes gratuites pour cadrer votre besoin.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://calendly.com/suan-tay-job/appel-decouverte-ia-30-min-offertes">Réserver mon appel gratuit</a>
+                    <a class="btn btn-secondary" href="https://book.stripe.com/4gMeVddn0b2V1Pi7Hk9bO03">Acheter 1h</a>
+                    <a class="btn btn-secondary" href="https://book.stripe.com/bJe14n2Im0oh9hK0eS9bO04">Acheter 2h</a>
+                    <a class="btn btn-secondary" href="https://book.stripe.com/6oU7sLgzc0oh0Le9Ps9bO05">Acheter 3h</a>
+                    <a class="btn btn-secondary" href="https://book.stripe.com/14A00jciWdb39hK4v89bO06">Acheter 5h</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
             <div>
-                <h3 class="text-2xl font-bold mb-8 text-center animate-fade-in">Solutions On-Premise</h3>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Custom GPT -->
-                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-slide-left">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-robot text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-bold">Custom GPT</h4>
-                        </div>
-                        <div class="mb-6">
-                            <p class="text-gray-700 mb-4">Solution d'IA générative entièrement personnalisée pour répondre à vos besoins spécifiques.</p>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Prise de RDV exploratoire (1h mini)</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Processus : Interview → Élaboration & test → Livraison</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Formule abonnement possible pour mises à jour</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Support post-livraison : 30 jours minimum</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2">
-                            <a href="#contact" class="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg text-center transition duration-300">Demander un devis</a>
-                            <a href="/customgpt.html" class="flex-1 border border-blue-600 text-blue-600 hover:bg-blue-50 font-bold py-2 px-4 rounded-lg text-center transition duration-300">En savoir plus</a>
-                        </div>
-                    </div>
-                    
-                    <!-- IA générative -->
-                    <div class="bg-gray-50 rounded-xl p-6 shadow-md card-hover transition duration-300 animate-slide-right delay-200">
-                        <div class="flex items-center mb-4">
-                            <div class="bg-blue-100 text-blue-600 w-12 h-12 rounded-full flex items-center justify-center mr-4">
-                                <i class="fas fa-server text-xl"></i>
-                            </div>
-                            <h4 class="text-xl font-bold">IA générative On-Premise</h4>
-                        </div>
-                        <div class="mb-6">
-                            <p class="text-gray-700 mb-4">Solution complète d'IA générative installée directement dans votre infrastructure.</p>
-                            <ul class="space-y-2">
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Audit informatique complet de votre infrastructure</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Installation, test et mise en production</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Formation IT + utilisateurs finaux</span>
-                                </li>
-                                <li class="flex items-start">
-                                    <i class="fas fa-arrow-right text-blue-500 mt-1 mr-2"></i>
-                                    <span>Tarif : à partir de 15 000 € HT (hors matériel)</span>
-                                </li>
-                            </ul>
-                        </div>
-                        <a href="#contact" class="block w-full bg-green-600 hover:bg-green-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Demander un audit gratuit</a>
-                    </div>
-                </div>
+                <strong>IAfluence</strong>
+                <p>L'IA concrète pour professionnels, indépendants, TPE et PME.</p>
             </div>
-			</Section
-        </div>
-    </section>
-
-    <!-- Formations Section -->
-    <section id="formations" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">Nos Formations IA</h2>
-            <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Formez-vous ou votre équipe aux enjeux et usages de l'IA générative</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Formation Particuliers -->
-                <div class="bg-white rounded-xl p-8 shadow-md card-hover transition duration-300 animate-scale-in">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user-graduate text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">Particuliers & Associations</h3>
-                    </div>
-                    <div class="mb-6">
-                        <p class="text-gray-700 mb-4">Découvrez les bases de l'IA générative et apprenez à utiliser ces outils au quotidien.</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Durée : ½ journée</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Les fondamentaux de l'IA générative</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Ateliers pratiques avec ChatGPT et autres outils</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>50€ par participant</span>
-							<li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Liste d'attente</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="/formation-volvic/index.html" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">S'inscrire</a>
-                </div>
-                
-                <!-- Formation Entreprises -->
-                <div class="bg-white rounded-xl p-8 shadow-md card-hover transition duration-300 border-2 border-blue-500 animate-scale-in delay-200">
-                    <div class="flex items-center mb-6">
-                        <div class="bg-blue-100 text-blue-600 w-14 h-14 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-building text-2xl"></i>
-                        </div>
-                        <h3 class="text-2xl font-bold">TPE & PME</h3>
-                    </div>
-                    <div class="mb-6">
-                        <p class="text-gray-700 mb-4">Formez votre équipe aux usages professionnels de l'IA générative pour booster votre productivité.</p>
-                        <ul class="space-y-3">
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Durée : 1 journée</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Les bases + IA dans l'entreprise</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Cas d'usage métiers et bonnes pratiques</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>Qualiopi pour prise en charge OPCO</span>
-                            </li>
-                            <li class="flex items-start">
-                                <i class="fas fa-check-circle text-blue-500 mt-1 mr-2"></i>
-                                <span>2 400€ par groupe/journée</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <a href="#contact" class="block w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-4 rounded-lg text-center transition duration-300">Demander un devis</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- À propos Section -->
-    <section id="apropos" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 animate-slide-left">
-                    <h2 class="text-3xl font-bold mb-6">À propos d'IAfluence</h2>
-                    <p class="text-gray-700 mb-6">Fondée en 2023 par Suan Tay à Volvic, IAfluence a pour mission de démocratiser l'IA générative pour les TPE/PME en proposant des solutions sur mesure, éthiques et souveraines.</p>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-4">Notre fondateur</h3>
-                        <div class="flex items-center mb-4">
-                            <div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center text-blue-600 mr-4">
-                                <i class="fas fa-user-tie text-2xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold">Suan Tay</h4>
-                                <p class="text-gray-600">Ingénieur en informatique, Data Scientist - Ingénieur IA avec 20 ans d'expérience, formateur à l'ESC Clermont Business School et  UCA - ISIMA</p>
-                            </div>
-                        </div>
-                        <p class="text-gray-700">"Notre objectif est de rendre l'IA accessible tout en garantissant la souveraineté des données et une approche éthique."</p>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Nos valeurs</h3>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <div class="flex items-start animate-fade-in delay-100">
-                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
-                                    <i class="fas fa-lock"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Souveraineté des données</h4>
-                                    <p class="text-gray-600">Vos données restent les vôtres</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start animate-fade-in delay-200">
-                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
-                                    <i class="fas fa-graduation-cap"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Pédagogie</h4>
-                                    <p class="text-gray-600">Apprendre pour mieux utiliser</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start animate-fade-in delay-300">
-                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
-                                    <i class="fas fa-bullseye"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Utilité métier</h4>
-                                    <p class="text-gray-600">Des solutions concrètes</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start animate-fade-in delay-400">
-                                <div class="bg-blue-100 text-blue-600 w-10 h-10 rounded-full flex items-center justify-center mr-3 mt-1">
-                                    <i class="fas fa-hand-holding-heart"></i>
-                                </div>
-                                <div>
-                                    <h4 class="font-bold">Éthique & transparence</h4>
-                                    <p class="text-gray-600">Une IA responsable</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 animate-slide-right delay-200">
-                    <img src="/static/images/profile.jpg" alt="Suan Tay IAfluence" class="rounded-xl shadow-lg w-full h-auto" style="width: 60%;">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section id="blog" class="py-16 bg-gray-100">
-        <div class="container mx-auto px-4">
-            <h2 class="text-3xl font-bold text-center mb-4 animate-fade-in">L'Univers de l'IA</h2>
-            <p class="text-xl text-center text-gray-600 mb-12 animate-fade-in delay-100">Découvrez nos articles sur l'IA générative</p>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8" id="linkedin-posts">
-                <!-- Chargé dynamiquement depuis /static/linkedin_posts.json -->
-            </div>
-            
-            <div class="text-center mt-12 animate-fade-in delay-300">
-                <a href="https://linkedin.com/in/suan-tay" class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg transition duration-300">Voir tous les articles</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-blue-600 text-white">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-10 ">
-                    <h2 class="text-3xl font-bold mb-6">Contactez-nous</h2>
-                    <p class="text-xl mb-8">Prêt à démarrer votre projet IA ? Parlons-en !</p>
-                    
-                    <div class="mb-8">
-                        <h3 class="text-xl font-bold mb-4">Coordonnées</h3>
-                        <div class="space-y-4">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt mt-1 mr-4"></i>
-                                <div>
-                                    <p class="font-medium">IAfluence – Suan Tay</p>
-                                    <p>3 route de Riom, Bureau 05</p>
-                                    <p>63530 Volvic</p>
-                                </div>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-envelope mr-4"></i>
-                                <a href="mailto:suan.tay@iafluence.fr" class="hover:underline">suan.tay@iafluence.fr</a>
-                            </div>
-                            <div class="flex items-center">
-                                <i class="fas fa-phone mr-4"></i>
-                                <a href="tel:+33665197633" class="hover:underline">06 65 19 76 33</a>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div>
-                        <h3 class="text-xl font-bold mb-4">Réseaux sociaux</h3>
-                        <div class="flex space-x-4">
-                            <a href="https://linkedin.com/in/suan-tay" target="_blank" class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
-                                <i class="fab fa-linkedin-in"></i>
-                            </a>
-                            <a href="https://youtube.com/@suantay8220" target="_blank" class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
-                                <i class="fab fa-youtube"></i>
-                            </a>
-							<a href="https://www.instagram.com/suan.tay.job" target="_blank" class="w-10 h-10 bg-white text-blue-600 rounded-full flex items-center justify-center hover:bg-gray-100 transition">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-				
-				<div class="w-full bg-white rounded-xl p-8 shadow-lg text-gray-800 animate-fade-in delay-100">
-              <!-- Bouton de lancement avec delayed-navigation helper -->
-				<button
-				  onclick="return gtagSendEvent('https://calendar.google.com/calendar/appointments/schedules/AcZssZ03RLDgsZLumeQFGTQwDS8m4kFQ-knDVBwMuwgzBpn9U1gmlksyYIbYp37TZyHgSrtB1tMhXCwT?gv=true');"
-				  class="bg-white text-blue-600 font-bold py-2 px-4 rounded-lg"
-				>
-				  Planifiez un RDV
-				</button>
-
-				<!-- Votre iframe (reste en dessous, usage secondaire) -->
-				<iframe
-				  src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ03RLDgsZLumeQFGTQwDS8m4kFQ-knDVBwMuwgzBpn9U1gmlksyYIbYp37TZyHgSrtB1tMhXCwT?gv=true"
-				  style="border:0" width="100%" height="600" frameborder="0">
-				</iframe>
-            </div>
-                
-              
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div >
-                    <div class="flex items-center mb-4">
-                        <img src="/static/images/logo_main_sans.png" alt="logo IAfluence" style="width: 16%;">
-                        <h3 class="text-xl font-bold">IAfluence</h3>
-                    </div>
-                    <p class="text-gray-400">L'IA sur mesure pour les TPE/PME, avec une approche éthique et souveraine.</p>
-                </div>
-                
-                <div >
-                    <h4 class="text-lg font-bold mb-4">Services</h4>
-                    <ul class="space-y-2">
-                        <li><a href="index.html#services" class="text-gray-400 hover:text-white transition">Packs IA</a></li>
-                        <li><a href="/conseil-ia/" class="text-gray-400 hover:text-white transition">Conseil IA à l'heure</a></li>
-                        <li><a href="#On-Premise" class="text-gray-400 hover:text-white transition">Solutions On-Premise</a></li>
-                        <li><a href="#formations" class="text-gray-400 hover:text-white transition">Formations</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition">Audit gratuit</a></li>
-                    </ul>
-                </div>
-                
-                <div >
-                    <h4 class="text-lg font-bold mb-4">Ressources</h4>
-                    <ul class="space-y-2">
-                        <li><a href="#blog" class="text-gray-400 hover:text-white transition">Blog</a></li>
-                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">Documentation</a></li>
-                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">FAQ</a></li>
-                        <li><a href="/Petit-dej/index14032025.html" class="text-gray-400 hover:text-white transition">Études de cas</a></li>
-                    </ul>
-                </div>
-                
-                <div >
-                    <h4 class="text-lg font-bold mb-4">Légal</h4>
-                    <ul class="space-y-2">
-                        <li><a href="mention-legales.html" class="text-gray-400 hover:text-white transition">Mentions légales</a></li>
-                        <li><a href="politique-confidentialite.html" class="text-gray-400 hover:text-white transition">Politique de confidentialité</a></li>                    
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center ">
-                <p class="text-gray-400 mb-4 md:mb-0">© 2025 IAfluence. Tous droits réservés.</p>
-                <div class="flex space-x-6">
-                    <a href="https://linkedin.com/in/suan-tay" class="text-gray-400 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
-                    <a href="https://youtube.com/@suantay8220" class="text-gray-400 hover:text-white transition"><i class="fab fa-youtube"></i></a>
-                    <a href="https://www.instagram.com/suan.tay.job" class="text-gray-400 hover:text-white transition"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
+            <nav aria-label="Liens de pied de page">
+                <a href="/mentions-legales.html">Mentions légales</a>
+                <a href="/politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="mailto:suan.tay@iafluence.fr">Contact</a>
+            </nav>
         </div>
     </footer>
 
-    <!-- Back to top button -->
-    <button id="backToTop" class="fixed bottom-8 right-8 w-12 h-12 bg-blue-600 text-white rounded-full shadow-lg flex items-center justify-center opacity-0 invisible transition-all duration-300">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Chatbot -->
-    <div class="chatbot-container">
-        <div class="chatbot-window" id="chatbotWindow">
-            <div class="chatbot-header">
-                <div class="flex items-center">
-                    <div class="w-8 h-8 rounded-full bg-white text-blue-600 flex items-center justify-center mr-2">
-                        <i class="fas fa-robot"></i>
-                    </div>
-                    <h3>Assistant IAfluence</h3>
-                </div>
-                <button id="closeChatbot" class="text-white hover:text-gray-200">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="chatbot-messages" id="chatbotMessages">
-                <div class="message bot-message">
-                    Bonjour ! Je suis l'assistant IA d'IAfluence. Comment puis-je vous aider aujourd'hui ?
-                </div>
-                <div class="typing-indicator" id="typingIndicator" style="display: none;">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="chatbotInput" placeholder="Tapez votre message..." class="focus:outline-none">
-                <button id="sendMessage">
-                    <i class="fas fa-paper-plane"></i>
-                </button>
-            </div>
-        </div>
-        <div class="chatbot-button" id="chatbotButton">
-            <i class="fas fa-comment-dots text-2xl"></i>
-        </div>
-    </div>
-
-    <script>
-        // Back to top button
-        const backToTopButton = document.getElementById('backToTop');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.remove('opacity-0', 'invisible');
-                backToTopButton.classList.add('opacity-100', 'visible');
-            } else {
-                backToTopButton.classList.remove('opacity-100', 'visible');
-                backToTopButton.classList.add('opacity-0', 'invisible');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Mobile menu toggle
-		const mobileMenuButton = document.getElementById('mobileMenuButton');
-		const mobileMenu = document.getElementById('mobileMenu');
-
-		mobileMenuButton.addEventListener('click', () => {
-			mobileMenu.classList.toggle('active');
-			mobileMenuButton.classList.toggle('active');
-		});
-
-		// Fermer le menu quand on clique sur un lien
-		document.querySelectorAll('#mobileMenu a').forEach(link => {
-			link.addEventListener('click', () => {
-				mobileMenu.classList.remove('active');
-				mobileMenuButton.classList.remove('active');
-			});
-		});
-
-// Supprimez l'ancien gestionnaire d'événement pour le menu mobile
-// document.querySelector('.md\\:hidden').addEventListener('click', () => {
-//     alert('Menu mobile à implémenter');
-// });
-        
-        // Intersection Observer for scroll animations
-        const animateElements = document.querySelectorAll('.animate-fade-in, .animate-scale-in, .animate-slide-left, .animate-slide-right');
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-        
-        animateElements.forEach(element => {
-            observer.observe(element);
-        });
-        
-        // Chatbot functionality
-		
-	<!-- Dans la partie JavaScript existante de votre index_01.html, remplacez la section chatbot par ceci : -->
-
-
-  // Chatbot functionality optimisée + animation + ouverture/fermeture
-  
-  const chatbotButton = document.getElementById('chatbotButton');
-  const chatbotWindow = document.getElementById('chatbotWindow');
-  const closeChatbot = document.getElementById('closeChatbot');
-  const chatbotMessages = document.getElementById('chatbotMessages');
-  const chatbotInput = document.getElementById('chatbotInput');
-  const sendMessage = document.getElementById('sendMessage');
-  const typingIndicator = document.getElementById('typingIndicator');
-  
-  const md = window.markdownit({ linkify: true, typographer: true });
-  
-  // Animation caractère par caractère puis rendu Markdown complet
-  async function addMessageAnimated(text, isUser = false, delay = 60) {
-    const message = document.createElement('div');
-    message.className = 'message ' + (isUser ? 'user-message' : 'bot-message');
-    chatbotMessages.appendChild(message);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-
-    let partial = '';
-    const chars = text.split('');
-    for (let i = 0; i < chars.length; i++) {
-      partial += chars[i];
-      message.innerHTML = DOMPurify.sanitize(md.render(partial));
-      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-      await new Promise(res => setTimeout(res, delay));
-    }
-  }
-  
-  // Message utilisateur instantané
-  function addMessage(text, isUser = false) {
-    const message = document.createElement('div');
-    message.className = `message ${isUser ? 'user-message' : 'bot-message'}`;
-    const raw = md.render(text);
-    message.innerHTML = DOMPurify.sanitize(raw);
-    chatbotMessages.appendChild(message);
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  }
-  
-  async function sendUserMessage() {
-    const messageText = chatbotInput.value.trim();
-    if (!messageText) return;
-  
-    addMessage(messageText, true); // Message utilisateur instantané
-    chatbotInput.value = '';
-    typingIndicator.style.display = 'flex';
-    chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
-  
-    try {
-      const response = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: messageText })
-      });
-      const data = await response.json();
-  
-      if (data.error) {
-        await addMessageAnimated("Désolé, une erreur est survenue : " + data.error);
-      } else {
-        await addMessageAnimated(data.response);
-      }
-    } catch (error) {
-      await addMessageAnimated("Oups, je n’arrive pas à joindre le serveur... Il est peut-être parti boire un café ☕️");
-    } finally {
-      typingIndicator.style.display = 'none';
-    }
-  }
-  
-  // Ouverture/fermeture du widget
-  chatbotButton.addEventListener('click', () => {
-    chatbotWindow.classList.toggle('active');
-    if (chatbotWindow.classList.contains('active')) {
-      setTimeout(() => chatbotInput.focus(), 150);
-    }
-  });
-  closeChatbot.addEventListener('click', () => {
-    chatbotWindow.classList.remove('active');
-  });
-  
-  // Envoi message
-  sendMessage.addEventListener('click', sendUserMessage);
-  chatbotInput.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') sendUserMessage();
-  });
-  
-
-        // --- Sélecteur de langue par drapeaux ---
-        function switchLanguage(lang) {
-            // Déclencher la traduction via le select interne de Google Translate
-            function doTranslate() {
-                var select = document.querySelector('.goog-te-combo');
-                if (select) {
-                    select.value = lang === 'fr' ? '' : lang;
-                    var evt = document.createEvent('HTMLEvents');
-                    evt.initEvent('change', false, true);
-                    select.dispatchEvent(evt);
-                    // Mettre à jour le bouton actif
-                    document.querySelectorAll('.lang-btn').forEach(function(b) { b.classList.remove('active'); });
-                    document.querySelector('.lang-btn[data-lang="' + lang + '"]').classList.add('active');
-                } else {
-                    // Google Translate pas encore prêt, réessayer
-                    setTimeout(doTranslate, 300);
-                }
-            }
-            doTranslate();
-        }
-
-        // Mettre en surbrillance la langue active au chargement
-        (function() {
-            var match = document.cookie.match(/googtrans=\/fr\/([a-z]+)/);
-            var activeLang = match ? match[1] : 'fr';
-            document.querySelectorAll('.lang-btn').forEach(function(btn) {
-                if (btn.getAttribute('data-lang') === activeLang) btn.classList.add('active');
-            });
-        })();
-
-        // Chargement dynamique des posts LinkedIn
-        fetch('/static/linkedin_posts.json')
-            .then(function(r) { return r.json(); })
-            .then(function(posts) {
-                var delays = ['', 'delay-100', 'delay-200'];
-                var container = document.getElementById('linkedin-posts');
-                posts.forEach(function(url, i) {
-                    var div = document.createElement('div');
-                    div.className = 'bg-white rounded-xl overflow-hidden shadow-md card-hover transition duration-300 animate-fade-in visible ' + (delays[i] || '');
-                    var iframe = document.createElement('iframe');
-                    iframe.src = url;
-                    iframe.height = '399';
-                    iframe.width = '504';
-                    iframe.frameBorder = '0';
-                    iframe.allowFullscreen = true;
-                    iframe.title = 'Post LinkedIn';
-                    div.appendChild(iframe);
-                    container.appendChild(div);
-                });
-            });
-
-        // Cacher la barre Google Translate injectée dynamiquement
-        function hideGoogleBar() {
-            var banner = document.querySelector('iframe.goog-te-banner-frame, #goog-te-banner-frame');
-            if (banner) banner.style.setProperty('display', 'none', 'important');
-            if (document.body.style.top && document.body.style.top !== '0px') {
-                document.body.style.setProperty('top', '0', 'important');
-            }
-        }
-
-        // Observer le DOM : Google Translate injecte ses éléments après le load
-        var gtObserver = new MutationObserver(hideGoogleBar);
-        gtObserver.observe(document.documentElement, {
-            childList: true,
-            subtree: true,
-            attributes: true,
-            attributeFilter: ['style']
-        });
-        // Appel immédiat au cas où déjà présent
-        hideGoogleBar();
-
-</script>
-
-
-	<script src="/static/js/webmcp-init.js"></script>
-	<script src="/static/js/chatbot.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script src="/static/js/cookie-consent.js"></script>
 </body>
 </html>

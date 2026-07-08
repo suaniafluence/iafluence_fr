@@ -1,16 +1,17 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IAfluence Chatbot</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 <body>
     <!-- Contenu de la page -->
     <div class="page-content">
-        <h1>Page de démonstration du Chatbot IAfluence</h1>
-        <p>Cette page montre comment le chatbot s'intègre dans n'importe quelle page web.</p>
+        <h1>Page de dÃ©monstration du Chatbot IAfluence</h1>
+        <p>Cette page montre comment le chatbot s'intÃ¨gre dans n'importe quelle page web.</p>
     </div>
 
     <!-- Chatbot -->
@@ -19,10 +20,10 @@
             <img src="{{ url_for('static', filename='images/logo.jpg') }}" alt="IAfluence Logo" class="chatbot-logo">
             <div class="chatbot-title">
                 <h3>IAfluence Assistant</h3>
-                <p>L'IA sur mesure, la sécurité par défaut.</p>
+                <p>L'IA sur mesure, la sÃ©curitÃ© par dÃ©faut.</p>
             </div>
             <button id="chatbot-toggle" class="chatbot-toggle">
-                <span class="toggle-icon">▼</span>
+                <span class="toggle-icon">â–¼</span>
             </button>
         </div>
         <div class="chatbot-body" id="chatbot-body">
@@ -45,5 +46,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="{{ url_for('static', filename='js/chatbot.js') }}"></script>
+    <script src="/static/js/cookie-consent.js"></script>
 </body>
 </html>

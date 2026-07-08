@@ -1,268 +1,184 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact - IAfluence</title>
-    <link rel="stylesheet" href="/static/css/styles.css">
-    <link rel="stylesheet" href="/static/css/responsive.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <meta name="description" content="Contactez IAfluence pour un appel découverte gratuit, une question sur l'IA générative ou une session de conseil IA à l'heure.">
+    <title>Contact IAfluence | Appel découverte IA gratuit</title>
+    <link rel="canonical" href="https://iafluence.fr/contact.html">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="IAfluence">
+    <meta property="og:title" content="Contact IAfluence">
+    <meta property="og:description" content="Réservez un appel découverte gratuit ou contactez Suan Tay pour cadrer votre besoin IA.">
+    <meta property="og:url" content="https://iafluence.fr/contact.html">
+    <meta property="og:image" content="https://iafluence.fr/static/images/logo_main.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/static/css/conseil-ia.css">
+    <link rel="stylesheet" href="/static/css/nav.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="/static/images/logo_main.jpg" alt="IAfluence Logo">
-                    <div class="logo-text">
-                        <h1>IAfluence</h1>
-                        <p>L'IA sur mesure, la sécurité par défaut</p>
-                    </div>
-                </div>
-                <nav>
-                    <ul class="nav-menu">
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="/conseil-ia/">Conseil IA</a></li>
-                        <li><a href="about.html">À propos</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                    <div class="mobile-menu-toggle">
-                        <i class="fas fa-bars"></i>
-                    </div>
-                </nav>
-            </div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/">
+                <img src="/static/images/logo_main.jpg" alt="IAfluence">
+                <span>
+                    <strong>IAfluence</strong>
+                    <small>Conseil IA concret</small>
+                </span>
+            </a>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="/">Conseil IA</a>
+                <a href="/about.html">A propos</a>
+                <a href="/contact.html" aria-current="page">Contact</a>
+            </nav>
         </div>
     </header>
 
-    <!-- Main Content -->
     <main>
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="container">
-                <div class="hero-content">
-                    <h1>Contactez-nous</h1>
-                    <p>Discutons de vos besoins en intelligence artificielle</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact Section -->
-        <section class="contact">
-            <div class="container">
-                <div class="contact-content">
-                    <div class="contact-info">
-                        <h2>Informations de contact</h2>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-user"></i>
-                            </div>
-                            <div>
-                                <h3>Suan Tay</h3>
-                                <p>Expert en IA et fondateur d'IAfluence</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-map-marker-alt"></i>
-                            </div>
-                            <div>
-                                <h3>Adresse</h3>
-                                <p>3 route de Riom, 63530 Volvic</p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-phone"></i>
-                            </div>
-                            <div>
-                                <h3>Téléphone</h3>
-                                <p><a href="tel:0665197633">06 65 19 76 33</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-envelope"></i>
-                            </div>
-                            <div>
-                                <h3>Email</h3>
-                                <p><a href="mailto:suan.tay@iafluence.fr">suan.tay@iafluence.fr</a></p>
-                            </div>
-                        </div>
-                        <div class="contact-info-item">
-                            <div class="contact-info-icon">
-                                <i class="fas fa-building"></i>
-                            </div>
-                            <div>
-                                <h3>Entreprise</h3>
-                                <p>IAfluence - SIRET : 912 494 564 00020</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="contact-form">
-                        <h2>Envoyez-nous un message</h2>
-                        <form id="contact-form">
-                            <div class="form-group">
-                                <label for="name">Nom</label>
-                                <input type="text" id="name" name="name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="subject">Sujet</label>
-                                <input type="text" id="subject" name="subject" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Message</label>
-                                <textarea id="message" name="message" required></textarea>
-                            </div>
-                            <button type="submit" class="btn">Envoyer</button>
-                            <p class="consent-text">En envoyant ce formulaire, vous acceptez notre <a href="politique-confidentialite.html">politique de confidentialité</a>.</p>
-                        </form>
+        <section class="hero section contact-hero">
+            <div class="container hero-grid">
+                <div class="hero-copy">
+                    <p class="eyebrow">Contact</p>
+                    <h1>Parlons de votre besoin IA.</h1>
+                    <p class="hero-lead">Vous avez une question, un sujet à débloquer ou un projet IA à cadrer ? Le plus simple est de réserver un appel découverte gratuit de 30 minutes.</p>
+                    <div class="hero-actions">
+                        <a class="btn btn-primary" href="https://calendly.com/suan-tay-job/appel-decouverte-ia-30-min-offertes">Réserver un appel gratuit</a>
+                        <a class="btn btn-secondary" href="mailto:suan.tay@iafluence.fr">Envoyer un email</a>
                     </div>
                 </div>
+                <aside class="hero-panel contact-panel" aria-label="Coordonnées IAfluence">
+                    <span class="panel-label">Coordonnées</span>
+                    <div class="contact-line">
+                        <i class="fa-solid fa-user" aria-hidden="true"></i>
+                        <div>
+                            <strong>Suan Tay</strong>
+                            <p>Fondateur d'IAfluence</p>
+                        </div>
+                    </div>
+                    <div class="contact-line">
+                        <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <p><a href="mailto:suan.tay@iafluence.fr">suan.tay@iafluence.fr</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-line">
+                        <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                        <div>
+                            <strong>Téléphone</strong>
+                            <p><a href="tel:0665197633">06 65 19 76 33</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-line">
+                        <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+                        <div>
+                            <strong>Adresse</strong>
+                            <p>3 route de Riom, 63530 Volvic</p>
+                        </div>
+                    </div>
+                </aside>
             </div>
         </section>
 
-        <!-- Calendar Section -->
-        <section class="calendar">
-            <div class="container">
-                <div class="section-title">
-                    <h2>Prendre rendez-vous</h2>
-                    <p>Réservez un créneau pour discuter de vos besoins en IA</p>
+        <section class="section problem-section">
+            <div class="container two-column">
+                <div>
+                    <p class="eyebrow">Quand me contacter ?</p>
+                    <h2>Quand vous voulez passer de l'idée IA à un usage concret.</h2>
+                    <p>Un premier échange suffit souvent à clarifier le besoin, le niveau de maturité, les outils pertinents et le meilleur format d'accompagnement.</p>
                 </div>
-                <div class="calendar-container">
-                    <iframe src="https://calendar.google.com/calendar/appointments/schedules/AcZssZ03RLDgsZLumeQFGTQwDS8m4kFQ-knDVBwMuwgzBpn9U1gmlksyYIbYp37TZyHgSrtB1tMhXCwT?gv=true" style="border: 0" width="100%" height="600" frameborder="0"></iframe>
+                <ul class="check-list">
+                    <li>Vous voulez comprendre comment utiliser ChatGPT, Claude ou Mistral dans votre métier.</li>
+                    <li>Vous avez besoin d'améliorer vos prompts ou vos méthodes de travail.</li>
+                    <li>Vous voulez créer un agent IA ou un workflow simple.</li>
+                    <li>Vous cherchez à automatiser une tâche répétitive.</li>
+                    <li>Vous préférez commencer par un cadrage gratuit avant d'acheter des heures.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section solution-section">
+            <div class="container solution-card">
+                <div>
+                    <p class="eyebrow">Formats possibles</p>
+                    <h2>Appel gratuit, email ou conseil IA à l'heure.</h2>
+                    <p>Choisissez le canal le plus simple. Si votre besoin est déjà clair, vous pouvez directement acheter des heures de conseil IA et réserver vos créneaux ensuite.</p>
+                </div>
+                <div class="pill-grid">
+                    <span>Appel découverte gratuit</span>
+                    <span>Conseil IA 1h</span>
+                    <span>Conseil IA 2h</span>
+                    <span>Sessions séparables</span>
+                    <span>Paiement Stripe</span>
+                    <span>Réservation Calendly</span>
                 </div>
             </div>
         </section>
 
-        <!-- Payment Section -->
-        <section class="payment">
+        <section class="section format-section">
             <div class="container">
-                <div class="section-title">
-                    <h2>Paiement en ligne</h2>
-                    <p>Réglez facilement vos prestations</p>
+                <div class="section-heading left">
+                    <p class="eyebrow">Accès rapide</p>
+                    <h2>Choisissez la prochaine action.</h2>
                 </div>
-                <div class="payment-container">
-                    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
-                    <stripe-buy-button
-                      buy-button-id="buy_btn_1R2CEEG3sCky6gGK9HPQFo04"
-                      publishable-key="pk_live_51QuVwRG3sCky6gGKlbU2hffWl8QH0yEHSB57JereTq6D8BjZJQIKJuBxpPLKBi7Ok1B7uddtJM49uVkc0yiYaRUI005gVsRcUc"
-                    >
-                    </stripe-buy-button>
+                <div class="format-grid">
+                    <article class="info-card">
+                        <i class="fa-solid fa-calendar-check" aria-hidden="true"></i>
+                        <h3>Réserver 30 minutes gratuites</h3>
+                        <p>Pour cadrer votre besoin, vérifier le bon format et décider si quelques heures de conseil peuvent vraiment vous aider.</p>
+                        <a class="btn btn-primary" href="https://calendly.com/suan-tay-job/appel-decouverte-ia-30-min-offertes">Réserver l'appel</a>
+                    </article>
+                    <article class="info-card">
+                        <i class="fa-solid fa-credit-card" aria-hidden="true"></i>
+                        <h3>Acheter des heures de conseil IA</h3>
+                        <p>Si votre besoin est déjà clair, choisissez 1h, 2h, 3h ou 5h puis réservez vos sessions à votre rythme.</p>
+                        <a class="btn btn-secondary" href="/#offres">Voir les offres</a>
+                    </article>
+                    <article class="info-card">
+                        <i class="fa-solid fa-envelope-open-text" aria-hidden="true"></i>
+                        <h3>Envoyer un message</h3>
+                        <p>Décrivez votre contexte, votre objectif et ce que vous avez déjà essayé. Je vous répondrai avec la prochaine étape la plus simple.</p>
+                        <a class="btn btn-secondary" href="mailto:suan.tay@iafluence.fr">Écrire un email</a>
+                    </article>
+                    <article class="info-card">
+                        <i class="fa-brands fa-linkedin" aria-hidden="true"></i>
+                        <h3>Me retrouver sur LinkedIn</h3>
+                        <p>Pour suivre mes contenus, échanger sur vos usages IA ou prendre contact dans un cadre professionnel.</p>
+                        <a class="btn btn-secondary" href="https://www.linkedin.com/in/suan-tay/" target="_blank" rel="noopener">Voir LinkedIn</a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-cta section">
+            <div class="container final-cta-inner">
+                <h2>Vous ne savez pas par où commencer ?</h2>
+                <p>Commençons par 30 minutes gratuites pour cadrer le sujet proprement.</p>
+                <div class="hero-actions">
+                    <a class="btn btn-primary" href="https://calendly.com/suan-tay-job/appel-decouverte-ia-30-min-offertes">Réserver mon appel gratuit</a>
+                    <a class="btn btn-secondary" href="/">Voir le conseil IA à l'heure</a>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-logo">
-                    <img src="/static/images/logo_main.jpg" alt="IAfluence Logo">
-                    <p>IAfluence - L'IA sur mesure, la sécurité par défaut</p>
-                </div>
-                <div class="footer-links">
-                    <h3>Liens rapides</h3>
-                    <ul>
-                        <li><a href="index.html">Accueil</a></li>
-                        <li><a href="services.html">Services</a></li>
-                        <li><a href="/conseil-ia/">Conseil IA</a></li>
-                        <li><a href="about.html">À propos</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                        <li><a href="mentions-legales.html">Mentions légales</a></li>
-                        <li><a href="politique-confidentialite.html">Politique de confidentialité</a></li>
-                    </ul>
-                </div>
-                <div class="footer-social">
-                    <h3>Suivez-nous</h3>
-                    <div class="social-icons">
-                        <a href="https://www.linkedin.com/in/suan-tay/" class="social-icon" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="https://www.youtube.com/@suantay8220" class="social-icon" target="_blank">
-                            <i class="fab fa-youtube"></i>
-                        </a>
-                        <a href="mailto:suan.tay@iafluence.fr" class="social-icon">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                </div>
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div>
+                <strong>IAfluence</strong>
+                <p>L'IA concrète pour professionnels, indépendants, TPE et PME.</p>
             </div>
-            <div class="copyright">
-                <p>&copy; 2025 IAfluence. Tous droits réservés.</p>
-            </div>
+            <nav aria-label="Liens de pied de page">
+                <a href="/mentions-legales.html">Mentions légales</a>
+                <a href="/politique-confidentialite.html">Politique de confidentialité</a>
+                <a href="mailto:suan.tay@iafluence.fr">Contact</a>
+            </nav>
         </div>
     </footer>
-
-    <!-- Chatbot -->
-    <div id="iafluence-chatbot-container" class="chatbot-container">
-        <div class="chatbot-header" id="chatbot-header">
-            <img src="/static/images/logo.jpg" alt="IAfluence Logo" class="chatbot-logo">
-            <div class="chatbot-title">
-                <h3>IAfluence Assistant</h3>
-                <p>L'IA sur mesure, la sécurité par défaut.</p>
-            </div>
-            <button id="chatbot-toggle" class="chatbot-toggle">
-                <span class="toggle-icon">▼</span>
-            </button>
-        </div>
-        <div class="chatbot-body" id="chatbot-body">
-            <div class="chatbot-messages" id="chatbot-messages">
-                <div class="message bot-message">
-                    <p>Bonjour ! Je suis l'assistant virtuel d'IAfluence. Comment puis-je vous aider aujourd'hui ?</p>
-                </div>
-            </div>
-            <div class="chatbot-input">
-                <input type="text" id="user-input" placeholder="Posez votre question ici...">
-                <button id="send-button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <line x1="22" y1="2" x2="11" y2="13"></line>
-                        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                    </svg>
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <script src="/static/js/main.js"></script>
-    <script src="/static/js/chatbot.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const form = document.getElementById('contact-form');
-        
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simuler l'envoi du formulaire (dans un environnement réel, vous utiliseriez AJAX)
-            setTimeout(function() {
-                // Vider les champs du formulaire
-                document.getElementById('name').value = '';
-                document.getElementById('email').value = '';
-                document.getElementById('subject').value = '';
-                document.getElementById('message').value = '';
-                
-                // Afficher un message de confirmation discret
-                const formElement = document.querySelector('.contact-form');
-                const successMessage = document.createElement('div');
-                successMessage.className = 'success-message';
-                successMessage.textContent = 'Votre message a été envoyé avec succès.';
-                successMessage.style.color = '#4CAF50';
-                successMessage.style.marginTop = '15px';
-                
-                // Ajouter le message et le supprimer après 3 secondes
-                formElement.appendChild(successMessage);
-                setTimeout(function() {
-                    successMessage.remove();
-                }, 3000);
-            }, 500);
-        });
-    });
-    </script>
+    <script src="/static/js/cookie-consent.js"></script>
 </body>
 </html>

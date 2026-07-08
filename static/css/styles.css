@@ -88,6 +88,73 @@ a:hover {
     background-color: var(--primary-color);
 }
 
+/* Variante d'en-tête alignée avec la page Conseil IA */
+.service-page {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.service-page main {
+    margin-top: 0;
+}
+
+.service-page header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.94);
+    border-bottom: 1px solid #dbe5f2;
+    box-shadow: none;
+    backdrop-filter: blur(14px);
+}
+
+.service-page .header-content {
+    min-height: 76px;
+    padding: 0;
+    gap: 28px;
+}
+
+.service-page .logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 12px;
+    border-radius: 8px;
+    object-fit: contain;
+    background: #fff;
+}
+
+.service-page .logo-text h1 {
+    color: #172033;
+    font-size: 1.08rem;
+    line-height: 1.2;
+}
+
+.service-page .logo-text p {
+    color: #607089;
+    font-size: 0.8rem;
+}
+
+.service-page .nav-menu {
+    align-items: center;
+    gap: 22px;
+}
+
+.service-page .nav-menu li {
+    margin-left: 0;
+}
+
+.service-page .nav-menu a {
+    color: #607089;
+    font-weight: 700;
+}
+
+.service-page .nav-menu a:hover {
+    color: #006fe6;
+}
+
+.service-page .chatbot-container {
+    display: none;
+}
+
 /* Header */
 header {
     background-color: white;
