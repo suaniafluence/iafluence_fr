@@ -21,21 +21,26 @@ body > .site-header {
 body > header > .container,
 .site-header > .container,
 .site-header .header-inner {
-    min-height: 76px;
+    width: calc(100% - 48px) !important;
+    max-width: 1120px;
+    margin-inline: auto !important;
+    min-height: 84px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 36px;
 }
 
 body > header .header-content,
 .site-header .header-inner {
-    width: 100%;
-    min-height: 76px;
+    width: calc(100% - 48px) !important;
+    max-width: 1120px;
+    margin-inline: auto !important;
+    min-height: 84px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 28px;
+    gap: 36px;
     padding: 0;
 }
 
@@ -44,14 +49,14 @@ body > header .brand,
 body > header .flex.items-center {
     display: inline-flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
 }
 
 body > header .logo img,
 body > header .brand img,
 body > header .flex.items-center img {
-    width: 40px !important;
-    height: 40px !important;
+    width: 42px !important;
+    height: 42px !important;
     max-width: none !important;
     margin: 0 !important;
     border-radius: 8px;
@@ -82,7 +87,7 @@ body > header .nav-menu,
 body > header .main-nav {
     display: flex !important;
     align-items: center;
-    gap: 22px !important;
+    gap: 34px !important;
 }
 
 body > header .nav-menu {
@@ -99,8 +104,8 @@ body > header .main-nav a {
     position: relative;
     display: inline-flex;
     align-items: center;
-    min-height: 76px;
-    padding: 0 0 2px;
+    min-height: 84px;
+    padding: 0 2px 2px;
     border-bottom: 3px solid transparent;
     color: var(--ia-nav-muted) !important;
     font-family: Arial, Helvetica, sans-serif;
@@ -151,23 +156,40 @@ body > header .nav-menu a::after {
         min-height: auto;
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
-        padding-top: 12px;
+        width: calc(100% - 40px) !important;
+        max-width: 1120px;
+        gap: 16px;
+        padding-top: 18px;
         padding-bottom: 0;
+    }
+
+    body > header .logo,
+    body > header .brand,
+    body > header .flex.items-center {
+        gap: 14px;
     }
 
     body > header nav,
     body > header .nav-menu,
     body > header .main-nav {
         width: 100%;
-        gap: 16px !important;
+        justify-content: flex-start;
+        gap: 28px !important;
         overflow-x: auto;
         white-space: nowrap;
+        scrollbar-width: none;
+    }
+
+    body > header nav::-webkit-scrollbar,
+    body > header .nav-menu::-webkit-scrollbar,
+    body > header .main-nav::-webkit-scrollbar {
+        display: none;
     }
 
     body > header nav a,
     body > header .nav-menu a,
     body > header .main-nav a {
-        min-height: 48px;
+        min-height: 52px;
+        padding-inline: 2px;
     }
 }
