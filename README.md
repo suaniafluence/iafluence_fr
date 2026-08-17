@@ -83,9 +83,14 @@ python chatbot/app.py
 
 ---
 
-## API MCP (WebMCP)
+## WebMCP et API d'outils
 
-Le chatbot expose une **API REST compatible MCP** permettant aux agents IA d'interagir avec IAfluence.
+Les pages publiques enregistrent cinq outils dans l'API navigateur WebMCP native via
+`document.modelContext.registerTool()`. Lorsque cette API expérimentale n'est pas disponible,
+`window.WebMCP` reste exposé comme fallback compatible avec les tests et intégrations existants.
+
+Le chatbot expose aussi une API REST JSON utilisée par ces outils. Cette API reprend les
+concepts et schémas MCP, mais ne constitue pas à elle seule un serveur MCP avec transport MCP.
 
 ### Découverte des tools
 
@@ -138,13 +143,18 @@ POST /api/quote
 POST /api/book-call
 ```
 
-### SDK navigateur
+### Intégration navigateur
 
-`window.WebMCP` est exposé globalement sur le site :
+Dans un navigateur compatible, les outils sont découverts nativement avec
+`await document.modelContext.getTools()`. Le registre de compatibilité
+`window.WebMCP` est également exposé globalement sur le site :
 
 ```js
 // Lister les tools
 window.WebMCP.getTools();
+
+// Attendre la fin de l'enregistrement natif et consulter son statut
+await window.WebMCP.ready;
 
 // Appeler un tool
 await window.WebMCP.callTool('get_offers', {});
