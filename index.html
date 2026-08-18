@@ -25,13 +25,17 @@
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
+      "@graph": [
+      {
       "@type": "ProfessionalService",
+      "@id": "https://iafluence.fr/#business",
       "name": "IAfluence",
       "url": "https://iafluence.fr/",
       "image": "https://iafluence.fr/static/images/logo_main.jpg",
       "description": "Conseil IA à l'heure pour professionnels, indépendants, TPE et PME.",
       "founder": {
         "@type": "Person",
+        "@id": "https://iafluence.fr/#suan-tay",
         "name": "Suan Tay"
       },
       "address": {
@@ -78,6 +82,40 @@
           "priceCurrency": "EUR",
           "url": "https://iafluence.fr/#offres"
         }
+      ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://iafluence.fr/#website",
+        "url": "https://iafluence.fr/",
+        "name": "IAfluence",
+        "inLanguage": "fr-FR",
+        "publisher": { "@id": "https://iafluence.fr/#business" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://iafluence.fr/#suan-tay",
+        "name": "Suan Tay",
+        "jobTitle": "Ingénieur en informatique, data scientist et ingénieur IA",
+        "url": "https://iafluence.fr/about.html",
+        "worksFor": { "@id": "https://iafluence.fr/#business" },
+        "sameAs": [
+          "https://www.linkedin.com/in/suan-tay/",
+          "https://www.youtube.com/@suantay8220"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://iafluence.fr/#faq",
+        "mainEntity": [
+          { "@type": "Question", "name": "Dois-je déjà savoir utiliser l'IA ?", "acceptedAnswer": { "@type": "Answer", "text": "Non. L'accompagnement s'adapte à votre niveau." } },
+          { "@type": "Question", "name": "Puis-je réserver plusieurs créneaux séparés ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui. Si vous achetez plusieurs heures, vous pouvez les répartir selon vos disponibilités." } },
+          { "@type": "Question", "name": "Est-ce une formation ou du conseil ?", "acceptedAnswer": { "@type": "Answer", "text": "Les deux sont possibles. On peut faire un cours pratico-théorique ou travailler directement sur votre problème." } },
+          { "@type": "Question", "name": "Est-ce que je reçois une facture ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, le paiement et la facture sont gérés via Stripe." } },
+          { "@type": "Question", "name": "Que se passe-t-il après la session ?", "acceptedAnswer": { "@type": "Answer", "text": "Vous recevez un résumé clair avec ce qui a été travaillé et les prochaines actions." } },
+          { "@type": "Question", "name": "Puis-je commencer par un appel gratuit ?", "acceptedAnswer": { "@type": "Answer", "text": "Oui, un échange découverte de 30 minutes est offert." } }
+        ]
+      }
       ]
     }
     </script>
@@ -382,6 +420,7 @@
                 <p>L'IA concrète pour professionnels, indépendants, TPE et PME.</p>
             </div>
             <nav aria-label="Liens de pied de page">
+                <a href="/services.html">Services IA</a>
                 <a href="/mentions-legales.html">Mentions légales</a>
                 <a href="/politique-confidentialite.html">Politique de confidentialité</a>
                 <a href="mailto:suan.tay@iafluence.fr">Contact</a>
