@@ -43,19 +43,12 @@
     const tools = {
         get_offers: {
             title: 'Consulter les offres IAfluence',
-            description: 'Retourne les offres et packs IAfluence avec leurs tarifs, descriptions et liens officiels.',
+            description: 'Retourne les offres IAfluence avec leurs tarifs, descriptions et liens officiels.',
             inputSchema: { type: 'object', properties: {}, additionalProperties: false },
             annotations: { readOnlyHint: true, untrustedContentHint: false },
             handler: (_args, options) => get('/offers', options)
         },
 
-        get_case_studies: {
-            title: 'Consulter les études de cas IAfluence',
-            description: 'Retourne les études de cas clients publiées par IAfluence, avec secteur, résultats et lien.',
-            inputSchema: { type: 'object', properties: {}, additionalProperties: false },
-            annotations: { readOnlyHint: true, untrustedContentHint: false },
-            handler: (_args, options) => get('/case-studies', options)
-        },
 
         contact: {
             title: 'Contacter IAfluence',

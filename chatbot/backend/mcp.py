@@ -67,73 +67,38 @@ def _send_email(subject, body):
 # ─── Données statiques ────────────────────────────────────────────────────────
 OFFERS = [
     {
-        "id": "pack-decouverte",
-        "title": "Pack Découverte IA",
-        "description": "Stratégie IA (2h) + Atelier Prompt Engineering + GPT personnalisé + support mail 7 jours.",
-        "price_range": "1 490 € TTC",
-        "cta_url": "https://iafluence.fr/pack1.html"
-    },
-    {
-        "id": "pack-operationnel",
-        "title": "Pack Opérationnel Cloud",
-        "description": "Stratégie IA approfondie, GPT métier, déploiement cloud sécurisé, formation + support visio.",
-        "price_range": "3 900 € TTC",
-        "cta_url": "https://iafluence.fr/pack2.html"
-    },
-    {
-        "id": "pack-souverain",
-        "title": "Pack IA Souveraine",
-        "description": "Stratégie complète, 2-3 GPTs connectés, déploiement sur infra dédiée, intégration API + RGPD.",
-        "price_range": "8 900 € TTC",
-        "cta_url": "https://iafluence.fr/pack3.html"
+        "id": "conseil-heure",
+        "title": "Conseil IA à l'heure",
+        "description": (
+            "Accompagnement IA à l'heure : débloquer un point précis (1h), comprendre et appliquer "
+            "les LLM (2h), construire un cas d'usage (3h) ou avancer en profondeur (5h). "
+            "Appel découverte de 30 minutes offert avant tout engagement."
+        ),
+        "price_range": "75 € / heure (75 € - 375 €)",
+        "cta_url": "https://iafluence.fr/#offres"
     },
     {
         "id": "custom-gpt",
         "title": "Custom GPT On-Premise",
         "description": "Solution IA sur mesure : interview → élaboration → livraison. Abonnement maintenance possible.",
         "price_range": "Sur devis",
-        "cta_url": "https://iafluence.fr/customgpt.html"
+        "cta_url": "https://iafluence.fr/contact.html"
     },
     {
         "id": "ia-on-premise",
         "title": "IA Générative On-Premise",
         "description": "Audit infra, installation, mise en production, formation IT et utilisateurs, RGPD.",
         "price_range": "À partir de 15 000 € HT",
-        "cta_url": "https://iafluence.fr/#contact"
+        "cta_url": "https://iafluence.fr/contact.html"
     },
 ]
 
-CASE_STUDIES = [
-    {
-        "title": "Automatisation du service client",
-        "industry": "Événementiel (Phosphoriales)",
-        "results": "Automatisation complète du service client en 1 semaine. Résultats dépassant les attentes.",
-        "link": "https://iafluence.fr/#apropos"
-    },
-    {
-        "title": "Solution IA sur mesure",
-        "industry": "Indépendant (Meiline.fr)",
-        "results": "Solution personnalisée adaptée aux besoins spécifiques. Expertise en IA générative reconnue.",
-        "link": "https://iafluence.fr/#apropos"
-    },
-    {
-        "title": "Formation équipe IA",
-        "industry": "Associatif (RLV)",
-        "results": "Formation qui a déclenché l'adoption quotidienne des outils IA pour gagner en productivité.",
-        "link": "https://iafluence.fr/#apropos"
-    },
-]
 
 # ─── Schémas des tools ────────────────────────────────────────────────────────
 MCP_TOOLS = [
     {
         "name": "get_offers",
-        "description": "Retourne les offres et packs de services IAfluence avec prix et liens.",
-        "inputSchema": {"type": "object", "properties": {}, "required": []}
-    },
-    {
-        "name": "get_case_studies",
-        "description": "Retourne les études de cas clients IAfluence.",
+        "description": "Retourne les offres de services IAfluence avec prix et liens.",
         "inputSchema": {"type": "object", "properties": {}, "required": []}
     },
     {
@@ -205,7 +170,6 @@ def mcp_call():
 
     dispatch = {
         'get_offers':      _tool_get_offers,
-        'get_case_studies': _tool_get_case_studies,
         'contact':         _tool_contact,
         'request_quote':   _tool_request_quote,
         'book_call':       _tool_book_call,
@@ -223,9 +187,6 @@ def mcp_call():
 def api_get_offers():
     return _tool_get_offers({})
 
-@mcp_bp.route('/api/case-studies', methods=['GET'])
-def api_get_case_studies():
-    return _tool_get_case_studies({})
 
 @mcp_bp.route('/api/contact', methods=['POST'])
 def api_contact():
@@ -254,8 +215,6 @@ def api_book_call():
 def _tool_get_offers(_args):
     return jsonify({"offers": OFFERS})
 
-def _tool_get_case_studies(_args):
-    return jsonify({"case_studies": CASE_STUDIES})
 
 def _tool_contact(args):
     name    = str(args.get('name', '')).strip()[:100]

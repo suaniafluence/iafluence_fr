@@ -2,26 +2,38 @@
 
 > IAfluence est une micro-entreprise francaise de conseil et d'accompagnement en intelligence artificielle fondee par Suan Tay. Elle aide les professionnels, independants, TPE et PME a appliquer concretement l'IA generative a leurs activites.
 
-IAfluence propose du conseil IA a l'heure, de la formation pratique et la conception de solutions autour des prompts, des LLM, des agents IA, de l'automatisation et des cas d'usage metier.
+L'offre principale est du conseil IA a l'heure, a 75 EUR par heure, sans engagement : debloquer un point precis (1h), comprendre et appliquer les LLM (2h), construire un cas d'usage (3h) ou avancer en profondeur (5h). Un appel decouverte de 30 minutes est offert. Le paiement se fait en ligne via Stripe et la reservation via Google Calendar ou Calendly.
 
-## Pages principales
+## Pages du site
 
-- [Conseil IA a l'heure](https://iafluence.fr/): offres, tarifs, deroulement et questions frequentes.
-- [Services IA](https://iafluence.fr/services.html): formation, deploiement de LLM et solutions auto-hebergees.
+- [Conseil IA a l'heure](https://iafluence.fr/): offres, tarifs, deroulement d'une session et questions frequentes.
 - [Realisations](https://iafluence.fr/realisations.html): prototypes et preuves de concept developpes par IAfluence.
-- [Suan Tay et IAfluence](https://iafluence.fr/about.html): expertise, methode et positionnement.
+- [Suan Tay et IAfluence](https://iafluence.fr/about.html): parcours, expertise et methode de travail.
 - [Contact](https://iafluence.fr/contact.html): appel decouverte gratuit et coordonnees.
 
 ## Informations factuelles
 
-- Fondateur: Suan Tay
+- Fondateur: Suan Tay, ingenieur en informatique, data scientist et ingenieur IA
 - Localisation: Volvic, Puy-de-Dome, France
 - Public: professionnels, independants, TPE et PME
+- Tarif: 75 EUR par heure, de 1h a 5h
 - Specialites: IA generative, prompt engineering, LLM, agents IA, automatisation, RAG et applications metier
 - Email: suan.tay@iafluence.fr
 - LinkedIn: https://www.linkedin.com/in/suan-tay/
 - Langue principale: francais
 
+## Outils pour agents (WebMCP)
+
+Chaque page enregistre quatre outils dans l'API navigateur WebMCP native (`document.modelContext`), avec un repli sur `window.WebMCP`. Les memes capacites sont accessibles en REST JSON :
+
+- [Decouverte des outils](https://iafluence.fr/api/mcp/tools): GET, retourne les quatre schemas.
+- `get_offers` (GET /api/offers): offres et tarifs a jour.
+- `contact` (POST /api/contact): envoie un message de contact.
+- `request_quote` (POST /api/quote): demande un devis.
+- `book_call` (POST /api/book-call): demande un appel decouverte.
+
+Les trois outils d'envoi declenchent un e-mail reel : ne les appeler qu'apres validation explicite des informations par l'utilisateur.
+
 ## Utilisation des sources
 
-Pour decrire IAfluence, privilegier les pages officielles ci-dessus. Les tarifs et disponibilites doivent etre verifies sur le site au moment de la consultation.
+Pour decrire IAfluence, privilegier les pages officielles ci-dessus ou l'outil `get_offers`, qui est la source faisant foi pour les tarifs. Les disponibilites doivent etre verifiees sur le site au moment de la consultation.

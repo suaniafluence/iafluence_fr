@@ -1,192 +1,139 @@
 # IAfluence
 
-Site web d'**IAfluence** — spécialiste IA sur mesure pour les professionnels et entreprises.
+Site web d'**IAfluence** — conseil IA à l'heure pour professionnels, indépendants, TPE et PME.
+
+Le site est un ensemble de pages HTML statiques servies par Nginx. Un petit service Flask
+expose uniquement l'API des outils MCP sous `/api/`. Il n'y a pas d'étape de build, pas de
+bundler et pas de `package.json` : les fichiers HTML de la racine sont les pages déployées.
 
 ## Accès rapide
 
 | Environnement | Commande |
 |---|---|
 | **Serveur AWS** | `ssh ubuntu@13.51.113.255` |
-| **Site local** | `http://localhost` |
-| **Chatbot local** | `http://localhost:5000` |
+| **Site en production** | https://iafluence.fr |
+| **API MCP locale** | `http://localhost:5000/api/mcp/tools` |
 
 ---
 
-## Structure du dépôt
+## Structure
 
 ```
 /
-├── index.html                  # Page d'accueil principale
+├── index.html                     # Conseil IA à l'heure (accueil)
+├── realisations.html              # Prototypes et preuves de concept
+├── about.html                     # Suan Tay et IAfluence
+├── contact.html                   # Contact et prise de rendez-vous
+├── mentions-legales.html          # Obligatoire
+├── politique-confidentialite.html # Obligatoire
+├── sitemap.xml / robots.txt / llms.txt
 ├── static/
-│   ├── images/                 # Assets (favicon, caricature, etc.)
-│   ├── js/
-│   │   └── webmcp-init.js      # SDK WebMCP côté navigateur
-│   └── linkedin_posts.json     # URLs des posts LinkedIn (chargés dynamiquement)
-├── chatbot/                    # Application Flask du chatbot
-│   ├── app.py                  # Serveur Flask + guardrails
-│   ├── backend/
-│   │   ├── openrouter_api.py   # Client Anthropic Claude (streaming réel)
-│   │   ├── mcp.py              # Blueprint Flask — API MCP REST
-│   │   └── rag.py              # Processeur RAG (contexte IAfluence)
-│   ├── static/js/chatbot.js    # Widget chatbot + streaming + Markdown
-│   └── templates/index.html    # Template Flask du widget
-├── envoimail/                  # Envoi d'e-mails Flask (SMTP Gmail)
-├── formation-volvic/           # Inscription formation avec Supabase
-└── rlv/                        # Site vitrine POC
+│   ├── css/     conseil-ia.css · nav.css · realisations.css · cookie-consent.css
+│   ├── js/      webmcp-init.js · site-config.js · cookie-consent.js · main.js
+│   └── images/
+├── chatbot/                       # Backend Flask (nom historique)
+│   ├── app.py                     # Point d'entrée, ne monte que le blueprint MCP
+│   ├── backend/mcp.py             # Outils MCP : schémas, données, routes, envoi e-mail
+│   └── requirement.txt
+└── tests/test_mcp.py
+```
+
+Le répertoire `chatbot/` ne contient plus de chatbot : le nom est conservé parce que
+l'unité systemd et la configuration Nginx du serveur pointent vers ce chemin.
+
+---
+
+## Les 4 pages et le référencement
+
+Ajouter ou retirer une page implique de mettre à jour **quatre** endroits :
+
+1. `sitemap.xml`
+2. les blocs `<nav>` d'en-tête et de pied de page des autres pages
+3. `llms.txt` — le résumé du site destiné aux assistants IA
+4. `robots.txt` si les règles de crawl changent
+
+Chaque page porte son `<link rel="canonical">`, ses balises OpenGraph et son JSON-LD.
+Les entités sont reliées par des `@id` partagés (`#business`, `#suan-tay`, `#website`),
+ce qui permet aux moteurs de comprendre qu'il s'agit de la même entreprise partout.
+
+Le `FAQPage` de `index.html` doit rester **identique mot pour mot** au contenu visible
+des `<details>` de la section FAQ : c'est la condition posée par Google.
+
+`robots.txt` autorise explicitement les crawlers génératifs (GPTBot, ClaudeBot,
+PerplexityBot, Google-Extended…).
+
+---
+
+## Outils MCP et WebMCP
+
+Les quatre capacités exposées aux agents IA sont **définies deux fois**, et les deux
+définitions doivent rester synchronisées :
+
+- `static/js/webmcp-init.js` — côté navigateur. Enregistre les outils dans l'API WebMCP
+  native (`document.modelContext.registerTool()`), avec repli sur `window.WebMCP`.
+- `chatbot/backend/mcp.py` — côté serveur. Schémas, données, contrôle d'origine,
+  rate limiting par IP et envoi d'e-mail via Gmail SMTP.
+
+| Tool | Endpoint | Effet |
+|---|---|---|
+| `get_offers` | `GET /api/offers` | Offres et tarifs |
+| `contact` | `POST /api/contact` | Envoie un e-mail |
+| `request_quote` | `POST /api/quote` | Envoie un e-mail |
+| `book_call` | `POST /api/book-call` | Envoie un e-mail |
+
+Découverte : `GET /api/mcp/tools`. Appel générique : `POST /api/mcp/call`
+avec `{ "name": ..., "arguments": {...} }`.
+
+`OFFERS` dans `mcp.py` est la source faisant foi pour les tarifs communiqués aux agents.
+Elle doit rester cohérente avec les prix affichés sur `index.html` et avec le JSON-LD.
+
+### Depuis un navigateur
+
+```js
+await window.WebMCP.ready;            // statut de l'enregistrement natif
+window.WebMCP.getTools();             // lister les outils
+await window.WebMCP.callTool('get_offers', {});
 ```
 
 ---
 
-## Chatbot IAfluence
-
-### Fonctionnement
-
-Le chatbot est une application **Flask** qui combine :
-- **Anthropic Claude** (`claude-haiku-4-5-20251001`) comme modèle de langage
-- **RAG** (Retrieval-Augmented Generation) pour injecter le contexte IAfluence
-- **Streaming réel** token par token via l'API Anthropic
-- **Guardrails** : limite de longueur (500 chars), détection d'injection de prompt
-- **Markdown** rendu côté client avec `marked.js`
-
-### Prérequis
-
-- Python 3.10+
-- Un compte [Anthropic](https://console.anthropic.com/) avec une clé API
-
-### Installation
+## Développement local
 
 ```bash
-cd chatbot
-pip install -r requirement.txt
+pip install -r chatbot/requirement.txt
+python chatbot/app.py          # API sur http://localhost:5000
 ```
 
-### Configuration `.env`
+Les pages HTML s'ouvrent directement dans un navigateur, mais les appels `/api/*`
+échouent tant que Flask ne tourne pas sur la même origine. En production, Nginx
+proxyfie `/api/` vers `localhost:5000` (HTTPS via Certbot) ; Flask écoute sur
+`127.0.0.1` uniquement.
 
-Créez `chatbot/.env` :
+### Variables d'environnement
+
+`chatbot/.env` (non versionné) :
 
 ```env
-ANTHROPIC_API_KEY=sk-ant-...
-ANTHROPIC_MODEL=claude-haiku-4-5-20251001
-
-# MCP — envoi d'e-mails
 EMAIL_EXPEDITEUR=votre@gmail.com
 EMAIL_DESTINATAIRE=contact@iafluence.fr
 GMAIL_APP_PASSWORD=xxxx xxxx xxxx xxxx
 ```
 
-### Lancement
+Sans ces variables, `mcp.py` retombe sur une adresse par défaut et l'envoi échoue
+silencieusement à l'exécution plutôt qu'au démarrage.
 
-```bash
-python chatbot/app.py
-# → http://localhost:5000
-```
+### Liens de réservation et paiement
 
----
+Ils ne sont **jamais** écrits en dur dans le HTML. Ils vivent dans
+`static/js/site-config.js` sous `window.IAFLUENCE_CONFIG.links` ; le markup s'y
+raccroche avec `<a href="#" data-iafluence-link="stripe2h">` et le script réécrit
+le `href` au chargement.
 
-## WebMCP et API d'outils
+### Analytics
 
-Les pages publiques enregistrent cinq outils dans l'API navigateur WebMCP native via
-`document.modelContext.registerTool()`. Lorsque cette API expérimentale n'est pas disponible,
-`window.WebMCP` reste exposé comme fallback compatible avec les tests et intégrations existants.
-
-Le chatbot expose aussi une API REST JSON utilisée par ces outils. Cette API reprend les
-concepts et schémas MCP, mais ne constitue pas à elle seule un serveur MCP avec transport MCP.
-
-### Découverte des tools
-
-```
-GET /api/mcp/tools
-```
-
-### Tools disponibles
-
-| Tool | Description |
-|---|---|
-| `get_offers` | Liste des packs et tarifs |
-| `get_case_studies` | Études de cas clients |
-| `contact` | Envoie un message de contact |
-| `request_quote` | Demande un devis |
-| `book_call` | Réserve un appel découverte |
-
-### URLs publiques (production)
-
-```
-GET  https://iafluence.fr/api/mcp/tools   # découverte des tools
-POST https://iafluence.fr/api/mcp/call    # appel générique
-```
-
-Endpoints dédiés :
-```
-GET  https://iafluence.fr/api/offers
-GET  https://iafluence.fr/api/case-studies
-POST https://iafluence.fr/api/contact
-POST https://iafluence.fr/api/quote
-POST https://iafluence.fr/api/book-call
-```
-
-> Nginx proxyfie `/api/` vers Flask sur `localhost:5000` avec HTTPS (Certbot).
-
-### Appel générique
-
-```
-POST /api/mcp/call
-{ "name": "contact", "arguments": { "name": "...", "email": "...", "message": "..." } }
-```
-
-### Endpoints dédiés
-
-```
-GET  /api/offers
-GET  /api/case-studies
-POST /api/contact
-POST /api/quote
-POST /api/book-call
-```
-
-### Intégration navigateur
-
-Dans un navigateur compatible, les outils sont découverts nativement avec
-`await document.modelContext.getTools()`. Le registre de compatibilité
-`window.WebMCP` est également exposé globalement sur le site :
-
-```js
-// Lister les tools
-window.WebMCP.getTools();
-
-// Attendre la fin de l'enregistrement natif et consulter son statut
-await window.WebMCP.ready;
-
-// Appeler un tool
-await window.WebMCP.callTool('get_offers', {});
-await window.WebMCP.callTool('contact', { name: 'Jean', email: 'jean@ex.com', message: 'Bonjour' });
-```
-
----
-
-## Site principal (`index.html`)
-
-Fonctionnalités notables :
-- **Sélecteur de langue** par drapeaux 🇫🇷🇬🇧🇪🇸 (Google Translate intégré, barre masquée)
-- **Posts LinkedIn** chargés dynamiquement depuis `static/linkedin_posts.json`
-- **Analytics** : Google Analytics (`G-K6QH3MSLX0`) + Microsoft Clarity (`vcjdk47uxg`)
-
-Pour mettre à jour les posts LinkedIn, éditez simplement `static/linkedin_posts.json` :
-
-```json
-[
-  "https://www.linkedin.com/embed/feed/update/urn:li:...",
-  "https://www.linkedin.com/embed/feed/update/urn:li:...",
-  "https://www.linkedin.com/embed/feed/update/urn:li:..."
-]
-```
-
----
-
-## Autres modules
-
-- **`envoimail/`** : envoi d'e-mails Flask. Variables requises : `EMAIL_EXPEDITEUR`, `EMAIL_DESTINATAIRE`, `GMAIL_APP_PASSWORD`, `SECRET_KEY`.
-- **`formation-volvic/`** : inscription à une formation avec Supabase. Voir [`formation-volvic/README.md`](formation-volvic/README.md).
-- **`rlv/`** : site vitrine POC. Voir [`rlv/documentation.md`](rlv/documentation.md).
+Google Analytics et Microsoft Clarity ne sont **jamais** posés dans le HTML.
+`static/js/cookie-consent.js` les injecte après consentement et supprime leurs
+cookies en cas de refus.
 
 ---
 
@@ -197,24 +144,18 @@ pip install pytest
 pytest
 ```
 
-Un workflow GitHub Actions exécute les tests à chaque push/PR sur `main`.
+`tests/test_mcp.py` couvre la découverte des outils, les endpoints de lecture, le
+contrôle d'origine, le rejet des outils inconnus et la validation des e-mails.
+Un workflow GitHub Actions les exécute à chaque push et chaque PR sur `main`.
 
 ---
 
-## Déploiement AWS
-
-Le site tourne sur une instance AWS EC2 Ubuntu.
+## Déploiement
 
 ```bash
-# Connexion
 ssh ubuntu@13.51.113.255
-
-# Emplacement du projet
 cd /var/www/html
-
-# Redémarrer le chatbot (si géré par systemd)
-sudo systemctl restart chatbot
-
-# Voir les logs
+git pull
+sudo systemctl restart chatbot     # service Flask de l'API MCP
 sudo journalctl -u chatbot -f
 ```

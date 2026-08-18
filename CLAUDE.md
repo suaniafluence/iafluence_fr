@@ -4,74 +4,64 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-The production website of **IAfluence** (iafluence.fr), a French AI consulting micro-business. It is **not** a framework project: there is no `package.json`, no bundler, no build step. The HTML files at the repo root *are* the deployed pages, and `static/` is served as-is. A small Flask app (`chatbot/`) provides the dynamic `/api/*` surface.
+The production website of **IAfluence** (iafluence.fr), a French AI consulting micro-business. It is a **4-page static site** — `index.html`, `realisations.html`, `about.html`, `contact.html`, plus two legally required pages — served by Nginx, with a small Flask service exposing only the MCP tool API under `/api/`. There is no `package.json`, no bundler, no build step: the HTML files at the repo root *are* the deployed pages.
 
-All user-facing content is in **French**. Match that in copy, comments in the HTML/CSS, and commit messages that touch content.
+All user-facing content is in **French**. Match that in copy and in commit messages that touch content.
 
 ## Commands
 
 ```bash
-# Chatbot / API backend (run from repo root; Python puts chatbot/ on sys.path)
+# MCP API backend (run from repo root; Python puts chatbot/ on sys.path)
 pip install -r chatbot/requirement.txt
-pip install anthropic          # NOT in requirement.txt but imported by backend/openrouter_api.py
-python chatbot/app.py          # → http://localhost:5000
+python chatbot/app.py          # → http://localhost:5000/api/mcp/tools
 
-# Tests (run from repo root — tests import `chatbot.backend.rag`)
+# Tests (run from repo root — tests import `chatbot.backend.mcp`)
 pytest
-pytest tests/test_rag.py::test_get_relevant_context_is_string   # single test
+pytest tests/test_mcp.py::test_tool_discovery_lists_five_tools   # single test
 ```
 
 CI (`.github/workflows/tests.yml`) runs `pytest` on Python 3.12 for every push to `main` and every PR.
 
-Previewing the static pages with `python -m http.server` works for layout, but every `/api/*` call (WebMCP tools, contact forms) will 404 unless Flask is running on the same origin — in production nginx proxies `/api/` to `localhost:5000`.
+Opening the HTML files directly works for layout, but every `/api/*` call fails unless Flask runs on the same origin — in production Nginx proxies `/api/` to `localhost:5000` and Flask binds `127.0.0.1` only.
 
-Deployment is manual on an AWS EC2 box: `ssh ubuntu@13.51.113.255`, project at `/var/www/html`, chatbot under systemd (`sudo systemctl restart chatbot`, `sudo journalctl -u chatbot -f`).
+Deployment is manual: `ssh ubuntu@13.51.113.255`, project at `/var/www/html`, Flask under systemd (`sudo systemctl restart chatbot`).
 
 ## Architecture
 
-### Two halves that must stay in sync
+### `chatbot/` contains no chatbot
 
-The five capabilities the site exposes to AI agents are **defined twice**:
+The directory name is historical. The conversational assistant (Anthropic client, keyword RAG, widget) was removed; the name stays because the server's systemd unit and Nginx config point at that path. Renaming it requires touching the deployed server, not just this repo.
 
-- `static/js/webmcp-init.js` — browser side. Registers tools via the native `document.modelContext.registerTool()` API, falling back to a `window.WebMCP` object when the experimental API is absent. Holds titles, descriptions, JSON schemas, and annotations; each handler just `fetch`es a dedicated REST endpoint.
-- `chatbot/backend/mcp.py` — server side. Flask blueprint holding a second copy of the schemas (`MCP_TOOLS`), the dispatcher (`POST /api/mcp/call`), the dedicated endpoints (`/api/offers`, `/api/case-studies`, `/api/contact`, `/api/quote`, `/api/book-call`), origin checking, per-IP rate limiting, and Gmail SMTP sending.
+`chatbot/app.py` is now a ~20-line entrypoint that registers one blueprint and a `/health` route. All logic lives in `chatbot/backend/mcp.py`.
 
-Adding, renaming, or reshaping a tool means editing **both files**. The tools are `get_offers`, `get_case_studies`, `contact`, `request_quote`, `book_call`.
+### The four tools are defined twice
 
-`mcp.py` also hardcodes the `OFFERS` and `CASE_STUDIES` payloads. Those prices and links are duplicated in the HTML pricing pages (`pack1-3.html`, `customgpt.html`, `index.html`) — changing a price in one place without the other makes the site lie to agents.
+- `static/js/webmcp-init.js` — browser side. Registers tools via the native `document.modelContext.registerTool()` API, falling back to a `window.WebMCP` object when the experimental API is absent. Holds titles, descriptions, JSON schemas and annotations; each handler `fetch`es a dedicated REST endpoint.
+- `chatbot/backend/mcp.py` — server side. A second copy of the schemas (`MCP_TOOLS`), the dispatcher (`POST /api/mcp/call`), the dedicated endpoints, origin checking, per-IP rate limiting and Gmail SMTP sending.
 
-Despite the naming, this REST surface is MCP-*shaped* JSON, not an MCP server with MCP transport. `mcp-test.html` is a manual harness for exercising it in a browser.
+Adding, renaming or reshaping a tool means editing **both files**. The tools are `get_offers`, `contact`, `request_quote`, `book_call` — the last three send a real e-mail.
 
-### Chatbot pipeline
+`OFFERS` in `mcp.py` is hardcoded and is what AI agents quote as authoritative. Two consequences:
 
-`chatbot/app.py` → guardrails → `RAGProcessor` → Anthropic. Non-obvious details:
-
-- `backend/openrouter_api.py` is named after a provider it no longer uses: the class `OpenRouterAPI` wraps the **Anthropic SDK** (`claude-haiku-4-5-20251001` by default, override with `ANTHROPIC_MODEL`). `openai` is still pinned in `requirement.txt` but unused.
-- `backend/rag.py` imports FAISS/embeddings from langchain but **never uses them** — retrieval is naive keyword-overlap scoring over text chunks of `chatbot/data/iafluence_data.txt`. Editing that text file is how you change what the bot knows.
-- Guardrails are layered: `sanitize_input()` in `app.py` (500-char cap + a regex blocklist for prompt injection, returning a canned deflection) plus `SYSTEM_PROMPT` in `openrouter_api.py` (scope-limited to IAfluence, 2–4 sentence answers).
-- `/api/chat` returns JSON; `/api/chat/stream` streams raw text token-by-token. The widget renders it as Markdown client-side (markdown-it + DOMPurify).
+- Prices there must match the visible prices on `index.html` and its JSON-LD. The hourly offer (75 €/h) is the current business; the old 1 490 / 3 900 / 8 900 € packs were removed along with their pages.
+- Every `cta_url` and `link` must point at a page that still exists. Deleting a page without fixing these hands agents a 404.
 
 ### Static site conventions
 
-Three generations of page styling coexist. Copy the one that matches the page you're extending rather than mixing them:
+All six pages share one design system: `static/css/conseil-ia.css` plus `nav.css?v=3` (bump the query string when nav styles change), `cookie-consent.css`, and `realisations.css` on the portfolio page only. Every page loads `static/js/cookie-consent.js` and `static/js/webmcp-init.js`; pages with booking CTAs also load `static/js/site-config.js`.
 
-| Style | Pages | Stack |
-|---|---|---|
-| Current design system | `index.html`, `about.html`, `contact.html`, `realisations.html`, `mentions-legales.html`, `politique-confidentialite.html` | `static/css/conseil-ia.css` (+ `realisations.css`) |
-| Tailwind CDN | `pack1-3.html`, `customgpt.html` | `https://cdn.tailwindcss.com`, Poppins/Roboto |
-| Legacy | `services.html` | `static/css/styles.css` + `responsive.css` |
+- **Never hardcode booking or Stripe URLs in HTML.** They live in `static/js/site-config.js` under `window.IAFLUENCE_CONFIG.links`; markup opts in with `<a href="#" data-iafluence-link="stripe2h">` and the script rewrites `href` on load.
+- **Never add Google Analytics or Clarity tags to HTML.** `static/js/cookie-consent.js` injects GA (`G-K6QH3MSLX0`) and Clarity (`vcjdk47uxg`) only after opt-in and clears their cookies on opt-out.
+- Adding or removing a page means updating **four** places: `sitemap.xml`, the header and footer `<nav>` blocks of the other pages, `llms.txt`, and `robots.txt` if crawl rules change.
 
-Every public page includes `static/css/nav.css?v=3` (bump the query string when nav styles change), `cookie-consent.css`, and `static/js/cookie-consent.js` + `static/js/webmcp-init.js`. Add `static/js/site-config.js` on any page with booking/payment CTAs.
+### SEO / GEO surface
 
-- **Never hardcode booking or Stripe URLs in HTML.** They live in `static/js/site-config.js` under `window.IAFLUENCE_CONFIG.links`; markup opts in with `<a href="#" data-iafluence-link="discoveryCall">`, and the script rewrites `href` on load.
-- **Never add Google Analytics or Clarity tags to HTML.** `static/js/cookie-consent.js` injects GA (`G-K6QH3MSLX0`) and Clarity (`vcjdk47uxg`) only after the visitor opts in, and clears their cookies on opt-out. Bypassing it breaks the consent guarantee.
-- Adding or removing a public page means updating **four** places: `sitemap.xml`, the header/footer `<nav>` blocks on the other pages, `llms.txt` (the AI-agent-facing site summary), and `robots.txt` if crawl rules change.
-- Pages carry hand-written JSON-LD (`ProfessionalService`, offers, FAQ) in `<head>`. Keep the structured prices consistent with the visible ones.
+Every page carries a canonical link, OpenGraph tags and hand-written JSON-LD. Entities are joined by shared `@id`s — `#business`, `#suan-tay`, `#website` — so `index.html`, `about.html`, `contact.html` and `realisations.html` describe one linked graph rather than four unrelated pages. Keep those `@id`s stable.
 
-### Not part of the main site
+The `FAQPage` block in `index.html` must stay **word-for-word identical** to the visible `<details>` FAQ text; that equivalence is what makes the markup eligible rather than spammy. The same rule applies to any new structured data: don't describe content that isn't on the page.
 
-`conseil-ia/`, `merci-conseil-ia/`, `formation-volvic/` (Supabase signup app), `rlv/`, `mastere-ia-site/`, `envoimail/`, `CV/`, `Petit-dej/`, plus `index2.html`, `chatbot-frame.html`, `index.nginx-debian.html`, and `mention-legales.html` (a stale near-duplicate of `mentions-legales.html`) are standalone POCs, archives, or leftovers. They have their own conventions and are not wired into the main navigation — don't refactor them alongside site changes. `.bak` files under `chatbot/` are dead.
+`robots.txt` explicitly allows the generative crawlers (GPTBot, ClaudeBot, PerplexityBot, Google-Extended…), and `llms.txt` is the agent-facing site summary — it documents the pages, the facts, and the MCP endpoints, and names `get_offers` as the authoritative source for pricing.
 
 ## Secrets
 
-`chatbot/.env` (gitignored) supplies `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL`, and the Gmail SMTP trio `EMAIL_EXPEDITEUR` / `EMAIL_DESTINATAIRE` / `GMAIL_APP_PASSWORD`. `mcp.py` falls back to a personal Gmail address when they are unset, so a misconfigured deploy silently fails on send rather than at boot.
+`chatbot/.env` (gitignored) supplies `EMAIL_EXPEDITEUR`, `EMAIL_DESTINATAIRE` and `GMAIL_APP_PASSWORD`. `mcp.py` falls back to a default address when they are unset, so a misconfigured deploy fails silently on send rather than at boot.
