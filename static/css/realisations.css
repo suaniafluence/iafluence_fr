@@ -1,0 +1,436 @@
+:root {
+    --poc-violet: #6d4aff;
+    --poc-cyan: #1b9fd8;
+    --poc-night: #11192c;
+    --poc-paper: #f5f8fc;
+}
+
+.portfolio-hero {
+    padding: 88px 0 72px;
+    background:
+        radial-gradient(circle at 82% 18%, rgba(109, 74, 255, 0.14), transparent 31%),
+        linear-gradient(135deg, rgba(0, 111, 230, 0.09), rgba(25, 165, 107, 0.06)),
+        var(--poc-paper);
+}
+
+.portfolio-hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 64px;
+    align-items: end;
+}
+
+.portfolio-kicker,
+.poc-index,
+.poc-status,
+.poc-tags span {
+    font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+}
+
+.portfolio-kicker {
+    margin: 0 0 14px;
+    color: var(--blue);
+    font-size: 0.78rem;
+    font-weight: 800;
+}
+
+.portfolio-hero h1 {
+    max-width: 760px;
+    margin: 0;
+    font-size: clamp(2.7rem, 6vw, 5.25rem);
+    line-height: 0.98;
+    letter-spacing: -0.055em;
+}
+
+.portfolio-intro {
+    max-width: 700px;
+    margin: 26px 0 0;
+    color: var(--muted);
+    font-size: 1.12rem;
+}
+
+.portfolio-register {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+}
+
+.portfolio-register li {
+    display: grid;
+    grid-template-columns: 44px 1fr auto;
+    gap: 14px;
+    align-items: center;
+    padding: 13px 0;
+    border-bottom: 1px solid var(--line);
+}
+
+.portfolio-register strong {
+    font-size: 0.94rem;
+}
+
+.portfolio-register span {
+    color: var(--muted);
+    font-size: 0.78rem;
+}
+
+.portfolio-register .register-number {
+    color: var(--blue);
+    font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
+    font-weight: 800;
+}
+
+.portfolio-section {
+    padding: 76px 0 94px;
+}
+
+.portfolio-heading {
+    display: flex;
+    justify-content: space-between;
+    gap: 32px;
+    align-items: end;
+    margin-bottom: 34px;
+}
+
+.portfolio-heading h2 {
+    max-width: 700px;
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+}
+
+.portfolio-heading p {
+    max-width: 390px;
+    margin: 0;
+    color: var(--muted);
+}
+
+.poc-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px;
+}
+
+.poc-card {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow: 0 16px 42px rgba(18, 47, 84, 0.08);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.poc-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 58px rgba(18, 47, 84, 0.14);
+}
+
+.poc-media {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #e9eef6;
+    border-bottom: 1px solid var(--line);
+}
+
+.poc-media img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center top;
+    transition: transform 500ms ease;
+}
+
+.poc-card:hover .poc-media > img {
+    transform: scale(1.018);
+}
+
+.poc-media-mndt > img {
+    object-position: 52% top;
+}
+
+.mndt-inset {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+    width: 112px;
+    height: auto;
+    aspect-ratio: auto;
+    padding: 6px;
+    object-fit: contain;
+    border: 1px solid rgba(23, 32, 51, 0.18);
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0 12px 30px rgba(17, 25, 44, 0.24);
+}
+
+.poc-card:hover .mndt-inset {
+    transform: none;
+}
+
+.cognitive-visual {
+    display: grid;
+    place-items: center;
+    color: #e8edff;
+    background:
+        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
+        radial-gradient(circle at center, #253765 0, #151d37 42%, #0e1427 100%);
+    background-size: 34px 34px, 34px 34px, auto;
+}
+
+.cognitive-core {
+    position: relative;
+    display: grid;
+    width: min(74%, 380px);
+    aspect-ratio: 1.7 / 1;
+    place-items: center;
+    border: 1px solid rgba(141, 169, 255, 0.42);
+    border-radius: 14px;
+    background: rgba(12, 19, 40, 0.78);
+    box-shadow: 0 0 80px rgba(77, 110, 255, 0.23);
+}
+
+.cognitive-core::before,
+.cognitive-core::after {
+    content: "";
+    position: absolute;
+    left: 12%;
+    right: 12%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(122, 158, 255, 0.8), transparent);
+}
+
+.cognitive-core::before { top: 28%; }
+.cognitive-core::after { bottom: 28%; }
+
+.cognitive-core strong {
+    max-width: 230px;
+    text-align: center;
+    font-size: clamp(1.1rem, 2.5vw, 1.65rem);
+    line-height: 1.12;
+}
+
+.cognitive-orbit {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #6ef0c2;
+    box-shadow: 0 0 18px rgba(110, 240, 194, 0.9);
+}
+
+.cognitive-orbit:nth-child(2) { top: 16%; left: 9%; }
+.cognitive-orbit:nth-child(3) { right: 9%; bottom: 16%; background: #8c73ff; }
+
+.poc-body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    padding: 26px;
+}
+
+.poc-meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+}
+
+.poc-index {
+    color: var(--muted);
+    font-size: 0.72rem;
+}
+
+.poc-status {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    color: #087c55;
+    font-size: 0.68rem;
+    font-weight: 800;
+}
+
+.poc-status::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #19a56b;
+    box-shadow: 0 0 0 4px rgba(25, 165, 107, 0.12);
+}
+
+.poc-status.desktop {
+    color: #765600;
+}
+
+.poc-status.desktop::before {
+    background: #e3a916;
+    box-shadow: 0 0 0 4px rgba(227, 169, 22, 0.13);
+}
+
+.poc-card h3 {
+    margin: 18px 0 10px;
+    font-size: clamp(1.45rem, 3vw, 2rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+}
+
+.poc-card p {
+    margin: 0;
+    color: var(--muted);
+}
+
+.poc-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 22px 0 24px;
+}
+
+.poc-tags span {
+    padding: 5px 8px;
+    border-radius: 6px;
+    color: #43516a;
+    background: #edf2f8;
+    font-size: 0.64rem;
+    font-weight: 700;
+}
+
+.poc-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: auto;
+}
+
+.poc-link {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
+    border: 1px solid var(--ink);
+    border-radius: 8px;
+    color: var(--white);
+    background: var(--ink);
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.poc-link:hover {
+    border-color: var(--blue);
+    background: var(--blue);
+}
+
+.poc-link.secondary {
+    color: var(--ink);
+    background: transparent;
+}
+
+.poc-link.secondary:hover {
+    color: var(--blue);
+    background: rgba(0, 111, 230, 0.06);
+}
+
+.portfolio-cta {
+    padding: 0 0 96px;
+}
+
+.portfolio-cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    padding: 42px;
+    border-radius: 16px;
+    color: var(--white);
+    background: var(--poc-night);
+}
+
+.portfolio-cta h2 {
+    margin: 0 0 8px;
+    font-size: clamp(1.7rem, 3.5vw, 2.7rem);
+    line-height: 1.08;
+}
+
+.portfolio-cta p {
+    margin: 0;
+    color: #b8c4dc;
+}
+
+.portfolio-cta .poc-link {
+    border-color: var(--white);
+    color: var(--ink);
+    background: var(--white);
+}
+
+@media (max-width: 820px) {
+    .portfolio-hero-grid,
+    .poc-grid,
+    .portfolio-cta-inner {
+        grid-template-columns: 1fr;
+    }
+
+    .portfolio-hero {
+        padding: 64px 0 56px;
+    }
+
+    .portfolio-heading {
+        display: block;
+    }
+
+    .portfolio-heading p {
+        margin-top: 14px;
+    }
+
+    .portfolio-cta .poc-link {
+        justify-self: start;
+    }
+}
+
+@media (max-width: 520px) {
+    .portfolio-hero h1 {
+        font-size: 2.65rem;
+    }
+
+    .portfolio-register li {
+        grid-template-columns: 34px 1fr;
+    }
+
+    .portfolio-register li > span:last-child {
+        display: none;
+    }
+
+    .portfolio-section {
+        padding: 58px 0 72px;
+    }
+
+    .poc-body {
+        padding: 21px;
+    }
+
+    .mndt-inset {
+        right: 12px;
+        bottom: 12px;
+        width: 82px;
+    }
+
+    .portfolio-cta-inner {
+        padding: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .poc-card,
+    .poc-media img {
+        transition: none;
+    }
+}

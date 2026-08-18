@@ -1,6 +1,6 @@
 ﻿<!DOCTYPE html>
 <html lang="fr">
-<head class="fixed w-full bg-white shadow-md z-50">
+<head>
 	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
 	<link rel="icon" href="/static/images/favicon.ico" type="image/x-icon">
     <meta charset="UTF-8">
@@ -13,7 +13,7 @@
         body {
             font-family: 'Roboto', sans-serif;
             scroll-behavior: smooth;
-            padding-top: 78px; /* Compensation pour le header fixe */
+            padding-top: 0;
         }
         h1, h2, h3, h4 {
             font-family: 'Poppins', sans-serif;
@@ -96,40 +96,28 @@
             content: "\f00d";
         }
     </style>
+    <link rel="stylesheet" href="/static/css/nav.css?v=3">
     <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 
 <body class="bg-gray-50 text-gray-900">
-    <!-- Header -->
-    <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-        <div class="flex items-center">
-            <img src="/static/images/logo_main.jpg" alt="logo IAfluence" style="width: 16.67%;">
-            <h1 class="text-2xl font-bold text-blue-600">IAfluence</h1>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/">
+                <img src="/static/images/logo_main.jpg" alt="IAfluence">
+                <span>
+                    <strong>IAfluence</strong>
+                    <small>Conseil IA concret</small>
+                </span>
+            </a>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="/">Conseil IA</a>
+                <a href="/realisations.html">Réalisations</a>
+                <a href="/about.html">A propos</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
         </div>
-        <nav class="hidden md:flex space-x-8">
-            <a href="index.html#accueil" class="font-medium hover:text-blue-600 transition">Accueil</a>
-            <a href="index.html#services" class="font-medium hover:text-blue-600 transition">Services</a>
-            <a href="index.html#formations" class="font-medium hover:text-blue-600 transition">Formations</a>
-            <a href="index.html#apropos" class="font-medium hover:text-blue-600 transition">Ã€ propos</a>
-            <a href="index.html#blog" class="font-medium hover:text-blue-600 transition">Blog</a>
-            <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
-        </nav>
-        <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
-            <i class="fas fa-bars text-2xl"></i>
-        </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobileMenu" class="mobile-menu md:hidden">
-        <nav>
-            <a href="index.html#accueil" class="font-medium">Accueil</a>
-            <a href="index.html#services" class="font-medium">Services</a>
-            <a href="index.html#formations" class="font-medium">Formations</a>
-            <a href="index.html#apropos" class="font-medium">Ã€ propos</a>
-            <a href="index.html#blog" class="font-medium">Blog</a>
-            <a href="index.html#contact" class="font-medium">Contact</a>
-        </nav>
-    </div>
+    </header>
 
     <!-- Hero Section -->
     <section class="pt-16 pb-24 gradient-bg text-white">
@@ -305,22 +293,6 @@
             });
         });
 
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuButton.classList.toggle('active');
-        });
-
-        // Fermer le menu quand on clique sur un lien
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuButton.classList.remove('active');
-            });
-        });
     </script>
     <script src="/static/js/webmcp-init.js"></script>
     <script src="/static/js/cookie-consent.js"></script>

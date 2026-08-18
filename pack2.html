@@ -272,46 +272,31 @@
     }
     </script>
     <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <link rel="stylesheet" href="/static/css/nav.css?v=3">
     <link rel="stylesheet" href="/static/css/cookie-consent.css">
 </head>
 
 <body class="bg-gray-50 text-gray-900">
-    <!-- Header -->
-    <header class="fixed w-full bg-white shadow-md z-50">
-        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
-            <div class="flex items-center">
-                <img src="/static/images/logo_main.jpg" alt="logo IAfluence" style="width: 16.67%;">
-                <h1 class="text-2xl font-bold text-blue-600">IAfluence</h1>
-            </div>
-            <nav class="hidden md:flex space-x-8">
-                <a href="index.html#accueil" class="font-medium hover:text-blue-600 transition">Accueil</a>
-                <a href="index.html#services" class="font-medium hover:text-blue-600 transition">Services</a>
-                <a href="index.html#formations" class="font-medium hover:text-blue-600 transition">Formations</a>
-                <a href="index.html#apropos" class="font-medium hover:text-blue-600 transition">Ã€ propos</a>
-                <a href="index.html#blog" class="font-medium hover:text-blue-600 transition">Blog</a>
-                <a href="index.html#contact" class="font-medium hover:text-blue-600 transition">Contact</a>
-            </nav>
-            <div id="google_translate_element"></div>
-            <button id="mobileMenuButton" class="md:hidden text-gray-700 mobile-menu-button">
-                <i class="fas fa-bars text-2xl"></i>
-            </button>
-        </div>
-
-        <!-- Mobile Menu -->
-        <div id="mobileMenu" class="mobile-menu md:hidden">
-            <nav>
-                <a href="index.html#accueil" class="font-medium">Accueil</a>
-                <a href="index.html#services" class="font-medium">Services</a>
-                <a href="index.html#formations" class="font-medium">Formations</a>
-                <a href="index.html#apropos" class="font-medium">Ã€ propos</a>
-                <a href="index.html#blog" class="font-medium">Blog</a>
-                <a href="index.html#contact" class="font-medium">Contact</a>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="brand" href="/">
+                <img src="/static/images/logo_main.jpg" alt="IAfluence">
+                <span>
+                    <strong>IAfluence</strong>
+                    <small>Conseil IA concret</small>
+                </span>
+            </a>
+            <nav class="main-nav" aria-label="Navigation principale">
+                <a href="/">Conseil IA</a>
+                <a href="/realisations.html">Réalisations</a>
+                <a href="/about.html">A propos</a>
+                <a href="/contact.html">Contact</a>
             </nav>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="pt-24">
+    <main>
         <!-- Hero Section for Pack OpÃ©rationnel Cloud -->
         <section class="py-16 gradient-bg text-white">
             <div class="container mx-auto px-4">
@@ -648,23 +633,6 @@
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
-            });
-        });
-
-        // Mobile menu toggle
-        const mobileMenuButton = document.getElementById('mobileMenuButton');
-        const mobileMenu = document.getElementById('mobileMenu');
-
-        mobileMenuButton.addEventListener('click', () => {
-            mobileMenu.classList.toggle('active');
-            mobileMenuButton.classList.toggle('active');
-        });
-
-        // Fermer le menu quand on clique sur un lien
-        document.querySelectorAll('#mobileMenu a').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.remove('active');
-                mobileMenuButton.classList.remove('active');
             });
         });
 

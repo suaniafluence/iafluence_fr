@@ -173,8 +173,8 @@ body > header .nav-menu a::after {
     body > header .nav-menu,
     body > header .main-nav {
         width: 100%;
-        justify-content: flex-start;
-        gap: 28px !important;
+        justify-content: space-between;
+        gap: 12px !important;
         overflow-x: auto;
         white-space: nowrap;
         scrollbar-width: none;
